@@ -11,3 +11,5 @@
 #-----------------------------------------------------------
 start_gui
 open_project U:/DigMe/Oscilloscope/project/Oscilloscope.xpr
+create_bd_design "oscilloscope_bd"
+update_compile_order -fileset sources_1
