@@ -4,13 +4,13 @@ use ieee.numeric_std.all;
 
 entity trigger is
     port(
-        clk : in std_logic;
-        rst : in std_logic
+        clk           : in std_logic;
+        rst           : in std_logic
     );
 end entity trigger;
 
 architecture RTL of trigger is
-    
+
 begin
 
 end architecture RTL;
