@@ -4,9 +4,9 @@
 -- # Miniproject Digital Microelectronics (Fall Semester 2022)           #
 -- # OST Rapperswil-Jona                                                 #
 -- #                                                                     #
--- # Group 7:   Pelé Constam                                             #
+-- # Group 7:   PelÃ© Constam                                             #
 -- #            Sandro Pedrett                                           #
--- #            Erik Löffler                                             #
+-- #            Erik LÃ¶ffler                                             #
 -- #                                                                     #
 -- # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
@@ -32,7 +32,7 @@ entity trigger is
 end entity trigger;
 
 architecture RTL of trigger is
-    
+
 begin
 
 end architecture RTL;
