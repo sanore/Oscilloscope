@@ -13,3 +13,6 @@ start_gui
 open_project U:/DigMe/Oscilloscope/project/Oscilloscope.xpr
 create_bd_design "oscilloscope_bd"
 update_compile_order -fileset sources_1
+startgroup
+create_bd_cell -type ip -vlnv xilinx.com:ip:xadc_wiz:3.3 xadc_wiz_0
+endgroup

@@ -2,10 +2,10 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-entity ram is
-end entity ram;
+entity ram_tb is
+end entity ram_tb;
 
-architecture RTL of ram is
+architecture RTL of ram_tb is
     
 begin
 
