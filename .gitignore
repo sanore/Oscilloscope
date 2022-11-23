@@ -74,3 +74,4 @@
 #!*.dcp
 
 # End of https://www.toptal.com/developers/gitignore/api/xilinxvivado,vivado
+/.metadata/

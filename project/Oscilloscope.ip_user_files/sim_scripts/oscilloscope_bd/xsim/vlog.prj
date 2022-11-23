@@ -1,0 +1,10 @@
+verilog xil_defaultlib --include "C:/Xilinx/Vivado/2021.1/data/xilinx_vip/include" --include "../../../../Oscilloscope.gen/sources_1/bd/oscilloscope_bd/ipshared/6dcf" --include "../../../../Oscilloscope.gen/sources_1/bd/oscilloscope_bd/ipshared/ec67/hdl" --include "../../../../Oscilloscope.gen/sources_1/bd/oscilloscope_bd/ipshared/f42d/hdl" \
+"../../../bd/oscilloscope_bd/ip/oscilloscope_bd_clk_wiz_0_0/oscilloscope_bd_clk_wiz_0_0_clk_wiz.v" \
+"../../../bd/oscilloscope_bd/ip/oscilloscope_bd_clk_wiz_0_0/oscilloscope_bd_clk_wiz_0_0.v" \
+"../../../bd/oscilloscope_bd/ip/oscilloscope_bd_processing_system7_0_1/sim/oscilloscope_bd_processing_system7_0_1.v" \
+"../../../bd/oscilloscope_bd/ip/oscilloscope_bd_xlconstant_0_0/sim/oscilloscope_bd_xlconstant_0_0.v" \
+"../../../bd/oscilloscope_bd/ip/oscilloscope_bd_auto_pc_0/sim/oscilloscope_bd_auto_pc_0.v" \
+
+verilog xil_defaultlib "glbl.v"
+
+nosort

@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2021.1 (64-bit)
+# SW Build 3247384 on Thu Jun 10 19:36:33 MDT 2021
+# IP Build 3246043 on Fri Jun 11 00:30:35 MDT 2021
+# Start of session at: Wed Nov 23 16:53:25 2022
+# Process ID: 17664
+# Current directory: U:/DigMe/Oscilloscope/project/Oscilloscope.runs/oscilloscope_bd_processing_system7_0_1_synth_1
+# Command line: vivado.exe -log oscilloscope_bd_processing_system7_0_1.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source oscilloscope_bd_processing_system7_0_1.tcl
+# Log file: U:/DigMe/Oscilloscope/project/Oscilloscope.runs/oscilloscope_bd_processing_system7_0_1_synth_1/oscilloscope_bd_processing_system7_0_1.vds
+# Journal file: U:/DigMe/Oscilloscope/project/Oscilloscope.runs/oscilloscope_bd_processing_system7_0_1_synth_1\vivado.jou
+#-----------------------------------------------------------
+source oscilloscope_bd_processing_system7_0_1.tcl -notrace

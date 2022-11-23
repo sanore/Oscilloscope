@@ -18,7 +18,8 @@ entity channel is
         read_data     : out std_ulogic_vector(DATA_WIDTH - 1 downto 0);
         read_en       : in  std_ulogic;
         -- channel state
-        state         : out std_ulogic_vector(3 downto 0)
+        state         : out std_ulogic_vector(3 downto 0);
+        irq           : out std_ulogic
     );
 end entity channel;
 
