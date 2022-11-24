@@ -14,7 +14,7 @@ entity ram is
         write_data    : in  std_ulogic_vector(DATA_WIDTH - 1 downto 0);
         write_en      : in  std_ulogic;
         --read interface
-        read_address  : out std_ulogic_vector(ADDR_WIDTH - 1 downto 0);
+        read_address  : in std_ulogic_vector(ADDR_WIDTH - 1 downto 0);
         read_data     : out std_ulogic_vector(DATA_WIDTH - 1 downto 0);
         read_en       : in  std_ulogic
     );
