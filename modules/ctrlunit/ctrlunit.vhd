@@ -10,7 +10,7 @@ entity ctrlunit is
         clk           : in  std_logic;
         rst           : in  std_logic;
         start_record  : in  std_logic;
-        adc_val       : in  std_ulogic_vector(DATA_WIDTH - 1 downto 0);
+        adc_val       : in  std_ulogic_vector(11 downto 0);
         -- from trigger block
         trigger_pulse : in  std_ulogic;
         -- to ram
@@ -50,8 +50,15 @@ begin
             count => sample_counter
         );
 
-    write_data_process : process(sample_counter) is
+    write_data_process : process(mode, sample_counter, adc_val) is
     begin
+        write_en <= '0';
+        
+        if (mode = wait_for_trigger or mode = wait_for_full or mode = triggered) then
+            write_en <= '1';
+            write_address <= sample_counter;
+            write_data <= "0000" & adc_val; -- @suppress "Incorrect array size in assignment: expected (<DATA_WIDTH>) but was (<16>)"
+        end if;
     end process write_data_process;
 
     trigger_process : process(trigger_pulse, mode, sample_counter, start_record, trigger_counter_idx) is
@@ -60,7 +67,6 @@ begin
             mode_next           <= idle;
             sample_counter_rst  <= '1';
         elsif (mode = idle) then
-            -- TODO wait for start
             if (start_record = '1') then
                 mode_next <= wait_for_trigger;
             end if;
@@ -77,7 +83,7 @@ begin
             mode_next           <= wait_for_full;
 
         elsif (mode = wait_for_full) then
-            -- TODO '= 1000' does not work
+            -- wait until sample counter is ram offset
             if ((unsigned(sample_counter) + addr_offset) = (unsigned(trigger_counter_idx) - 1)) then
                 mode_next          <= idle;
                 sample_counter_rst <= '1';
