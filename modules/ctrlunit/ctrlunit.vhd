@@ -18,7 +18,9 @@ entity ctrlunit is
         write_data    : out std_ulogic_vector(DATA_WIDTH - 1 downto 0);
         write_en      : out std_ulogic;
         -- trigger index output
-        trigger_index : out std_ulogic_vector(ADDR_WIDTH - 1 downto 0)
+        trigger_index : out std_ulogic_vector(ADDR_WIDTH - 1 downto 0);
+        -- irq output
+        record_ready_irq  : out std_ulogic
     );
 end entity ctrlunit;
 
@@ -63,6 +65,8 @@ begin
 
     trigger_process : process(trigger_pulse, mode, sample_counter, start_record, trigger_counter_idx) is
     begin
+        record_ready_irq <= '0';
+        sample_counter_rst <= '0';
         if (mode = reset) then
             mode_next           <= idle;
             sample_counter_rst  <= '1';
@@ -87,6 +91,7 @@ begin
             if ((unsigned(sample_counter) + addr_offset) = (unsigned(trigger_counter_idx) - 1)) then
                 mode_next          <= idle;
                 sample_counter_rst <= '1';
+                record_ready_irq <= '1';
             end if;
 
         end if;
