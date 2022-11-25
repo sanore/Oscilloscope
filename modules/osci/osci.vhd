@@ -24,34 +24,31 @@ architecture RTL of osci is
             DATA_WIDTH : integer := 16
         );
         port(
-            clk           : in  std_logic;
-            rst           : in  std_logic;
-            write_address : in  std_ulogic_vector(ADDR_WIDTH - 1 downto 0);
-            write_data    : in  std_ulogic_vector(DATA_WIDTH - 1 downto 0);
-            write_en      : in  std_ulogic;
-            read_address  : out std_ulogic_vector(ADDR_WIDTH - 1 downto 0);
-            read_data     : out std_ulogic_vector(DATA_WIDTH - 1 downto 0);
-            read_en       : in  std_ulogic;
-            state         : out std_ulogic_vector(3 downto 0);
-            irq           : out std_ulogic
+            clk              : in  std_logic;
+            rst              : in  std_logic;
+            read_address     : in  std_ulogic_vector(ADDR_WIDTH - 1 downto 0);
+            read_data        : out std_ulogic_vector(DATA_WIDTH - 1 downto 0);
+            read_en          : in  std_ulogic;
+            record_ready_irq : out std_ulogic;
+            adc_val          : in  std_ulogic_vector(11 downto 0)
         );
     end component channel;
 begin
     
     -- channel 1
     ch1 : channel
+        generic map(
+            ADDR_WIDTH => 13,
+            DATA_WIDTH => 16
+        ) 
         port map(
-            clk           => clk,
-            rst           => rst,
-            -- todo
-            write_address => open,
-            write_data    => open,
-            write_en      => open,
-            read_address  => open,
-            read_data     => open,
-            read_en       => open,
-            state         => open,
-            
-            irq           => ch1_irq
-        );    
+            clk              => clk,
+            rst              => rst,
+            read_address     => open,
+            read_data        => open,
+            read_en          => open,
+            record_ready_irq => ch1_irq,
+            adc_val          => ch1_adc
+        ) ;
+    
 end architecture RTL;

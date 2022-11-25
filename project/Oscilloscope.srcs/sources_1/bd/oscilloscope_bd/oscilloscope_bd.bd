@@ -21,7 +21,8 @@
       "osci_0": "",
       "clk_wiz_0": "",
       "proc_sys_reset_0": "",
-      "processing_system7_0": ""
+      "processing_system7_0": "",
+      "adc_processing_0": ""
     },
     "interface_ports": {
       "DDR": {
@@ -1635,6 +1636,77 @@
             }
           }
         }
+      },
+      "adc_processing_0": {
+        "vlnv": "xilinx.com:module_ref:adc_processing:1.0",
+        "xci_name": "oscilloscope_bd_adc_processing_0_0",
+        "xci_path": "ip\\oscilloscope_bd_adc_processing_0_0\\oscilloscope_bd_adc_processing_0_0.xci",
+        "inst_hier_path": "adc_processing_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "adc_processing",
+          "boundary_crc": "0x0"
+        },
+        "interface_ports": {
+          "adc": {
+            "mode": "Slave",
+            "vlnv_bus_definition": "xilinx.com:interface:axis:1.0",
+            "vlnv": "xilinx.com:interface:axis_rtl:1.0",
+            "parameters": {
+              "TDATA_NUM_BYTES": {
+                "value": "2",
+                "value_src": "constant"
+              },
+              "TDEST_WIDTH": {
+                "value": "0",
+                "value_src": "constant"
+              },
+              "TID_WIDTH": {
+                "value": "0",
+                "value_src": "constant"
+              },
+              "TUSER_WIDTH": {
+                "value": "0",
+                "value_src": "constant"
+              },
+              "HAS_TREADY": {
+                "value": "0",
+                "value_src": "constant"
+              },
+              "HAS_TSTRB": {
+                "value": "0",
+                "value_src": "constant"
+              },
+              "HAS_TKEEP": {
+                "value": "0",
+                "value_src": "constant"
+              },
+              "HAS_TLAST": {
+                "value": "0",
+                "value_src": "constant"
+              }
+            },
+            "port_maps": {
+              "TDATA": {
+                "physical_name": "adc_tdata",
+                "direction": "I",
+                "left": "15",
+                "right": "0"
+              },
+              "TVALID": {
+                "physical_name": "adc_tvalid",
+                "direction": "I"
+              }
+            }
+          }
+        },
+        "ports": {
+          "ch1_adc": {
+            "direction": "O",
+            "left": "11",
+            "right": "0"
+          }
+        }
       }
     },
     "interface_nets": {
@@ -1674,6 +1746,12 @@
         "ports": [
           "OsciToCpu_0/channel1_trigger",
           "osci_0/ch1_trigger"
+        ]
+      },
+      "adc_processing_0_ch1_adc": {
+        "ports": [
+          "adc_processing_0/ch1_adc",
+          "osci_0/ch1_adc"
         ]
       },
       "adc_vn_1": {
@@ -1746,6 +1824,18 @@
           "reset",
           "clk_wiz_0/reset",
           "proc_sys_reset_0/ext_reset_in"
+        ]
+      },
+      "xadc_wiz_0_m_axis_tdata": {
+        "ports": [
+          "xadc_wiz_0/m_axis_tdata",
+          "adc_processing_0/adc_tdata"
+        ]
+      },
+      "xadc_wiz_0_m_axis_tvalid": {
+        "ports": [
+          "xadc_wiz_0/m_axis_tvalid",
+          "adc_processing_0/adc_tvalid"
         ]
       },
       "xlconstant_0_dout": {
