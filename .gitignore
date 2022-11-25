@@ -77,6 +77,9 @@ project/NA
 !*.elf
 !*.bmm
 !*.xmp
+# other
+!*.csv
+!*.py
 
 ### XilinxVivado ###
 #.xci: IP-core property file with core container disabled
