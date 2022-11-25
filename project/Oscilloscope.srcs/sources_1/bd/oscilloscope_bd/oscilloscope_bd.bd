@@ -17,12 +17,12 @@
         }
       },
       "xlconstant_0": "",
-      "OsciToCpu_0": "",
-      "osci_0": "",
       "clk_wiz_0": "",
       "proc_sys_reset_0": "",
       "processing_system7_0": "",
-      "adc_processing_0": ""
+      "adc_processing_0": "",
+      "OsciToCpu_0": "",
+      "osci_0": ""
     },
     "interface_ports": {
       "DDR": {
@@ -382,69 +382,6 @@
         "xci_name": "oscilloscope_bd_xlconstant_0_0",
         "xci_path": "ip\\oscilloscope_bd_xlconstant_0_0\\oscilloscope_bd_xlconstant_0_0.xci",
         "inst_hier_path": "xlconstant_0"
-      },
-      "OsciToCpu_0": {
-        "vlnv": "ost.ch:user:OsciToCpu:1",
-        "xci_name": "oscilloscope_bd_OsciToCpu_0_2",
-        "xci_path": "ip\\oscilloscope_bd_OsciToCpu_0_2\\oscilloscope_bd_OsciToCpu_0_2.xci",
-        "inst_hier_path": "OsciToCpu_0"
-      },
-      "osci_0": {
-        "vlnv": "xilinx.com:module_ref:osci:1.0",
-        "xci_name": "oscilloscope_bd_osci_0_1",
-        "xci_path": "ip\\oscilloscope_bd_osci_0_1\\oscilloscope_bd_osci_0_1.xci",
-        "inst_hier_path": "osci_0",
-        "reference_info": {
-          "ref_type": "hdl",
-          "ref_name": "osci",
-          "boundary_crc": "0x0"
-        },
-        "ports": {
-          "clk": {
-            "type": "clk",
-            "direction": "I",
-            "parameters": {
-              "ASSOCIATED_RESET": {
-                "value": "rst",
-                "value_src": "constant"
-              }
-            }
-          },
-          "rst": {
-            "type": "rst",
-            "direction": "I"
-          },
-          "ch1_adc": {
-            "direction": "I",
-            "left": "11",
-            "right": "0"
-          },
-          "ch1_state": {
-            "direction": "I",
-            "left": "31",
-            "right": "0"
-          },
-          "ch1_trigger": {
-            "direction": "I",
-            "left": "31",
-            "right": "0"
-          },
-          "ch1_mode_edge": {
-            "direction": "I",
-            "left": "31",
-            "right": "0"
-          },
-          "ch1_irq": {
-            "type": "intr",
-            "direction": "O",
-            "parameters": {
-              "SENSITIVITY": {
-                "value": "LEVEL_HIGH",
-                "value_src": "constant"
-              }
-            }
-          }
-        }
       },
       "clk_wiz_0": {
         "vlnv": "xilinx.com:ip:clk_wiz:6.0",
@@ -1504,6 +1441,9 @@
           },
           "PCW_WDT_PERIPHERAL_ENABLE": {
             "value": "0"
+          },
+          "preset": {
+            "value": "None"
           }
         },
         "interface_ports": {
@@ -1707,6 +1647,86 @@
             "right": "0"
           }
         }
+      },
+      "OsciToCpu_0": {
+        "vlnv": "ost.ch:user:OsciToCpu:1",
+        "xci_name": "oscilloscope_bd_OsciToCpu_0_2",
+        "xci_path": "ip\\oscilloscope_bd_OsciToCpu_0_2\\oscilloscope_bd_OsciToCpu_0_2.xci",
+        "inst_hier_path": "OsciToCpu_0"
+      },
+      "osci_0": {
+        "vlnv": "xilinx.com:module_ref:osci:1.0",
+        "xci_name": "oscilloscope_bd_osci_0_1",
+        "xci_path": "ip\\oscilloscope_bd_osci_0_1\\oscilloscope_bd_osci_0_1.xci",
+        "inst_hier_path": "osci_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "osci",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "rst",
+                "value_src": "constant"
+              }
+            }
+          },
+          "rst": {
+            "type": "rst",
+            "direction": "I"
+          },
+          "ch1_adc": {
+            "direction": "I",
+            "left": "11",
+            "right": "0"
+          },
+          "ch1_irq": {
+            "type": "intr",
+            "direction": "O",
+            "parameters": {
+              "SENSITIVITY": {
+                "value": "LEVEL_HIGH",
+                "value_src": "constant"
+              }
+            }
+          },
+          "ch1_en": {
+            "direction": "I"
+          },
+          "ch1_rst": {
+            "type": "rst",
+            "direction": "I"
+          },
+          "ch1_mode": {
+            "direction": "I",
+            "left": "3",
+            "right": "0"
+          },
+          "ch1_edge_sel": {
+            "direction": "I",
+            "left": "3",
+            "right": "0"
+          },
+          "ch1_edge_thre": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "ch1_ram_data": {
+            "direction": "O",
+            "left": "15",
+            "right": "0"
+          },
+          "ch1_ram_adr": {
+            "direction": "I",
+            "left": "11",
+            "right": "0"
+          }
+        }
       }
     },
     "interface_nets": {
@@ -1730,22 +1750,40 @@
       }
     },
     "nets": {
-      "OsciToCpu_0_channel1_mode_edge": {
+      "OsciToCpu_0_ch1_edge_sel": {
         "ports": [
-          "OsciToCpu_0/channel1_mode_edge",
-          "osci_0/ch1_mode_edge"
+          "OsciToCpu_0/ch1_edge_sel",
+          "osci_0/ch1_edge_sel"
         ]
       },
-      "OsciToCpu_0_channel1_state": {
+      "OsciToCpu_0_ch1_edge_thre": {
         "ports": [
-          "OsciToCpu_0/channel1_state",
-          "osci_0/ch1_state"
+          "OsciToCpu_0/ch1_edge_thre",
+          "osci_0/ch1_edge_thre"
         ]
       },
-      "OsciToCpu_0_channel1_trigger": {
+      "OsciToCpu_0_ch1_en": {
         "ports": [
-          "OsciToCpu_0/channel1_trigger",
-          "osci_0/ch1_trigger"
+          "OsciToCpu_0/ch1_en",
+          "osci_0/ch1_en"
+        ]
+      },
+      "OsciToCpu_0_ch1_mode": {
+        "ports": [
+          "OsciToCpu_0/ch1_mode",
+          "osci_0/ch1_mode"
+        ]
+      },
+      "OsciToCpu_0_ch1_ram_adr": {
+        "ports": [
+          "OsciToCpu_0/ch1_ram_adr",
+          "osci_0/ch1_ram_adr"
+        ]
+      },
+      "OsciToCpu_0_ch1_rst": {
+        "ports": [
+          "OsciToCpu_0/ch1_rst",
+          "osci_0/ch1_rst"
         ]
       },
       "adc_processing_0_ch1_adc": {
@@ -1778,12 +1816,12 @@
           "axi_interconnect_0/ACLK",
           "axi_interconnect_0/S00_ACLK",
           "axi_interconnect_0/M00_ACLK",
-          "OsciToCpu_0/s00_axi_aclk",
           "xadc_wiz_0/m_axis_aclk",
-          "osci_0/clk",
           "proc_sys_reset_0/slowest_sync_clk",
           "processing_system7_0/M_AXI_GP0_ACLK",
-          "xadc_wiz_0/s_axis_aclk"
+          "xadc_wiz_0/s_axis_aclk",
+          "OsciToCpu_0/s00_axi_aclk",
+          "osci_0/clk"
         ]
       },
       "clk_wiz_0_locked": {
@@ -1798,6 +1836,12 @@
           "processing_system7_0/Core0_nIRQ"
         ]
       },
+      "osci_0_ch1_ram_data": {
+        "ports": [
+          "osci_0/ch1_ram_data",
+          "OsciToCpu_0/ch1_ram_data"
+        ]
+      },
       "proc_sys_reset_0_interconnect_aresetn": {
         "ports": [
           "proc_sys_reset_0/interconnect_aresetn",
@@ -1809,8 +1853,8 @@
       "proc_sys_reset_0_peripheral_aresetn": {
         "ports": [
           "proc_sys_reset_0/peripheral_aresetn",
-          "OsciToCpu_0/s00_axi_aresetn",
-          "xadc_wiz_0/m_axis_resetn"
+          "xadc_wiz_0/m_axis_resetn",
+          "OsciToCpu_0/s00_axi_aresetn"
         ]
       },
       "proc_sys_reset_0_peripheral_reset": {

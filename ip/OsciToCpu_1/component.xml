@@ -229,6 +229,22 @@
         </spirit:parameter>
       </spirit:parameters>
     </spirit:busInterface>
+    <spirit:busInterface>
+      <spirit:name>ch1_rst</spirit:name>
+      <spirit:busType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="reset" spirit:version="1.0"/>
+      <spirit:abstractionType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="reset_rtl" spirit:version="1.0"/>
+      <spirit:master/>
+      <spirit:portMaps>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>RST</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>ch1_rst</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+      </spirit:portMaps>
+    </spirit:busInterface>
   </spirit:busInterfaces>
   <spirit:memoryMaps>
     <spirit:memoryMap>
@@ -266,7 +282,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>6412bc59</spirit:value>
+            <spirit:value>7b478331</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -282,7 +298,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>6412bc59</spirit:value>
+            <spirit:value>7b478331</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -296,7 +312,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>543406db</spirit:value>
+            <spirit:value>200c5ab7</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -331,11 +347,37 @@
     </spirit:views>
     <spirit:ports>
       <spirit:port>
-        <spirit:name>channel1_state</spirit:name>
+        <spirit:name>ch1_en</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_ulogic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_vhdlsynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_vhdlbehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>ch1_rst</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_ulogic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_vhdlsynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_vhdlbehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>ch1_mode</spirit:name>
         <spirit:wire>
           <spirit:direction>out</spirit:direction>
           <spirit:vector>
-            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="(spirit:decode(id(&apos;MODELPARAM_VALUE.C_S00_AXI_DATA_WIDTH&apos;)) - 1)">31</spirit:left>
+            <spirit:left spirit:format="long">3</spirit:left>
             <spirit:right spirit:format="long">0</spirit:right>
           </spirit:vector>
           <spirit:wireTypeDefs>
@@ -348,11 +390,11 @@
         </spirit:wire>
       </spirit:port>
       <spirit:port>
-        <spirit:name>channel1_trigger</spirit:name>
+        <spirit:name>ch1_edge_sel</spirit:name>
         <spirit:wire>
           <spirit:direction>out</spirit:direction>
           <spirit:vector>
-            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="(spirit:decode(id(&apos;MODELPARAM_VALUE.C_S00_AXI_DATA_WIDTH&apos;)) - 1)">31</spirit:left>
+            <spirit:left spirit:format="long">3</spirit:left>
             <spirit:right spirit:format="long">0</spirit:right>
           </spirit:vector>
           <spirit:wireTypeDefs>
@@ -365,11 +407,45 @@
         </spirit:wire>
       </spirit:port>
       <spirit:port>
-        <spirit:name>channel1_mode_edge</spirit:name>
+        <spirit:name>ch1_edge_thre</spirit:name>
         <spirit:wire>
           <spirit:direction>out</spirit:direction>
           <spirit:vector>
-            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="(spirit:decode(id(&apos;MODELPARAM_VALUE.C_S00_AXI_DATA_WIDTH&apos;)) - 1)">31</spirit:left>
+            <spirit:left spirit:format="long">15</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
+          </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_ulogic_vector</spirit:typeName>
+              <spirit:viewNameRef>xilinx_vhdlsynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_vhdlbehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>ch1_ram_data</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:vector>
+            <spirit:left spirit:format="long">15</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
+          </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_ulogic_vector</spirit:typeName>
+              <spirit:viewNameRef>xilinx_vhdlsynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_vhdlbehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>ch1_ram_adr</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:vector>
+            <spirit:left spirit:format="long">11</spirit:left>
             <spirit:right spirit:format="long">0</spirit:right>
           </spirit:vector>
           <spirit:wireTypeDefs>
@@ -732,7 +808,7 @@
       <spirit:file>
         <spirit:name>hdl/OsciToCpu_v1.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_194dfbf0</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_13ba1350</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
@@ -861,8 +937,8 @@
         <xilinx:taxonomy>AXI_Peripheral</xilinx:taxonomy>
       </xilinx:taxonomies>
       <xilinx:displayName>OsciToCpu_v1</xilinx:displayName>
-      <xilinx:coreRevision>5</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2022-11-23T15:52:22Z</xilinx:coreCreationDateTime>
+      <xilinx:coreRevision>6</xilinx:coreRevision>
+      <xilinx:coreCreationDateTime>2022-11-25T10:43:19Z</xilinx:coreCreationDateTime>
       <xilinx:tags>
         <xilinx:tag xilinx:name="ui.data.coregen.df@14fb9db2_ARCHIVE_LOCATION">u:/DigMe/Oscilloscope/ip/OsciToCpu_1</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.df@497d912_ARCHIVE_LOCATION">u:/DigMe/Oscilloscope/ip/OsciToCpu_1</xilinx:tag>
@@ -917,14 +993,30 @@
         <xilinx:tag xilinx:name="ui.data.coregen.df@15fb5d52_ARCHIVE_LOCATION">u:/DigMe/Oscilloscope/ip/OsciToCpu_1</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.df@3a8246f5_ARCHIVE_LOCATION">u:/DigMe/Oscilloscope/ip/OsciToCpu_1</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.df@466c9463_ARCHIVE_LOCATION">u:/DigMe/Oscilloscope/ip/OsciToCpu_1</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@63c0a2cd_ARCHIVE_LOCATION">u:/DigMe/Oscilloscope/ip/OsciToCpu_1</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@55c31be1_ARCHIVE_LOCATION">u:/DigMe/Oscilloscope/ip/OsciToCpu_1</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@28a313fe_ARCHIVE_LOCATION">u:/DigMe/Oscilloscope/ip/OsciToCpu_1</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@5c60fe5f_ARCHIVE_LOCATION">u:/DigMe/Oscilloscope/ip/OsciToCpu_1</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@b2232d2_ARCHIVE_LOCATION">u:/DigMe/Oscilloscope/ip/OsciToCpu_1</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@e6076f_ARCHIVE_LOCATION">u:/DigMe/Oscilloscope/ip/OsciToCpu_1</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@35c8ccb8_ARCHIVE_LOCATION">u:/DigMe/Oscilloscope/ip/OsciToCpu_1</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@459addff_ARCHIVE_LOCATION">u:/DigMe/Oscilloscope/ip/OsciToCpu_1</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@5834ceb9_ARCHIVE_LOCATION">u:/DigMe/Oscilloscope/ip/OsciToCpu_1</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@609138a2_ARCHIVE_LOCATION">u:/DigMe/Oscilloscope/ip/OsciToCpu_1</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@4f016696_ARCHIVE_LOCATION">u:/DigMe/Oscilloscope/ip/OsciToCpu_1</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@187441fa_ARCHIVE_LOCATION">u:/DigMe/Oscilloscope/ip/OsciToCpu_1</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@2cf60563_ARCHIVE_LOCATION">u:/DigMe/Oscilloscope/ip/OsciToCpu_1</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@75850b74_ARCHIVE_LOCATION">u:/DigMe/Oscilloscope/ip/OsciToCpu_1</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@7d16c739_ARCHIVE_LOCATION">u:/DigMe/Oscilloscope/ip/OsciToCpu_1</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@4c163108_ARCHIVE_LOCATION">u:/DigMe/Oscilloscope/ip/OsciToCpu_1</xilinx:tag>
       </xilinx:tags>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2021.1</xilinx:xilinxVersion>
-      <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="206b0a70"/>
+      <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="78c8c85b"/>
       <xilinx:checksum xilinx:scope="memoryMaps" xilinx:value="ed1368d5"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="d56b8640"/>
-      <xilinx:checksum xilinx:scope="ports" xilinx:value="9c87c8a6"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="4e2ca6ac"/>
+      <xilinx:checksum xilinx:scope="ports" xilinx:value="ee852ed8"/>
       <xilinx:checksum xilinx:scope="hdlParameters" xilinx:value="2e811c89"/>
       <xilinx:checksum xilinx:scope="parameters" xilinx:value="fc59bc91"/>
     </xilinx:packagingInfo>
