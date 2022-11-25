@@ -1,15 +1,15 @@
 # Created by https://www.toptal.com/developers/gitignore/api/xilinxvivado,vivado
 # Edit at https://www.toptal.com/developers/gitignore?templates=xilinxvivado,vivado
 
-project/Oscilloscope.cache/*
-project/Oscilloscope.runs/*
-project/Oscilloscope.sim/*
-project/Oscilloscope.gen/*
-project/Oscilloscope.hw/*
+project/Oscilloscope.cache
+project/Oscilloscope.runs
+project/Oscilloscope.sim
+project/Oscilloscope.gen
+project/Oscilloscope.hw
 *.jou
 *.log
-project/.Xil/*
-project/NA/*
+project/.Xil
+project/NA
 
 ### Vivado ###
 #########################################################################################################
