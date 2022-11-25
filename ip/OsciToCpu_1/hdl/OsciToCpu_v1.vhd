@@ -16,9 +16,13 @@ entity OsciToCpu_v1 is
 	);
 	port (
 		-- Users to add ports here
-        channel1_state : out std_ulogic_vector(C_S00_AXI_DATA_WIDTH-1 downto 0); 
-        channel1_trigger : out std_ulogic_vector(C_S00_AXI_DATA_WIDTH-1 downto 0);
-        channel1_mode_edge : out std_ulogic_vector(C_S00_AXI_DATA_WIDTH-1 downto 0);
+        ch1_en        : out std_ulogic; 
+        ch1_rst       : out std_ulogic; 
+        ch1_mode      : out std_ulogic_vector(3 downto 0);
+        ch1_edge_sel  : out std_ulogic_vector(3 downto 0);
+        ch1_edge_thre : out std_ulogic_vector(15 downto 0);
+        ch1_ram_data  : in  std_ulogic_vector(15 downto 0);
+        ch1_ram_adr   : out std_ulogic_vector(11 downto 0);
 		-- User ports ends
 		-- Do not modify the ports beyond this line
 
@@ -135,9 +139,14 @@ OsciToCpu_v1_S00_AXI_inst : OsciToCpu_v1_S00_AXI
 	);
 
 	-- Add user logic here
-    channel1_state <= reg0;
-    channel1_trigger <= reg1;
-    channel1_mode_edge <= reg2;
+	
+    ch1_en            <= reg0(0);
+    ch1_rst           <= reg0(1);
+    ch1_mode          <= reg1(3 downto 0);
+    ch1_edge_sel      <= reg2(3 downto 0);
+    ch1_edge_thre     <= reg2(31 downto 16);
+    ch1_ram_adr       <= reg4(11 downto 0);
+    reg3(15 downto 0) <= ch1_ram_data;
 	-- User logic ends
 
 end arch_imp;
