@@ -20,15 +20,15 @@ entity ram is
            );
     port(
         clk           : in  std_logic;
-        rst           : in  std_logic;
+        rst           : in  std_logic;  -- global system reset
         -- write interface
         write_address : in  std_ulogic_vector(ADDR_WIDTH - 1 downto 0);
         write_data    : in  std_ulogic_vector(DATA_WIDTH - 1 downto 0);
-        write_en      : in  std_ulogic;
+        write_en      : in  std_ulogic; -- write pulse
         --read interface
         read_address  : in std_ulogic_vector(ADDR_WIDTH - 1 downto 0);
-        read_data     : out std_ulogic_vector(DATA_WIDTH - 1 downto 0);
-        read_en       : in  std_ulogic
+        read_data     : out std_ulogic_vector(DATA_WIDTH - 1 downto 0); -- default: 0 (if rst = 1)
+        read_en       : in  std_ulogic  -- read pulse, output (read_data) will show data from last read
     );
 end entity ram;
 
@@ -37,7 +37,7 @@ architecture RTL of ram is
     shared variable mem: memory_type;
 begin
 
-    -- writing 
+    -- writing only
     write_proc: process(clk)
     begin
         if rising_edge(clk) then
@@ -47,12 +47,18 @@ begin
         end if;
     end process write_proc;
 
+    -- reading only process
     read_proc: process(clk)
     begin
         if rising_edge(clk) then
-            if rst = '0' and read_en = '1' then
-                read_data <= mem(to_integer(unsigned(read_address)));
+            if rst = '0' then
+                if read_en = '1' then
+                    -- only output data if read_en pulse is received, otherwise
+                    -- read_data will hold the data from last memory address
+                    read_data <= mem(to_integer(unsigned(read_address)));
+                end if;
             else
+                -- set output to 0  if reset is high
                 read_data <= (others => '0');
             end if;
         end if;
