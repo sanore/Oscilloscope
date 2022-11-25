@@ -17,7 +17,6 @@ entity channel is
         read_en          : in  std_ulogic;
         
         -- channel state
-        state             : out std_ulogic_vector(3 downto 0);
         record_ready_irq  : out std_ulogic;
         adc_val           : in  std_ulogic_vector(11 downto 0)
     );
@@ -86,13 +85,14 @@ begin
         port map(
             clk           => clk,
             rst           => rst,
-            start_record  => start_record,
             adc_val       => adc_val,
             trigger_pulse => trigger_pulse,
             write_address => write_address,
             write_data    => write_data,
             write_en      => write_en,
-            trigger_index => trigger_index
+            -- TODO
+            start_record  => open,
+            trigger_index => open
         );
     
     storage : ram
@@ -116,6 +116,7 @@ begin
             clk            => clk,
             enable         => '1',
             adc_val        => adc_val,
+            -- TODO use from CPU configuration register
             trig_mode      => "0000",         -- mode posEdge
             trig_sel       => "0000",         -- rising     
             trig_threshold => "000111110100", -- +500
