@@ -1,6 +1,16 @@
 # Created by https://www.toptal.com/developers/gitignore/api/xilinxvivado,vivado
 # Edit at https://www.toptal.com/developers/gitignore?templates=xilinxvivado,vivado
 
+project/Oscilloscope.cache/*
+project/Oscilloscope.runs/*
+project/Oscilloscope.sim/*
+project/Oscilloscope.gen/*
+project/Oscilloscope.hw/*
+*.jou
+*.log
+project/.Xil/*
+project/NA/*
+
 ### Vivado ###
 #########################################################################################################
 ##	This is an example .gitignore file for Vivado, please treat it as an example as
@@ -74,3 +84,4 @@
 #!*.dcp
 
 # End of https://www.toptal.com/developers/gitignore/api/xilinxvivado,vivado
+/.metadata/
