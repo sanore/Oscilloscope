@@ -66,6 +66,7 @@
     <Compile Include="Connection\OscilloscopeMgnt.cs" />
     <Compile Include="Connection\OscilloscopeMgntIfc.cs" />
     <Compile Include="Connection\Record.cs" />
+    <Compile Include="Connection\TriggerConfig.cs" />
     <Compile Include="Core\Actions\ActionManager.cs" />
     <Compile Include="Core\Actions\ActionManagerIfc.cs" />
     <Compile Include="Core\Dialog\DialogServiceIfc.cs" />

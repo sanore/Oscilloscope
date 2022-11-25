@@ -22,10 +22,13 @@
 
 using Oscilloscope.App.Ui.Connection;
 using Oscilloscope.App.Ui.Core.Docking;
+using Oscilloscope.App.Ui.Core.WPF.Notify;
 using Syncfusion.Windows.Tools.Controls;
 
 namespace Oscilloscope.App.Ui.Presentation.TriggerCfg {
     public class TriggerCfgPanelViewModel : PanelViewModel {
+        public NotifyRefIfc<TriggerConfig> Trigger => m_oscilloscope.TriggerConfig;
+
         private readonly OscilloscopeMgntIfc m_oscilloscope;
 
         /// <inheritdoc />

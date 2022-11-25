@@ -22,11 +22,15 @@
 
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Oscilloscope.App.Ui.Core.WPF.Notify;
 
 namespace Oscilloscope.App.Ui.Connection {
     public class OscilloscopeMgnt : OscilloscopeMgntIfc {
         private readonly List<OscilloscopeListenerIfc> m_listeners;
+
+        /// <inheritdoc />
+        public NotifyRefIfc<TriggerConfig> TriggerConfig { get; }
 
         /// <inheritdoc />
         public NotifyBoolIfc IsConnected { get; }
@@ -35,14 +39,20 @@ namespace Oscilloscope.App.Ui.Connection {
         public NotifyStringIfc StatusDescription { get; }
 
         /// <inheritdoc />
-        public void StartRecord() {
+        public async Task StartRecord() {
+            StatusDescription.Value = "Wait for Trigger...";
+
             var demo = new Record();
             for (int i = 0; i < 5000; i++) {
-                var y = Math.Sin(2 * Math.PI * i / 1000);
+                var y = TriggerConfig.Value.Threshold.Value * Math.Sin(2 * Math.PI * i / 1000);
                 demo.Add(i, y);
             }
 
+            await Task.Delay(1500);
+
             m_listeners.ForEach(l => l.OnRecordReceived(demo));
+
+            StatusDescription.Value = "Trigger Received";
         }
 
         /// <inheritdoc />
@@ -53,6 +63,7 @@ namespace Oscilloscope.App.Ui.Connection {
         public OscilloscopeMgnt() {
             StatusDescription = Notify.MakeString("Not connected");
             IsConnected = Notify.MakeBool(false);
+            TriggerConfig = Notify.MakeRef(new TriggerConfig());
 
             m_listeners = new List<OscilloscopeListenerIfc>();
 
