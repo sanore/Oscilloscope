@@ -22,13 +22,11 @@
 
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using Oscilloscope.App.Ui.Core.WPF.Notify;
+using Oscilloscope.App.Ui.Oscilloscope.Uart;
 
-namespace Oscilloscope.App.Ui.Connection {
-    public class OscilloscopeMgnt : OscilloscopeMgntIfc {
-        private readonly List<OscilloscopeListenerIfc> m_listeners;
-
+namespace Oscilloscope.App.Ui.Oscilloscope {
+    public class OscilloscopeMgnt : OscilloscopeMgntIfc, UartReceiverIfc {
         /// <inheritdoc />
         public NotifyRefIfc<TriggerConfig> TriggerConfig { get; }
 
@@ -38,21 +36,27 @@ namespace Oscilloscope.App.Ui.Connection {
         /// <inheritdoc />
         public NotifyStringIfc StatusDescription { get; }
 
+        public OscilloscopeMgnt() {
+            StatusDescription = Notify.MakeString("Not connected");
+            IsConnected   = Notify.MakeBool(false);
+            TriggerConfig = Notify.MakeRef(new TriggerConfig());
+
+            m_listeners = new List<OscilloscopeListenerIfc>();
+            m_uart = new UartConnection(this);
+        }
+
         /// <inheritdoc />
-        public async Task StartRecord() {
-            StatusDescription.Value = "Wait for Trigger...";
+        public void Connect(string comPort) {
+            m_uart.Start(comPort);
+            IsConnected.Value = true;
+        }
 
-            var demo = new Record();
-            for (int i = 0; i < 5000; i++) {
-                var y = TriggerConfig.Value.Threshold.Value * Math.Sin(2 * Math.PI * i / 1000);
-                demo.Add(i, y);
-            }
+        /// <inheritdoc />
+        public void StartRecord() {
+            if (!IsConnected.Value) { return; }
 
-            await Task.Delay(1500);
-
-            m_listeners.ForEach(l => l.OnRecordReceived(demo));
-
-            StatusDescription.Value = "Trigger Received";
+            StatusDescription.Value = "Starting...";
+            m_uart.StartAcquire();
         }
 
         /// <inheritdoc />
@@ -60,15 +64,25 @@ namespace Oscilloscope.App.Ui.Connection {
             if (!m_listeners.Contains(listener)) { m_listeners.Add(listener); }
         }
 
-        public OscilloscopeMgnt() {
-            StatusDescription = Notify.MakeString("Not connected");
-            IsConnected = Notify.MakeBool(false);
-            TriggerConfig = Notify.MakeRef(new TriggerConfig());
+        /// <inheritdoc />
+        public void Error(Exception ex) {
+            StatusDescription.Value = ex.Message;
 
-            m_listeners = new List<OscilloscopeListenerIfc>();
-
-            // TODO remove
-            IsConnected.ToggleAndGet();
+            IsConnected.Value = false;
+            m_uart.Stop();
         }
+
+        /// <inheritdoc />
+        public void OnAcquireStarted() {
+            StatusDescription.Value = "Wait for Trigger...";
+        }
+
+        /// <inheritdoc />
+        public void OnAcquireCompleted(byte[] data, int length) {
+            StatusDescription.Value = "Trigger Received";
+        }
+
+        private readonly List<OscilloscopeListenerIfc> m_listeners;
+        private readonly UartConnectionIfc             m_uart;
     }
 }

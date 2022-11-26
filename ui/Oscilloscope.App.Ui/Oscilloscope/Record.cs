@@ -25,7 +25,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 
-namespace Oscilloscope.App.Ui.Connection {
+namespace Oscilloscope.App.Ui.Oscilloscope {
     public class Record : IEnumerable<Record.TimePoint> {
         /// <summary>
         /// Gets a list of values
@@ -104,7 +104,7 @@ namespace Oscilloscope.App.Ui.Connection {
             /// <param name="time">The x-coordinate of the new structure. </param>
             /// <param name="value">The y-coordinate of the new structure. </param>
             public TimePoint(double time, double value) {
-                Time = time;
+                Time  = time;
                 Value = value;
             }
 

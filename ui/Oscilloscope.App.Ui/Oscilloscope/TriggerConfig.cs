@@ -20,20 +20,17 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using Oscilloscope.App.Ui.Core.Docking;
 using Oscilloscope.App.Ui.Core.WPF.Notify;
-using Oscilloscope.App.Ui.Oscilloscope;
-using Syncfusion.Windows.Tools.Controls;
 
-namespace Oscilloscope.App.Ui.Presentation.TriggerCfg {
-    public class TriggerCfgPanelViewModel : PanelViewModel {
-        public NotifyRefIfc<TriggerConfig> Trigger => m_oscilloscope.TriggerConfig;
+namespace Oscilloscope.App.Ui.Oscilloscope {
+    public class TriggerConfig {
+        /// <summary>
+        /// Range +1 to - 1V
+        /// </summary>
+        public NotifyValIfc<double> Threshold { get; }
 
-        /// <inheritdoc />
-        public TriggerCfgPanelViewModel(OscilloscopeMgntIfc oscilloscope) : base("Trigger Config", DockSide.Left) {
-            m_oscilloscope = oscilloscope;
+        public TriggerConfig() {
+            Threshold = Notify.MakeVal(0.5);
         }
-
-        private readonly OscilloscopeMgntIfc m_oscilloscope;
     }
 }

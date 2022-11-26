@@ -20,27 +20,20 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System.Threading.Tasks;
-using Oscilloscope.App.Ui.Core.Actions;
+using Oscilloscope.App.Ui.Core.WPF.Notify;
 
-namespace Oscilloscope.App.Ui.Connection.Actions {
-    public class StartRecordAction : AnAsyncAction {
-        private readonly OscilloscopeMgntIfc m_oscilloscope;
-        public const     string              ID = "Record.Start";
+namespace Oscilloscope.App.Ui.Oscilloscope {
+    public interface OscilloscopeMgntIfc {
+        NotifyRefIfc<TriggerConfig> TriggerConfig { get; }
 
-        /// <inheritdoc />
-        public StartRecordAction(OscilloscopeMgntIfc oscilloscope) : base(ID) {
-            m_oscilloscope = oscilloscope;
-        }
+        NotifyBoolIfc IsConnected { get; }
 
-        /// <inheritdoc />
-        protected override bool CanExecute(AnAsyncActionEvent args) {
-            return m_oscilloscope.IsConnected.Value;
-        }
+        NotifyStringIfc StatusDescription { get; }
 
-        /// <inheritdoc />
-        protected override async Task Execute(AnAsyncActionEvent args) {
-            await m_oscilloscope.StartRecord();
-        }
+        void Connect(string comPort);
+
+        void StartRecord();
+
+        void AddListener(OscilloscopeListenerIfc listener);
     }
 }

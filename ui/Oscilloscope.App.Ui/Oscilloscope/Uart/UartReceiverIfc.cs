@@ -20,14 +20,13 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using Oscilloscope.App.Ui.Core.WPF.Notify;
+using System;
 
-namespace Oscilloscope.App.Ui.Connection {
-    public class TriggerConfig {
-        public NotifyValIfc<double> Threshold { get; }
+namespace Oscilloscope.App.Ui.Oscilloscope.Uart {
+    public interface UartReceiverIfc {
+        void Error(Exception ex);
 
-        public TriggerConfig() {
-            Threshold = Notify.MakeVal(0.5);
-        }
+        void OnAcquireStarted();
+        void OnAcquireCompleted(byte[] data, int length);
     }
 }

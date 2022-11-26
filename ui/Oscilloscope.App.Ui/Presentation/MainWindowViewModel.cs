@@ -21,13 +21,12 @@
 // SOFTWARE.
 
 using System.Collections.Generic;
-using Oscilloscope.App.Ui.Connection;
-using Oscilloscope.App.Ui.Connection.Actions;
 using Oscilloscope.App.Ui.Core.Actions;
 using Oscilloscope.App.Ui.Core.Docking;
-using Oscilloscope.App.Ui.Core.Updater;
 using Oscilloscope.App.Ui.Core.Window;
 using Oscilloscope.App.Ui.Core.WPF.Notify;
+using Oscilloscope.App.Ui.Oscilloscope;
+using Oscilloscope.App.Ui.Oscilloscope.Actions;
 using Oscilloscope.App.Ui.Presentation.RecordViewer;
 using Oscilloscope.App.Ui.Presentation.TriggerCfg;
 using Oscilloscope.App.Ui.Presentation.Update.Action;
@@ -62,14 +61,15 @@ namespace Oscilloscope.App.Ui.Presentation {
         /// </summary>
         public NotifyStringIfc StatusDescription => m_simulationManager.StatusDescription;
 
+        public NotifyBoolIfc IsConnected => m_simulationManager.IsConnected;
+
         /// <summary>
         /// Constructor.
         /// </summary>
-        public MainWindowViewModel(DockingManagerIfc dockingManager, OscilloscopeMgntIfc simulationManager, ActionManagerIfc actionManager, UpdaterIfc updater) {
+        public MainWindowViewModel(DockingManagerIfc dockingManager, OscilloscopeMgntIfc simulationManager, ActionManagerIfc actionManager) {
             m_dockingManager = dockingManager;
             m_simulationManager = simulationManager;
             m_actionManager = actionManager;
-            m_updater = updater;
         }
 
         /// <inheritdoc />
@@ -84,6 +84,5 @@ namespace Oscilloscope.App.Ui.Presentation {
         private readonly DockingManagerIfc   m_dockingManager;
         private readonly OscilloscopeMgntIfc m_simulationManager;
         private readonly ActionManagerIfc    m_actionManager;
-        private readonly UpdaterIfc          m_updater;
     }
 }

@@ -20,20 +20,20 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using Oscilloscope.App.Ui.Core.Docking;
-using Oscilloscope.App.Ui.Core.WPF.Notify;
-using Oscilloscope.App.Ui.Oscilloscope;
-using Syncfusion.Windows.Tools.Controls;
+using System;
+using System.Globalization;
+using System.Windows.Data;
 
-namespace Oscilloscope.App.Ui.Presentation.TriggerCfg {
-    public class TriggerCfgPanelViewModel : PanelViewModel {
-        public NotifyRefIfc<TriggerConfig> Trigger => m_oscilloscope.TriggerConfig;
-
+namespace Oscilloscope.App.Ui.Core.WPF.Converters {
+    public class InvertedBooleanConverter : IValueConverter {
         /// <inheritdoc />
-        public TriggerCfgPanelViewModel(OscilloscopeMgntIfc oscilloscope) : base("Trigger Config", DockSide.Left) {
-            m_oscilloscope = oscilloscope;
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {
+            return value != null && !(bool)value;
         }
 
-        private readonly OscilloscopeMgntIfc m_oscilloscope;
+        /// <inheritdoc />
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) {
+            return value != null && !(bool)value;
+        }
     }
 }

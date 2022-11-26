@@ -61,12 +61,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Connection\Actions\StartRecordAction.cs" />
-    <Compile Include="Connection\OscilloscopeListenerIfc.cs" />
-    <Compile Include="Connection\OscilloscopeMgnt.cs" />
-    <Compile Include="Connection\OscilloscopeMgntIfc.cs" />
-    <Compile Include="Connection\Record.cs" />
-    <Compile Include="Connection\TriggerConfig.cs" />
+    <Compile Include="Core\WPF\Converters\InvertedBooleanConverter.cs" />
+    <Compile Include="Oscilloscope\Actions\StartRecordAction.cs" />
+    <Compile Include="Oscilloscope\OscilloscopeListenerIfc.cs" />
+    <Compile Include="Oscilloscope\OscilloscopeMgnt.cs" />
+    <Compile Include="Oscilloscope\OscilloscopeMgntIfc.cs" />
+    <Compile Include="Oscilloscope\Record.cs" />
+    <Compile Include="Oscilloscope\TriggerConfig.cs" />
+    <Compile Include="Oscilloscope\Uart\UartReceiverSm.cs" />
+    <Compile Include="Oscilloscope\Uart\UartConnection.cs" />
+    <Compile Include="Oscilloscope\Uart\UartConnectionIfc.cs" />
+    <Compile Include="Oscilloscope\Uart\UartReceiver.cs" />
+    <Compile Include="Oscilloscope\Uart\UartReceiverIfc.cs" />
     <Compile Include="Core\Actions\ActionManager.cs" />
     <Compile Include="Core\Actions\ActionManagerIfc.cs" />
     <Compile Include="Core\Dialog\DialogServiceIfc.cs" />
@@ -120,6 +126,7 @@
     <Compile Include="Core\WPF\MVVM\ViewModelBase.cs" />
     <Compile Include="Core\WPF\MVVM\ViewModelIfc.cs" />
     <Compile Include="Core\WPF\WpfHelper.cs" />
+    <Compile Include="Oscilloscope\Uart\UartSender.cs" />
     <Compile Include="Presentation\RecordViewer\Chart\ChartControl.xaml.cs">
       <DependentUpon>ChartControl.xaml</DependentUpon>
     </Compile>
@@ -156,8 +163,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Presentation\RecordViewer\Chart\ChartControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
     <Page Include="Presentation\RecordViewer\RecordViewerPanelView.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -188,12 +195,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\LinearSPICE.Engine\LinearSPICE.Engine.vcxproj">
-      <Project>{2b78ce58-bb4e-4a07-bd75-c4ba7bad37dc}</Project>
-      <Name>LinearSPICE.Engine</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Presentation\Icons\new.png" />

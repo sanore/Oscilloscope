@@ -39,13 +39,18 @@ namespace Oscilloscope.App.Ui.Presentation.Update.Action {
 
         /// <inheritdoc />
         public CheckForUpdateAction(UpdaterIfc updater, UpdateWindowViewModel updateVm) : base(ID) {
-            m_updater = updater;
+            m_updater  = updater;
             m_updateVm = updateVm;
         }
 
         /// <inheritdoc />
         protected override void Execute(AnActionEvent args) {
             m_updater.CheckForUpdate(Callback);
+        }
+
+        /// <inheritdoc />
+        protected override bool CanExecute(AnActionEvent args) {
+            return true;
         }
 
         private void Callback(UpdateInfoEventArgs args) {
@@ -55,12 +60,7 @@ namespace Oscilloscope.App.Ui.Presentation.Update.Action {
             updateWindow.ShowDialog();
         }
 
-        /// <inheritdoc />
-        protected override bool CanExecute(AnActionEvent args) {
-            return true;
-        }
-
-        private readonly UpdaterIfc m_updater;
+        private readonly UpdaterIfc            m_updater;
         private readonly UpdateWindowViewModel m_updateVm;
     }
 }

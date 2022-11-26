@@ -29,7 +29,11 @@
             <syncfusion:RibbonTab Caption="HOME">
                 <syncfusion:RibbonBar Header="Simulation" IsLauncherButtonVisible="False">
                     <syncfusion:RibbonButton Label="Start" LargeIcon="Icons/run.png" SizeForm="Large"
-                                             Command="{Binding StartCommand}" />
+                                             Command="{Binding StartCommand}"
+                                             CommandParameter="{Binding ElementName=ComPortTxt, Path=Text}" />
+
+                    <syncfusion:RibbonTextBox Name="ComPortTxt" Text="COM1"
+                                              IsEnabled="{Binding IsConnected.Value, Converter={StaticResource InvertedBooleanConverter}}" />
                 </syncfusion:RibbonBar>
             </syncfusion:RibbonTab>
 

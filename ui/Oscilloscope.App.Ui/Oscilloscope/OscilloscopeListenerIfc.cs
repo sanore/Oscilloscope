@@ -20,19 +20,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System.Threading.Tasks;
-using Oscilloscope.App.Ui.Core.WPF.Notify;
-
-namespace Oscilloscope.App.Ui.Connection {
-    public interface OscilloscopeMgntIfc {
-        NotifyRefIfc<TriggerConfig> TriggerConfig { get; }
-
-        NotifyBoolIfc IsConnected { get; }
-
-        NotifyStringIfc StatusDescription { get; }
-
-        Task StartRecord();
-
-        void AddListener(OscilloscopeListenerIfc listener);
+namespace Oscilloscope.App.Ui.Oscilloscope {
+    public interface OscilloscopeListenerIfc {
+        void OnRecordReceived(Record record);
     }
 }

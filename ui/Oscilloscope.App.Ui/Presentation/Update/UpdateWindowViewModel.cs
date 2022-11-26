@@ -60,9 +60,9 @@ namespace Oscilloscope.App.Ui.Presentation.Update {
         /// Constructor
         /// </summary>
         public UpdateWindowViewModel(UpdaterIfc updater) {
-            m_updater = updater;
+            m_updater  = updater;
             UpdateInfo = Notify.MakeRef(new UpdateInfoEventArgs());
-            Changelog = new NotifyString("Loading changelog...");
+            Changelog  = new NotifyString("Loading changelog...");
 
             UpdateCommand = new AnActionDelegate(OnPerformUpdate);
             CancelCommand = new AnActionDelegate(_ => Close());
@@ -83,24 +83,18 @@ namespace Oscilloscope.App.Ui.Presentation.Update {
             }
 
             try {
-                using (WebClient client = new WebClient()) {
+                using (var client = new WebClient()) {
                     var stream = await client.OpenReadTaskAsync(UpdateInfo.Value.ChangelogURL);
-                    using (StreamReader reader = new StreamReader(stream)) {
-                        Changelog.Value = await reader.ReadToEndAsync();
-                    }
+                    using (var reader = new StreamReader(stream)) { Changelog.Value = await reader.ReadToEndAsync(); }
                 }
             }
-            catch {
-                Changelog.Value = $"Error. Please visit '{UpdateInfo.Value.ChangelogURL}'";
-            }
+            catch { Changelog.Value = $"Error. Please visit '{UpdateInfo.Value.ChangelogURL}'"; }
         }
 
         private void OnPerformUpdate(AnActionEvent obj) {
             var result = m_updater.PerformUpdate(UpdateInfo.Value);
 
-            if (result) {
-                Environment.Exit(0);
-            }
+            if (result) { Environment.Exit(0); }
         }
 
         private readonly UpdaterIfc m_updater;

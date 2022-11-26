@@ -22,14 +22,14 @@
 
 using System.Diagnostics.CodeAnalysis;
 using DryIoc;
-using Oscilloscope.App.Ui.Connection;
-using Oscilloscope.App.Ui.Connection.Actions;
 using Oscilloscope.App.Ui.Core.Actions;
 using Oscilloscope.App.Ui.Core.Dialog;
 using Oscilloscope.App.Ui.Core.Docking;
 using Oscilloscope.App.Ui.Core.FileSystem;
 using Oscilloscope.App.Ui.Core.Updater;
 using Oscilloscope.App.Ui.Core.WPF.Notify;
+using Oscilloscope.App.Ui.Oscilloscope;
+using Oscilloscope.App.Ui.Oscilloscope.Actions;
 using Oscilloscope.App.Ui.Presentation;
 using Oscilloscope.App.Ui.Presentation.RecordViewer;
 using Oscilloscope.App.Ui.Presentation.TriggerCfg;

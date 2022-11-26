@@ -35,7 +35,7 @@ namespace Oscilloscope.App.Ui.Presentation.TriggerCfg {
         }
 
         private void UIElement_OnPreviewTextInput(object sender, TextCompositionEventArgs e) {
-            Regex regex = new Regex(@"^[0-9]*(?:\.[0-9]*)?$");
+            var regex = new Regex(@"^[0-9]*(?:\.[0-9]*)?$");
             e.Handled = !regex.IsMatch(e.Text);
         }
     }

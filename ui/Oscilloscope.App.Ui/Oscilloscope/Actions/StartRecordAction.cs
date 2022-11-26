@@ -20,8 +20,32 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-namespace Oscilloscope.App.Ui.Connection {
-    public interface OscilloscopeListenerIfc {
-        void OnRecordReceived(Record record);
+using Oscilloscope.App.Ui.Core.Actions;
+
+namespace Oscilloscope.App.Ui.Oscilloscope.Actions {
+    public class StartRecordAction : AnAction {
+        public const string ID = "Record.Start";
+
+        /// <inheritdoc />
+        public StartRecordAction(OscilloscopeMgntIfc oscilloscope) : base(ID) {
+            m_oscilloscope = oscilloscope;
+        }
+
+        /// <inheritdoc />
+        protected override bool CanExecute(AnActionEvent args) {
+            return true;
+        }
+
+        /// <inheritdoc />
+        protected override void Execute(AnActionEvent args) {
+            if (!m_oscilloscope.IsConnected.Value) {
+                var comPort = args.GetParameter<string>();
+                m_oscilloscope.Connect(comPort);
+            }
+
+            m_oscilloscope.StartRecord();
+        }
+
+        private readonly OscilloscopeMgntIfc m_oscilloscope;
     }
 }

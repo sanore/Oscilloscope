@@ -1,6 +1,6 @@
 ﻿// MIT License
 //
-// Copyright (c) 2022 LinearSPICE
+// Copyright (c) 2022 Oscilloscope
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -20,20 +20,11 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using Oscilloscope.App.Ui.Core.Docking;
-using Oscilloscope.App.Ui.Core.WPF.Notify;
-using Oscilloscope.App.Ui.Oscilloscope;
-using Syncfusion.Windows.Tools.Controls;
-
-namespace Oscilloscope.App.Ui.Presentation.TriggerCfg {
-    public class TriggerCfgPanelViewModel : PanelViewModel {
-        public NotifyRefIfc<TriggerConfig> Trigger => m_oscilloscope.TriggerConfig;
-
-        /// <inheritdoc />
-        public TriggerCfgPanelViewModel(OscilloscopeMgntIfc oscilloscope) : base("Trigger Config", DockSide.Left) {
-            m_oscilloscope = oscilloscope;
-        }
-
-        private readonly OscilloscopeMgntIfc m_oscilloscope;
+namespace Oscilloscope.App.Ui.Oscilloscope.Uart {
+    public interface UartConnectionIfc {
+        void Start(string             comPort);
+        void SetTrigger(TriggerConfig trigger);
+        void StartAcquire();
+        void Stop();
     }
 }

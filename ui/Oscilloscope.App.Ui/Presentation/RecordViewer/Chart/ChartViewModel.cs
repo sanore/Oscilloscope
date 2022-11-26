@@ -21,8 +21,8 @@
 // SOFTWARE.
 
 using System;
-using Oscilloscope.App.Ui.Connection;
 using Oscilloscope.App.Ui.Core.WPF.MVVM;
+using Oscilloscope.App.Ui.Oscilloscope;
 using Syncfusion.UI.Xaml.Charts;
 
 namespace Oscilloscope.App.Ui.Presentation.RecordViewer.Chart {
@@ -47,12 +47,12 @@ namespace Oscilloscope.App.Ui.Presentation.RecordViewer.Chart {
         }
 
         public void Render(Record record) {
-            var seriesViewModel = new FastLineSeries() {
-                YBindingPath = record.BindingY,
-                XBindingPath = record.BindingX,
-                ItemsSource = record.Values,
-                DataContext = record,
-                EnableAnimation = true,
+            var seriesViewModel = new FastLineSeries {
+                YBindingPath      = record.BindingY,
+                XBindingPath      = record.BindingX,
+                ItemsSource       = record.Values,
+                DataContext       = record,
+                EnableAnimation   = true,
                 AnimationDuration = TimeSpan.FromMilliseconds(500)
             };
 

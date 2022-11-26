@@ -21,8 +21,8 @@
 // SOFTWARE.
 
 using DryIoc;
-using Oscilloscope.App.Ui.Connection;
 using Oscilloscope.App.Ui.Core.Docking;
+using Oscilloscope.App.Ui.Oscilloscope;
 using Oscilloscope.App.Ui.Presentation.RecordViewer.Chart;
 using Syncfusion.Windows.Tools.Controls;
 
