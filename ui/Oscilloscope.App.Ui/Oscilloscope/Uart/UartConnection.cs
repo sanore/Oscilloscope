@@ -21,17 +21,18 @@
 // SOFTWARE.
 
 using System;
-using System.IO.Ports;
+using Ost.PicoOsci.Ui.Core.Extensions;
 
 namespace Ost.PicoOsci.Ui.Oscilloscope.Uart {
     public class UartConnection : UartConnectionIfc {
-        public UartConnection(UartReceiverIfc listener) {
+        public UartConnection(UartReceiverIfc listener, Func<string, SerialPortIfc> portFactory) {
             m_listener = listener;
+            m_portFactory = portFactory;
         }
 
         public void Start(string comPort) {
             try {
-                m_port     = new SerialPort(comPort, 115200, Parity.Even, 8, StopBits.One);
+                m_port = m_portFactory(comPort);
                 m_receiver = new Receiver(m_port, new UartReceiverSm(m_listener));
                 m_sender   = new Sender(m_port);
 
@@ -41,14 +42,15 @@ namespace Ost.PicoOsci.Ui.Oscilloscope.Uart {
         }
 
         public void SetTrigger(TriggerConfig trigger) {
-            var threshold = (short)(trigger.Threshold.Value * short.MaxValue / 2) + short.MaxValue / 2;
-            var data = new byte[2];
-            data[0] = (byte)((threshold >> 8) & 0xFF00);
-            data[1] = (byte)(threshold & 0xFF00);
-
-            Send(Tag.Threshold, data);
-
+            var threshold = (ushort)trigger.Threshold.Value.Map(-1, 1, ushort.MinValue, ushort.MaxValue);
+            var data = new byte[4];
+            data[0] = (byte)(threshold >> 8);
+            data[1] = (byte)(threshold & 0x00FF);
             // TODO EdgeSel & EdgeMode
+            // data[2] = (byte)(trigger.EdgeSel & 0x000F);
+            // data[3] = (byte)(trigger.EdgeMode & 0x000F);
+
+            Send(Tag.TriggerEdge, data);
         }
 
         public void StartAcquire() {
@@ -66,34 +68,32 @@ namespace Ost.PicoOsci.Ui.Oscilloscope.Uart {
 
         private void Send(Tag tag, byte[] data) {
             var buffer = new byte[2];
-            var length = (byte)data.Length;
-            const int toDevice = 0;
-            buffer[0] = (byte)((((byte)tag & 0xF) << 4) | toDevice);
-            buffer[1] = (byte)(length & 0xFF);
 
-            if (length > 0) {
+            if (data.Length > 0) {
                 var newBuffer = new byte[data.Length + buffer.Length];
-                buffer.CopyTo(newBuffer, 0);
                 data.CopyTo(newBuffer, buffer.Length);
 
                 buffer = newBuffer;
             }
+
+            var length = (byte)buffer.Length;
+            buffer[0] = (byte)((byte)tag & 0xF);
+            buffer[1] = (byte)(length & 0xFF);
 
             try { m_sender.Send(buffer); }
             catch (Exception ex) { m_listener.Error(ex); }
         }
 
         public enum Tag {
-            Start     = 0b0000,
-            Acquire   = 0b0010,
-            Threshold = 0b1000,
-            EdgeSel   = 0b1100,
-            EdgeMode  = 0b1110
+            Start       = 0b0001,
+            Acquire     = 0b0010,
+            TriggerEdge = 0b1000
         }
 
         private readonly UartReceiverIfc m_listener;
+        private readonly Func<string, SerialPortIfc> m_portFactory;
 
-        private SerialPort m_port;
+        private SerialPortIfc m_port;
         private Receiver   m_receiver;
         private Sender     m_sender;
     }

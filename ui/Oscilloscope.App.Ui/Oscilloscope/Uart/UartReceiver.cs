@@ -1,6 +1,6 @@
 ﻿// MIT License
 //
-// Copyright (c) 2022 LinearSPICE
+// Copyright (c) 2022 Oscilloscope
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -25,7 +25,7 @@ using System.Threading;
 
 namespace Ost.PicoOsci.Ui.Oscilloscope.Uart {
     internal class Receiver {
-        public Receiver(SerialPort port, UartReceiverSm receiver) {
+        public Receiver(SerialPortIfc port, UartReceiverSm receiver) {
             m_port                        =  port;
             m_receiver                    =  receiver;
             m_port.ReceivedBytesThreshold =  1;
@@ -68,7 +68,7 @@ namespace Ost.PicoOsci.Ui.Oscilloscope.Uart {
             m_waiter.Set();
         }
 
-        private readonly SerialPort              m_port;
+        private readonly SerialPortIfc           m_port;
         private readonly UartReceiverSm          m_receiver;
         private readonly ManualResetEventSlim    m_waiter;
         private readonly CancellationTokenSource m_cancellationTokenSource;

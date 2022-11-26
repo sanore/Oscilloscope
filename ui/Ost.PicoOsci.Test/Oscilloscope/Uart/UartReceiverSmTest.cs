@@ -1,6 +1,6 @@
 ﻿// MIT License
 //
-// Copyright (c) 2022 LinearSPICE
+// Copyright (c) 2022 Oscilloscope
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -20,16 +20,38 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-namespace Ost.PicoOsci.Ui.Oscilloscope.Uart {
-    internal class Sender {
-        public Sender(SerialPortIfc port) {
-            m_port = port;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NSubstitute;
+using Ost.PicoOsci.Ui.Oscilloscope.Uart;
+
+namespace Ost.PicoOsci.Test.Oscilloscope.Uart {
+    [TestClass]
+    public class UartReceiverSmTest {
+        [TestInitialize]
+        public void Init() {
+            m_listener = Substitute.For<UartReceiverIfc>();
+            m_testObject = new UartReceiverSm(m_listener);
         }
 
-        public void Send(byte[] data) {
-            m_port.Write(data, 0, data.Length);
+        [TestMethod]
+        public void TestStartTag() {
+            m_testObject.Process(0b10000010); // Tag=Acquire
+            m_testObject.Process(0b00000011); // Length=3
+
+            m_listener.Received(1)
+                      .OnAcquireStarted();
+            m_listener.DidNotReceive()
+                      .OnAcquireCompleted(Arg.Any<byte[]>(), Arg.Any<int>());
+
+            m_testObject.Process(1);
+            m_testObject.Process(2);
+            m_testObject.Process(3);
+
+            m_listener.Received(1)
+                      .OnAcquireCompleted(Arg.Any<byte[]>(), 3);
         }
 
-        private readonly SerialPortIfc m_port;
+        private UartReceiverSm m_testObject;
+        private UartReceiverIfc m_listener;
     }
 }

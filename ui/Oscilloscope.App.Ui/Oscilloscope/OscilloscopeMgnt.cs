@@ -42,7 +42,7 @@ namespace Ost.PicoOsci.Ui.Oscilloscope {
             TriggerConfig = Notify.MakeRef(new TriggerConfig());
 
             m_listeners = new List<OscilloscopeListenerIfc>();
-            m_uart = new UartConnection(this);
+            m_uart = new UartConnection(this, port => new ComPort(port));
         }
 
         /// <inheritdoc />
@@ -80,6 +80,8 @@ namespace Ost.PicoOsci.Ui.Oscilloscope {
         /// <inheritdoc />
         public void OnAcquireCompleted(byte[] data, int length) {
             StatusDescription.Value = "Trigger Received";
+
+            foreach (var listener in m_listeners) { listener.OnRecordReceived(new Record(data)); }
         }
 
         private readonly List<OscilloscopeListenerIfc> m_listeners;

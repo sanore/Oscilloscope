@@ -69,8 +69,12 @@ namespace Ost.PicoOsci.Ui.Oscilloscope {
         /// <summary>
         /// Constructor.
         /// </summary>
-        public Record() {
-            m_values = new ObservableCollection<TimePoint>();
+        /// <param name="bytes"></param>
+        public Record(byte[] bytes) {
+            var tmp = new List<TimePoint>();
+            foreach (byte b in bytes) { tmp.Add(new TimePoint(tmp.Count, b)); }
+
+            m_values = new ObservableCollection<TimePoint>(tmp);
         }
 
         /// <inheritdoc />

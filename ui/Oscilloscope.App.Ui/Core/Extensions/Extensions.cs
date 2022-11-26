@@ -1,6 +1,6 @@
 ﻿// MIT License
 //
-// Copyright (c) 2022 LinearSPICE
+// Copyright (c) 2022 Oscilloscope
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -20,16 +20,10 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-namespace Ost.PicoOsci.Ui.Oscilloscope.Uart {
-    internal class Sender {
-        public Sender(SerialPortIfc port) {
-            m_port = port;
+namespace Ost.PicoOsci.Ui.Core.Extensions {
+    public static class Extensions {
+        public static double Map(this double value, double fromSource, double toSource, double fromTarget, double toTarget) {
+            return (value - fromSource) / (toSource - fromSource) * (toTarget - fromTarget) + fromTarget;
         }
-
-        public void Send(byte[] data) {
-            m_port.Write(data, 0, data.Length);
-        }
-
-        private readonly SerialPortIfc m_port;
     }
 }

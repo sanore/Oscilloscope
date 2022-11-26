@@ -47,11 +47,11 @@ namespace Ost.PicoOsci.Ui.Oscilloscope.Uart {
         private void ParseHeader(byte data) {
             switch (m_counter) {
             case 0: {
-                var toPc = (data & 0x01) == 1;
+                var toPc = (data & 0x80) != 0;
                 if (!toPc) { return; }
 
                 m_counter++;
-                m_lastTag = (UartConnection.Tag)((data >> 4) & 0xF0);
+                m_lastTag = (UartConnection.Tag)(data & 0x0F);
                 break;
             }
 
@@ -59,11 +59,9 @@ namespace Ost.PicoOsci.Ui.Oscilloscope.Uart {
                 m_lastLength = data;
 
                 switch (m_lastTag) {
-                case UartConnection.Tag.Start:
-                    m_listener.OnAcquireStarted();
-                    break;
                 case UartConnection.Tag.Acquire:
                     m_buffer.Clear();
+                    m_listener.OnAcquireStarted();
                     m_state = State.DataParse;
                     break;
                 }
@@ -78,7 +76,10 @@ namespace Ost.PicoOsci.Ui.Oscilloscope.Uart {
         private void ParseData(byte value) {
             m_buffer.Add(value);
 
-            if (m_buffer.Count == m_lastLength) { m_listener.OnAcquireCompleted(m_buffer.ToArray(), m_lastLength); }
+            if (m_buffer.Count == m_lastLength) {
+                m_listener.OnAcquireCompleted(m_buffer.ToArray(), m_lastLength);
+                m_state = State.HeaderParse;
+            }
         }
 
         private readonly UartReceiverIfc    m_listener;
