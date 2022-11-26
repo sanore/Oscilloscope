@@ -21,9 +21,9 @@
 // SOFTWARE.
 
 using System.Threading.Tasks;
-using Oscilloscope.App.Ui.Core.WPF.MVVM;
+using Ost.PicoOsci.Ui.Core.WPF.MVVM;
 
-namespace Oscilloscope.App.Ui.Core.Window {
+namespace Ost.PicoOsci.Ui.Core.Window {
     /// <summary>
     /// Represents a interface between viewmodel and his window view. It controls the view and
     /// provides a default implementation for view events.

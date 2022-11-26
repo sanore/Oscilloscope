@@ -22,7 +22,7 @@
 
 using Microsoft.Win32;
 
-namespace Oscilloscope.App.Ui.Core.Dialog {
+namespace Ost.PicoOsci.Ui.Core.Dialog {
     /// <summary>
     /// A windows 32 dialog implementation.
     /// </summary>

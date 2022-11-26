@@ -24,7 +24,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace Oscilloscope.App.Ui.Core.WPF.Decorators {
+namespace Ost.PicoOsci.Ui.Core.WPF.Decorators {
     /// <summary>
     /// Abstract base class for observable objects.
     /// </summary>

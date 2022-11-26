@@ -24,7 +24,7 @@ using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 
-namespace Oscilloscope.App.Ui.Core.Actions {
+namespace Ost.PicoOsci.Ui.Core.Actions {
     /// <inheritdoc cref="ActionManagerIfc" />
     public class ActionManager : ActionManagerIfc {
         /// <summary>

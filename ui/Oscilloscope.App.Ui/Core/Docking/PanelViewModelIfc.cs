@@ -21,10 +21,10 @@
 // SOFTWARE.
 
 using System;
-using Oscilloscope.App.Ui.Core.WPF.MVVM;
+using Ost.PicoOsci.Ui.Core.WPF.MVVM;
 using Syncfusion.Windows.Tools.Controls;
 
-namespace Oscilloscope.App.Ui.Core.Docking {
+namespace Ost.PicoOsci.Ui.Core.Docking {
     /// <summary>
     /// A model interface for a panel.
     /// </summary>

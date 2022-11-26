@@ -23,7 +23,7 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
 
-namespace Oscilloscope.App.Ui.Core.WPF.Decorators {
+namespace Ost.PicoOsci.Ui.Core.WPF.Decorators {
     /// <summary>
     /// Object that implements the dispose pattern
     /// </summary>

@@ -20,12 +20,12 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using Oscilloscope.App.Ui.Core.Docking;
-using Oscilloscope.App.Ui.Core.WPF.Notify;
-using Oscilloscope.App.Ui.Oscilloscope;
+using Ost.PicoOsci.Ui.Core.Docking;
+using Ost.PicoOsci.Ui.Core.WPF.Notify;
+using Ost.PicoOsci.Ui.Oscilloscope;
 using Syncfusion.Windows.Tools.Controls;
 
-namespace Oscilloscope.App.Ui.Presentation.TriggerCfg {
+namespace Ost.PicoOsci.Ui.Presentation.TriggerCfg {
     public class TriggerCfgPanelViewModel : PanelViewModel {
         public NotifyRefIfc<TriggerConfig> Trigger => m_oscilloscope.TriggerConfig;
 

@@ -20,7 +20,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-namespace Oscilloscope.App.Ui.Core.WPF.Notify {
+namespace Ost.PicoOsci.Ui.Core.WPF.Notify {
     /// <summary>
     /// Implementation for bool notifications.
     /// </summary>

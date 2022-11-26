@@ -23,9 +23,9 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using DryIoc;
-using Oscilloscope.App.Ui.Core.WPF.Notify;
+using Ost.PicoOsci.Ui.Core.WPF.Notify;
 
-namespace Oscilloscope.App.Ui.Core.Docking {
+namespace Ost.PicoOsci.Ui.Core.Docking {
     /// <summary>
     /// A viewmodel for docking manager.
     /// </summary>

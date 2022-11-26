@@ -25,9 +25,9 @@ using System.ComponentModel;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Oscilloscope.App.Ui.Core.WPF.Decorators;
+using Ost.PicoOsci.Ui.Core.WPF.Decorators;
 
-namespace Oscilloscope.App.Ui.Core.Actions {
+namespace Ost.PicoOsci.Ui.Core.Actions {
     /// <summary>
     /// Base class for asynchronous commands.
     /// see Patterns for Asynchronous MVVM Applications: Commands by Stephen Cleary

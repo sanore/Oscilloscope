@@ -28,7 +28,7 @@ using System.Windows;
 using System.Windows.Controls;
 using Syncfusion.Windows.Tools.Controls;
 
-namespace Oscilloscope.App.Ui.Core.Docking {
+namespace Ost.PicoOsci.Ui.Core.Docking {
     /// <summary>
     /// Interaction logic for DockingAdapter.xaml
     /// 

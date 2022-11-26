@@ -20,7 +20,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-namespace Oscilloscope.App.Ui.Oscilloscope.Uart {
+namespace Ost.PicoOsci.Ui.Oscilloscope.Uart {
     public interface UartConnectionIfc {
         void Start(string             comPort);
         void SetTrigger(TriggerConfig trigger);

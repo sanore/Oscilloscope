@@ -22,7 +22,7 @@
 
 using System;
 
-namespace Oscilloscope.App.Ui.Core.WPF.Notify {
+namespace Ost.PicoOsci.Ui.Core.WPF.Notify {
     /// <summary>
     /// Wrapper for the notify factory.
     /// </summary>

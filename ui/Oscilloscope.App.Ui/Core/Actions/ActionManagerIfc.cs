@@ -20,7 +20,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-namespace Oscilloscope.App.Ui.Core.Actions {
+namespace Ost.PicoOsci.Ui.Core.Actions {
     /// <summary>
     /// A manager for actions. Used to register actions, also
     /// contains utility methods to easily fetch action by id.

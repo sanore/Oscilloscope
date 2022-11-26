@@ -30,7 +30,7 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Interop;
 using System.Windows.Media;
 
-namespace Oscilloscope.App.Ui.Core.WPF {
+namespace Ost.PicoOsci.Ui.Core.WPF {
     /// <summary>
     /// Static WPF Helper class.
     /// </summary>

@@ -26,7 +26,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Windows;
 using System.Windows.Media;
 
-namespace Oscilloscope.App.Ui.Core.WPF.MVVM {
+namespace Ost.PicoOsci.Ui.Core.WPF.MVVM {
     /// <summary>
     /// Abstract base class for WPF user controls. Which uses a AutoBindingContext property that is useful
     /// when ViewModel must have life-cycle of control.

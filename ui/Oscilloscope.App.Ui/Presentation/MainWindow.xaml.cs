@@ -23,7 +23,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Windows;
 
-namespace Oscilloscope.App.Ui.Presentation {
+namespace Ost.PicoOsci.Ui.Presentation {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>

@@ -22,7 +22,7 @@
 
 using System.ComponentModel;
 
-namespace Oscilloscope.App.Ui.Core.WPF {
+namespace Ost.PicoOsci.Ui.Core.WPF {
     /// <summary>
     /// Interface for any observable object.
     /// </summary>

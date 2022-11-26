@@ -21,9 +21,9 @@
 // SOFTWARE.
 
 using System.Diagnostics.CodeAnalysis;
-using Oscilloscope.App.Ui.Core.WPF.Decorators;
+using Ost.PicoOsci.Ui.Core.WPF.Decorators;
 
-namespace Oscilloscope.App.Ui.Core.WPF.Notify {
+namespace Ost.PicoOsci.Ui.Core.WPF.Notify {
     /// <summary>
     /// Abstract base class for notification property. A notify property can bind to another one and will
     /// automatically updated if base property is changed.

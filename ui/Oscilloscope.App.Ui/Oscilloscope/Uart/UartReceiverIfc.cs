@@ -22,7 +22,7 @@
 
 using System;
 
-namespace Oscilloscope.App.Ui.Oscilloscope.Uart {
+namespace Ost.PicoOsci.Ui.Oscilloscope.Uart {
     public interface UartReceiverIfc {
         void Error(Exception ex);
 

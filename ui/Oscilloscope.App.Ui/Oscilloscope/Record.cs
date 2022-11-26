@@ -25,7 +25,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 
-namespace Oscilloscope.App.Ui.Oscilloscope {
+namespace Ost.PicoOsci.Ui.Oscilloscope {
     public class Record : IEnumerable<Record.TimePoint> {
         /// <summary>
         /// Gets a list of values

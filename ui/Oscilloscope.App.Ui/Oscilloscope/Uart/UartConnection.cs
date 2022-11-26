@@ -23,7 +23,7 @@
 using System;
 using System.IO.Ports;
 
-namespace Oscilloscope.App.Ui.Oscilloscope.Uart {
+namespace Ost.PicoOsci.Ui.Oscilloscope.Uart {
     public class UartConnection : UartConnectionIfc {
         public UartConnection(UartReceiverIfc listener) {
             m_listener = listener;

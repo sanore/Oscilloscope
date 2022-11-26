@@ -23,7 +23,7 @@
 using System.IO.Ports;
 using System.Threading;
 
-namespace Oscilloscope.App.Ui.Oscilloscope.Uart {
+namespace Ost.PicoOsci.Ui.Oscilloscope.Uart {
     internal class Receiver {
         public Receiver(SerialPort port, UartReceiverSm receiver) {
             m_port                        =  port;
@@ -48,14 +48,14 @@ namespace Oscilloscope.App.Ui.Oscilloscope.Uart {
             while (!m_cancellationTokenSource.IsCancellationRequested) {
                 // Timeout for 10s
                 m_waiter.Wait(10000);
+                if (!m_waiter.IsSet) {
+                    m_cancellationTokenSource.Cancel();
+                    continue;
+                }
+
                 m_waiter.Reset();
 
                 var bytesToRead = m_port.BytesToRead;
-
-                if (bytesToRead <= 0) {
-                    // Timeout ignore
-                    continue;
-                }
 
                 for (var i = 0; i < bytesToRead; i++) {
                     var data = (byte)m_port.ReadByte();

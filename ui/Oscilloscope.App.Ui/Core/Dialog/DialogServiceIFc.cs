@@ -20,7 +20,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-namespace Oscilloscope.App.Ui.Core.Dialog {
+namespace Ost.PicoOsci.Ui.Core.Dialog {
     /// <summary>
     /// Dialog service to open user dialogs.
     /// </summary>

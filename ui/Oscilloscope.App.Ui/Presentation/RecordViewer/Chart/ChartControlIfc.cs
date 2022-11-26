@@ -20,10 +20,10 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using Oscilloscope.App.Ui.Core.WPF.MVVM;
+using Ost.PicoOsci.Ui.Core.WPF.MVVM;
 using Syncfusion.UI.Xaml.Charts;
 
-namespace Oscilloscope.App.Ui.Presentation.RecordViewer.Chart {
+namespace Ost.PicoOsci.Ui.Presentation.RecordViewer.Chart {
     /// <summary>
     /// A chart control interface
     ///

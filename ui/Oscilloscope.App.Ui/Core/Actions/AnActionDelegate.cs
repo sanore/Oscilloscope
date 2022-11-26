@@ -22,7 +22,7 @@
 
 using System;
 
-namespace Oscilloscope.App.Ui.Core.Actions {
+namespace Ost.PicoOsci.Ui.Core.Actions {
     /// <summary>
     /// An action which uses delegates
     /// </summary>

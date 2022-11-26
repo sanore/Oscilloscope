@@ -25,9 +25,9 @@ using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using System.Windows;
-using Oscilloscope.App.Ui.Core.WPF;
+using Ost.PicoOsci.Ui.Core.WPF;
 
-namespace Oscilloscope.App.Ui.Core.Window {
+namespace Ost.PicoOsci.Ui.Core.Window {
     /// <summary>
     /// Helper class for window system.
     /// </summary>

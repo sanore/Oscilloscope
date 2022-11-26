@@ -25,12 +25,12 @@ using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Net;
 using AutoUpdaterDotNET;
-using Oscilloscope.App.Ui.Core.Actions;
-using Oscilloscope.App.Ui.Core.Updater;
-using Oscilloscope.App.Ui.Core.Window;
-using Oscilloscope.App.Ui.Core.WPF.Notify;
+using Ost.PicoOsci.Ui.Core.Actions;
+using Ost.PicoOsci.Ui.Core.Updater;
+using Ost.PicoOsci.Ui.Core.Window;
+using Ost.PicoOsci.Ui.Core.WPF.Notify;
 
-namespace Oscilloscope.App.Ui.Presentation.Update {
+namespace Ost.PicoOsci.Ui.Presentation.Update {
     /// <summary>
     /// A update window viewmodel
     /// </summary>

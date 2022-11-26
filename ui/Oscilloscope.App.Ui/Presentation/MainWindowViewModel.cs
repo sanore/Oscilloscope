@@ -21,17 +21,17 @@
 // SOFTWARE.
 
 using System.Collections.Generic;
-using Oscilloscope.App.Ui.Core.Actions;
-using Oscilloscope.App.Ui.Core.Docking;
-using Oscilloscope.App.Ui.Core.Window;
-using Oscilloscope.App.Ui.Core.WPF.Notify;
-using Oscilloscope.App.Ui.Oscilloscope;
-using Oscilloscope.App.Ui.Oscilloscope.Actions;
-using Oscilloscope.App.Ui.Presentation.RecordViewer;
-using Oscilloscope.App.Ui.Presentation.TriggerCfg;
-using Oscilloscope.App.Ui.Presentation.Update.Action;
+using Ost.PicoOsci.Ui.Core.Actions;
+using Ost.PicoOsci.Ui.Core.Docking;
+using Ost.PicoOsci.Ui.Core.Window;
+using Ost.PicoOsci.Ui.Core.WPF.Notify;
+using Ost.PicoOsci.Ui.Oscilloscope;
+using Ost.PicoOsci.Ui.Oscilloscope.Actions;
+using Ost.PicoOsci.Ui.Presentation.RecordViewer;
+using Ost.PicoOsci.Ui.Presentation.TriggerCfg;
+using Ost.PicoOsci.Ui.Presentation.Update.Action;
 
-namespace Oscilloscope.App.Ui.Presentation {
+namespace Ost.PicoOsci.Ui.Presentation {
     /// <summary>
     /// The main window viewmodel
     /// </summary>

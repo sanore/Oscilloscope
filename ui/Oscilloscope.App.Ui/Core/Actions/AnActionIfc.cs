@@ -22,7 +22,7 @@
 
 using System.Windows.Input;
 
-namespace Oscilloscope.App.Ui.Core.Actions {
+namespace Ost.PicoOsci.Ui.Core.Actions {
     /// <summary>
     /// A WPF command action implementation
     /// </summary>

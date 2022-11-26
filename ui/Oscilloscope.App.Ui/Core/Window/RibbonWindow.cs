@@ -26,9 +26,9 @@ using System.Diagnostics.CodeAnalysis;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using Oscilloscope.App.Ui.Core.WPF.MVVM;
+using Ost.PicoOsci.Ui.Core.WPF.MVVM;
 
-namespace Oscilloscope.App.Ui.Core.Window {
+namespace Ost.PicoOsci.Ui.Core.Window {
     /// <summary>
     /// A special window which supports custom operations
     /// </summary>

@@ -22,7 +22,7 @@
 
 using System.Diagnostics.CodeAnalysis;
 
-namespace Oscilloscope.App.Ui.Presentation.Update {
+namespace Ost.PicoOsci.Ui.Presentation.Update {
     /// <summary>
     /// Interaction logic for UpdateWindow.xaml
     /// </summary>

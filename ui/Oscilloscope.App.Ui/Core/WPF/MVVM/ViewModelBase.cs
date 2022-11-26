@@ -22,9 +22,9 @@
 
 using System;
 using System.Windows;
-using Oscilloscope.App.Ui.Core.WPF.Decorators;
+using Ost.PicoOsci.Ui.Core.WPF.Decorators;
 
-namespace Oscilloscope.App.Ui.Core.WPF.MVVM {
+namespace Ost.PicoOsci.Ui.Core.WPF.MVVM {
     /// <summary>
     /// A ViewModelBase with a type-safe framework element.
     /// </summary>

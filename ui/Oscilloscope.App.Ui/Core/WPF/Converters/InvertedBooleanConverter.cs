@@ -24,7 +24,7 @@ using System;
 using System.Globalization;
 using System.Windows.Data;
 
-namespace Oscilloscope.App.Ui.Core.WPF.Converters {
+namespace Ost.PicoOsci.Ui.Core.WPF.Converters {
     public class InvertedBooleanConverter : IValueConverter {
         /// <inheritdoc />
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {

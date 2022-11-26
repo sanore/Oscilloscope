@@ -22,7 +22,7 @@
 
 using System.Threading;
 
-namespace Oscilloscope.App.Ui.Core.Actions {
+namespace Ost.PicoOsci.Ui.Core.Actions {
     /// <summary>
     /// Gets access to cancel the given async action.
     /// </summary>

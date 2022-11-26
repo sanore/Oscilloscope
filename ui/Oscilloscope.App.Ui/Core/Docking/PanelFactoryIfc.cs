@@ -20,7 +20,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-namespace Oscilloscope.App.Ui.Core.Docking {
+namespace Ost.PicoOsci.Ui.Core.Docking {
     /// <summary>
     /// An interface to create panels.
     /// </summary>

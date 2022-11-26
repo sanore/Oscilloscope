@@ -23,7 +23,7 @@
 using System.Collections.Generic;
 using System.Threading;
 
-namespace Oscilloscope.App.Ui.Core.FileSystem {
+namespace Ost.PicoOsci.Ui.Core.FileSystem {
     /// <summary>
     /// An abstract file system
     /// </summary>

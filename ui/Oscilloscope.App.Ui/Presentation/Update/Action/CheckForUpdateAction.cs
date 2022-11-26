@@ -22,11 +22,11 @@
 
 using System.Diagnostics.CodeAnalysis;
 using AutoUpdaterDotNET;
-using Oscilloscope.App.Ui.Core.Actions;
-using Oscilloscope.App.Ui.Core.Updater;
-using Oscilloscope.App.Ui.Core.Window;
+using Ost.PicoOsci.Ui.Core.Actions;
+using Ost.PicoOsci.Ui.Core.Updater;
+using Ost.PicoOsci.Ui.Core.Window;
 
-namespace Oscilloscope.App.Ui.Presentation.Update.Action {
+namespace Ost.PicoOsci.Ui.Presentation.Update.Action {
     /// <summary>
     /// Checks for new update and open dialog with detailed information when new update is available
     /// </summary>

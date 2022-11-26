@@ -22,7 +22,7 @@
 
 using System.Diagnostics.CodeAnalysis;
 
-namespace Oscilloscope.App.Ui.Presentation.RecordViewer {
+namespace Ost.PicoOsci.Ui.Presentation.RecordViewer {
     /// <summary>
     /// Interaction logic for RecordViewerPanelView.xaml
     /// </summary>

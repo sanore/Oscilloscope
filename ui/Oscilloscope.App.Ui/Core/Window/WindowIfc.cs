@@ -23,9 +23,9 @@
 using System;
 using System.ComponentModel;
 using System.Windows;
-using Oscilloscope.App.Ui.Core.WPF.MVVM;
+using Ost.PicoOsci.Ui.Core.WPF.MVVM;
 
-namespace Oscilloscope.App.Ui.Core.Window {
+namespace Ost.PicoOsci.Ui.Core.Window {
     /// <summary>
     /// An interface for window views. To control the view instance from viewmodel
     /// </summary>

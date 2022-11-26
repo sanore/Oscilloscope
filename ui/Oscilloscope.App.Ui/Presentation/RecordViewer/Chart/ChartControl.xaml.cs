@@ -24,7 +24,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Windows;
 using Syncfusion.UI.Xaml.Charts;
 
-namespace Oscilloscope.App.Ui.Presentation.RecordViewer.Chart {
+namespace Ost.PicoOsci.Ui.Presentation.RecordViewer.Chart {
     /// <summary>
     /// Interaction logic for ChartControl.xaml
     /// </summary>

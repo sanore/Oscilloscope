@@ -22,7 +22,7 @@
 
 using System.ComponentModel;
 
-namespace Oscilloscope.App.Ui.Core.WPF.MVVM {
+namespace Ost.PicoOsci.Ui.Core.WPF.MVVM {
     /// <summary>
     /// Interface for view models.
     /// </summary>

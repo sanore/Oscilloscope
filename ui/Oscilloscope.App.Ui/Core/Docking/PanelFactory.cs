@@ -23,7 +23,7 @@
 using System;
 using DryIoc;
 
-namespace Oscilloscope.App.Ui.Core.Docking {
+namespace Ost.PicoOsci.Ui.Core.Docking {
     /// <summary>
     /// A namespace wrapper for different factory implementations
     /// </summary>

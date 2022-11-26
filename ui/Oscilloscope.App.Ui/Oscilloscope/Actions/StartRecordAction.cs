@@ -20,9 +20,9 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using Oscilloscope.App.Ui.Core.Actions;
+using Ost.PicoOsci.Ui.Core.Actions;
 
-namespace Oscilloscope.App.Ui.Oscilloscope.Actions {
+namespace Ost.PicoOsci.Ui.Oscilloscope.Actions {
     public class StartRecordAction : AnAction {
         public const string ID = "Record.Start";
 

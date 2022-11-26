@@ -21,12 +21,12 @@
 // SOFTWARE.
 
 using DryIoc;
-using Oscilloscope.App.Ui.Core.Docking;
-using Oscilloscope.App.Ui.Oscilloscope;
-using Oscilloscope.App.Ui.Presentation.RecordViewer.Chart;
+using Ost.PicoOsci.Ui.Core.Docking;
+using Ost.PicoOsci.Ui.Oscilloscope;
+using Ost.PicoOsci.Ui.Presentation.RecordViewer.Chart;
 using Syncfusion.Windows.Tools.Controls;
 
-namespace Oscilloscope.App.Ui.Presentation.RecordViewer {
+namespace Ost.PicoOsci.Ui.Presentation.RecordViewer {
     public class RecordViewerPanelViewModel : PanelViewModel, OscilloscopeListenerIfc {
         public ChartViewModel ChartVm { get; }
 

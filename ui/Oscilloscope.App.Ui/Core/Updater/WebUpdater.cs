@@ -25,7 +25,7 @@ using System.Collections.Generic;
 using AutoUpdaterDotNET;
 using Microsoft.AppCenter.Crashes;
 
-namespace Oscilloscope.App.Ui.Core.Updater {
+namespace Ost.PicoOsci.Ui.Core.Updater {
     /// <summary>
     /// Uses the AutoUpdater.NET update framework
     /// <see cref="https://github.com/ravibpatel/AutoUpdater.NET" />

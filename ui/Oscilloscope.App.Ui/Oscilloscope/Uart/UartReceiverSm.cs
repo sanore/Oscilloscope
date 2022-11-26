@@ -23,7 +23,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Oscilloscope.App.Ui.Oscilloscope.Uart {
+namespace Ost.PicoOsci.Ui.Oscilloscope.Uart {
     public class UartReceiverSm {
         public UartReceiverSm(UartReceiverIfc listener) {
             m_listener = listener;

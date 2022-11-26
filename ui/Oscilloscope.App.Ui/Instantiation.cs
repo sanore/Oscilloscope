@@ -22,21 +22,21 @@
 
 using System.Diagnostics.CodeAnalysis;
 using DryIoc;
-using Oscilloscope.App.Ui.Core.Actions;
-using Oscilloscope.App.Ui.Core.Dialog;
-using Oscilloscope.App.Ui.Core.Docking;
-using Oscilloscope.App.Ui.Core.FileSystem;
-using Oscilloscope.App.Ui.Core.Updater;
-using Oscilloscope.App.Ui.Core.WPF.Notify;
-using Oscilloscope.App.Ui.Oscilloscope;
-using Oscilloscope.App.Ui.Oscilloscope.Actions;
-using Oscilloscope.App.Ui.Presentation;
-using Oscilloscope.App.Ui.Presentation.RecordViewer;
-using Oscilloscope.App.Ui.Presentation.TriggerCfg;
-using Oscilloscope.App.Ui.Presentation.Update;
-using Oscilloscope.App.Ui.Presentation.Update.Action;
+using Ost.PicoOsci.Ui.Core.Actions;
+using Ost.PicoOsci.Ui.Core.Dialog;
+using Ost.PicoOsci.Ui.Core.Docking;
+using Ost.PicoOsci.Ui.Core.FileSystem;
+using Ost.PicoOsci.Ui.Core.Updater;
+using Ost.PicoOsci.Ui.Core.WPF.Notify;
+using Ost.PicoOsci.Ui.Oscilloscope;
+using Ost.PicoOsci.Ui.Oscilloscope.Actions;
+using Ost.PicoOsci.Ui.Presentation;
+using Ost.PicoOsci.Ui.Presentation.RecordViewer;
+using Ost.PicoOsci.Ui.Presentation.TriggerCfg;
+using Ost.PicoOsci.Ui.Presentation.Update;
+using Ost.PicoOsci.Ui.Presentation.Update.Action;
 
-namespace Oscilloscope.App.Ui {
+namespace Ost.PicoOsci.Ui {
     /// <summary>
     /// Entry Point Class for Instantiation or Registration of Concrete objects
     /// Factories or builders for each feature registered here

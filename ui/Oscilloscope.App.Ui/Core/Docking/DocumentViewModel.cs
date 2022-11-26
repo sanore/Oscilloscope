@@ -22,7 +22,7 @@
 
 using Syncfusion.Windows.Tools.Controls;
 
-namespace Oscilloscope.App.Ui.Core.Docking {
+namespace Ost.PicoOsci.Ui.Core.Docking {
     /// <summary>
     /// A document view model
     /// </summary>

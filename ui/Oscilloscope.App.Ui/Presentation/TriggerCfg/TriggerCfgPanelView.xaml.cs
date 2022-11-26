@@ -24,7 +24,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Text.RegularExpressions;
 using System.Windows.Input;
 
-namespace Oscilloscope.App.Ui.Presentation.TriggerCfg {
+namespace Ost.PicoOsci.Ui.Presentation.TriggerCfg {
     /// <summary>
     /// Interaction logic for TriggerCfgPanelView.xaml
     /// </summary>

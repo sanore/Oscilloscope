@@ -27,11 +27,11 @@ using DryIoc;
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
-using Oscilloscope.App.Ui.Core.Window;
-using Oscilloscope.App.Ui.Presentation;
+using Ost.PicoOsci.Ui.Core.Window;
+using Ost.PicoOsci.Ui.Presentation;
 using Syncfusion.Licensing;
 
-namespace Oscilloscope.App.Ui {
+namespace Ost.PicoOsci.Ui {
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>

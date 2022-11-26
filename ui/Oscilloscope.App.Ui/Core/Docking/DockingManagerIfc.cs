@@ -21,9 +21,9 @@
 // SOFTWARE.
 
 using System.Collections.Generic;
-using Oscilloscope.App.Ui.Core.WPF.Notify;
+using Ost.PicoOsci.Ui.Core.WPF.Notify;
 
-namespace Oscilloscope.App.Ui.Core.Docking {
+namespace Ost.PicoOsci.Ui.Core.Docking {
     /// <summary>
     /// Docking manager with MVVM Pattern implementation.
     /// </summary>

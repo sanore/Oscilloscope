@@ -21,11 +21,11 @@
 // SOFTWARE.
 
 using System;
-using Oscilloscope.App.Ui.Core.WPF.MVVM;
-using Oscilloscope.App.Ui.Oscilloscope;
+using Ost.PicoOsci.Ui.Core.WPF.MVVM;
+using Ost.PicoOsci.Ui.Oscilloscope;
 using Syncfusion.UI.Xaml.Charts;
 
-namespace Oscilloscope.App.Ui.Presentation.RecordViewer.Chart {
+namespace Ost.PicoOsci.Ui.Presentation.RecordViewer.Chart {
     /// <summary>
     /// Represents the chart document view model.
     /// </summary>

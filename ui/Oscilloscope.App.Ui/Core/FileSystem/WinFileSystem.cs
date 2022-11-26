@@ -25,7 +25,7 @@ using System.IO;
 using System.Threading;
 using Dasync.Collections;
 
-namespace Oscilloscope.App.Ui.Core.FileSystem {
+namespace Ost.PicoOsci.Ui.Core.FileSystem {
     /// <summary>
     /// Implementation for windows systems
     /// </summary>

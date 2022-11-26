@@ -1,7 +1,7 @@
-﻿<Application x:Class="Oscilloscope.App.Ui.App"
+﻿<Application x:Class="Ost.PicoOsci.Ui.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:converters="clr-namespace:Oscilloscope.App.Ui.Core.WPF.Converters">
+             xmlns:converters="clr-namespace:Ost.PicoOsci.Ui.Core.WPF.Converters">
     <Application.Resources>
         <ResourceDictionary>
             <converters:InvertedBooleanConverter x:Key="InvertedBooleanConverter" />

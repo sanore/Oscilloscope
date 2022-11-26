@@ -22,10 +22,10 @@
 
 using System;
 using System.Collections.Generic;
-using Oscilloscope.App.Ui.Core.WPF.Notify;
-using Oscilloscope.App.Ui.Oscilloscope.Uart;
+using Ost.PicoOsci.Ui.Core.WPF.Notify;
+using Ost.PicoOsci.Ui.Oscilloscope.Uart;
 
-namespace Oscilloscope.App.Ui.Oscilloscope {
+namespace Ost.PicoOsci.Ui.Oscilloscope {
     public class OscilloscopeMgnt : OscilloscopeMgntIfc, UartReceiverIfc {
         /// <inheritdoc />
         public NotifyRefIfc<TriggerConfig> TriggerConfig { get; }

@@ -22,7 +22,7 @@
 
 using System.IO.Ports;
 
-namespace Oscilloscope.App.Ui.Oscilloscope.Uart {
+namespace Ost.PicoOsci.Ui.Oscilloscope.Uart {
     internal class Sender {
         public Sender(SerialPort port) {
             m_port = port;

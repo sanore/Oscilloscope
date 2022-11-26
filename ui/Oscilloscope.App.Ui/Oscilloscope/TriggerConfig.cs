@@ -20,9 +20,9 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using Oscilloscope.App.Ui.Core.WPF.Notify;
+using Ost.PicoOsci.Ui.Core.WPF.Notify;
 
-namespace Oscilloscope.App.Ui.Oscilloscope {
+namespace Ost.PicoOsci.Ui.Oscilloscope {
     public class TriggerConfig {
         /// <summary>
         /// Range +1 to - 1V

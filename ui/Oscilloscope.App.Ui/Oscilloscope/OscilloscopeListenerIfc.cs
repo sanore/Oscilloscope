@@ -20,7 +20,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-namespace Oscilloscope.App.Ui.Oscilloscope {
+namespace Ost.PicoOsci.Ui.Oscilloscope {
     public interface OscilloscopeListenerIfc {
         void OnRecordReceived(Record record);
     }

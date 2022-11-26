@@ -22,7 +22,7 @@
 
 using AutoUpdaterDotNET;
 
-namespace Oscilloscope.App.Ui.Core.Updater {
+namespace Ost.PicoOsci.Ui.Core.Updater {
     /// <summary>
     /// Callback delegate for custom dialog
     /// </summary>
