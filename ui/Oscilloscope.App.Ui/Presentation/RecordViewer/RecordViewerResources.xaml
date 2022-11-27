@@ -1,0 +1,7 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:triggerCfg="clr-namespace:Ost.PicoOsci.Ui.Presentation.RecordViewer">
+    <DataTemplate DataType="{x:Type triggerCfg:RecordViewerPanelViewModel}">
+        <triggerCfg:RecordViewerPanelView />
+    </DataTemplate>
+</ResourceDictionary>
