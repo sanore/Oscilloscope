@@ -17,7 +17,7 @@ entity osci is
         ch1_edge_sel  : in std_ulogic_vector(3 downto 0);
         ch1_edge_thre : in std_ulogic_vector(15 downto 0);
         ch1_ram_data  : out  std_ulogic_vector(15 downto 0);
-        ch1_ram_adr   : in std_ulogic_vector(11 downto 0)
+        ch1_ram_adr   : in std_ulogic_vector(12 downto 0)
     );
 end entity osci;
 
@@ -43,25 +43,35 @@ architecture RTL of osci is
     end component channel;
     
     signal ch1_reset : std_ulogic;
+    signal last_read_address : std_ulogic_vector(12 downto 0);
+    signal ch1_read_en : std_ulogic;
 begin
     
     ch1_reset <= rst or ch1_rst;
     
+    proc_ram : process (clk) is
+    begin
+        if (rising_edge(clk)) then
+            ch1_read_en <= '0';
+        
+            if (last_read_address /= ch1_ram_adr) then
+                last_read_address <= ch1_ram_adr;
+                ch1_read_en <= '1';
+            end if;
+        end if;
+    end process;
+    
     -- channel 1
-    ch1 : channel
-        generic map(
-            ADDR_WIDTH => 13,
-            DATA_WIDTH => 16
-        ) 
+    ch1 : component channel
         port map(
             clk              => clk,
             rst              => ch1_reset,
             start            => ch1_en,
             -- TODO use ch1_ram_data, ch1_ram_adr to generate following read access.
             -- an each address change, we must generate a new read op.
-            read_address     => open,
-            read_data        => open,
-            read_en          => open,
+            read_address     => last_read_address,
+            read_data        => ch1_ram_data,
+            read_en          => ch1_read_en,
             mode             => ch1_mode,
             edge_sel         => ch1_edge_sel,
             edge_thre        => ch1_edge_thre,
