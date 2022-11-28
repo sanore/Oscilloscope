@@ -11,6 +11,7 @@
 -endlib
 -makelib xcelium_lib/xpm -sv \
   "C:/Xilinx/Vivado/2021.1/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv" \
+  "C:/Xilinx/Vivado/2021.1/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv" \
 -endlib
 -makelib xcelium_lib/xpm \
   "C:/Xilinx/Vivado/2021.1/data/ip/xpm/xpm_VCOMP.vhd" \
@@ -53,9 +54,35 @@
 -makelib xcelium_lib/xil_defaultlib \
   "../../../bd/oscilloscope_bd/ip/oscilloscope_bd_adc_processing_0_0/sim/oscilloscope_bd_adc_processing_0_0.vhd" \
   "../../../bd/oscilloscope_bd/ip/oscilloscope_bd_osci_0_1/sim/oscilloscope_bd_osci_0_1.vhd" \
-  "../../../bd/oscilloscope_bd/ipshared/f75b/hdl/OsciToCpu_v1_S00_AXI.vhd" \
-  "../../../bd/oscilloscope_bd/ipshared/f75b/hdl/OsciToCpu_v1.vhd" \
+  "../../../bd/oscilloscope_bd/ipshared/8a47/hdl/OsciToCpu_v1_S00_AXI.vhd" \
+  "../../../bd/oscilloscope_bd/ipshared/8a47/hdl/OsciToCpu_v1.vhd" \
   "../../../bd/oscilloscope_bd/ip/oscilloscope_bd_OsciToCpu_0_3/sim/oscilloscope_bd_OsciToCpu_0_3.vhd" \
+-endlib
+-makelib xcelium_lib/generic_baseblocks_v2_1_0 \
+  "../../../../Oscilloscope.gen/sources_1/bd/oscilloscope_bd/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v" \
+-endlib
+-makelib xcelium_lib/fifo_generator_v13_2_5 \
+  "../../../../Oscilloscope.gen/sources_1/bd/oscilloscope_bd/ipshared/276e/simulation/fifo_generator_vlog_beh.v" \
+-endlib
+-makelib xcelium_lib/fifo_generator_v13_2_5 \
+  "../../../../Oscilloscope.gen/sources_1/bd/oscilloscope_bd/ipshared/276e/hdl/fifo_generator_v13_2_rfs.vhd" \
+-endlib
+-makelib xcelium_lib/fifo_generator_v13_2_5 \
+  "../../../../Oscilloscope.gen/sources_1/bd/oscilloscope_bd/ipshared/276e/hdl/fifo_generator_v13_2_rfs.v" \
+-endlib
+-makelib xcelium_lib/axi_data_fifo_v2_1_23 \
+  "../../../../Oscilloscope.gen/sources_1/bd/oscilloscope_bd/ipshared/94ec/hdl/axi_data_fifo_v2_1_vl_rfs.v" \
+-endlib
+-makelib xcelium_lib/axi_register_slice_v2_1_24 \
+  "../../../../Oscilloscope.gen/sources_1/bd/oscilloscope_bd/ipshared/8f68/hdl/axi_register_slice_v2_1_vl_rfs.v" \
+-endlib
+-makelib xcelium_lib/axi_protocol_converter_v2_1_24 \
+  "../../../../Oscilloscope.gen/sources_1/bd/oscilloscope_bd/ipshared/6e0d/hdl/axi_protocol_converter_v2_1_vl_rfs.v" \
+-endlib
+-makelib xcelium_lib/xil_defaultlib \
+  "../../../bd/oscilloscope_bd/ip/oscilloscope_bd_auto_pc_0/sim/oscilloscope_bd_auto_pc_0.v" \
+-endlib
+-makelib xcelium_lib/xil_defaultlib \
   "../../../bd/oscilloscope_bd/sim/oscilloscope_bd.vhd" \
 -endlib
 -makelib xcelium_lib/xil_defaultlib \

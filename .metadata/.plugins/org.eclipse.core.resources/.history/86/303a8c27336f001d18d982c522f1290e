@@ -1,0 +1,23 @@
+#include "int.h"
+
+#include "xuartps.h"
+
+static XUartPs_Config* uartCfg;
+static XUartPs uartPS0;
+
+int UART_Read() {
+
+}
+
+int UART_Write(int val) {
+
+}
+
+int UART_Init() {
+	uartCfg = XUartPs_LookupConfig(UART_DEVICE_ID);
+	if (NULL == uartCfg) {
+		return XST_FAILURE;
+	}
+
+	XUartPs_CfgInitialize(&uartPS0, uartCfg, uartCfg->BaseAddress);
+}

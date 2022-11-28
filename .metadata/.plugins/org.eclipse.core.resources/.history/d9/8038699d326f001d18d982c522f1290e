@@ -1,0 +1,22 @@
+/**
+ ******************************************************************************
+ * osci.h
+ * Sandro Pedrett
+ ******************************************************************************
+ **/
+
+#ifndef _UART_H
+#define _UART_H
+
+#include "xparameters.h"
+
+int UART_Read();
+
+int UART_Write(int val);
+
+/**
+ * Initialize osci
+ */
+int UART_Init();
+
+#endif // _UART_H
