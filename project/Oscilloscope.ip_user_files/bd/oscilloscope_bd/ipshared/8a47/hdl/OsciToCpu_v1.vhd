@@ -21,11 +21,10 @@ entity OsciToCpu_v1 is
         ch1_mode      : out std_logic_vector(3 downto 0);
         ch1_edge_sel  : out std_logic_vector(3 downto 0);
         ch1_edge_thre : out std_logic_vector(15 downto 0);
-        ch1_ram_data  : in  std_logic_vector(15 downto 0);
         ch1_ram_adr   : out std_logic_vector(12 downto 0);
+        ch1_ram_data  : in  std_logic_vector(15 downto 0);
 		-- User ports ends
 		-- Do not modify the ports beyond this line
-
 
 		-- Ports of Axi Slave Bus Interface S00_AXI
 		s00_axi_aclk	: in std_logic;
@@ -61,10 +60,11 @@ architecture arch_imp of OsciToCpu_v1 is
 		C_S_AXI_ADDR_WIDTH	: integer	:= 5
 		);
 		port (
+		
         reg0 : out std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
         reg1 : out std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
         reg2 : out std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
-        reg3 : in std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
+        reg3 : in  std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
         reg4 : out std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
         reg5 : out std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
         reg6 : out std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
@@ -145,8 +145,8 @@ OsciToCpu_v1_S00_AXI_inst : OsciToCpu_v1_S00_AXI
     ch1_mode          <= reg1(3 downto 0);
     ch1_edge_sel      <= reg2(3 downto 0);
     ch1_edge_thre     <= reg2(31 downto 16);
-    ch1_ram_adr       <= reg4(12 downto 0);
     reg3(15 downto 0) <= ch1_ram_data;
+    ch1_ram_adr       <= reg4(12 downto 0);
 	-- User logic ends
 
 end arch_imp;
