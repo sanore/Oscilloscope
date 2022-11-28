@@ -1,0 +1,14 @@
+#include "int.h"
+
+
+int UART_Read() {
+
+}
+
+int UART_Write(int val) {
+
+}
+
+int UART_Init() {
+
+}

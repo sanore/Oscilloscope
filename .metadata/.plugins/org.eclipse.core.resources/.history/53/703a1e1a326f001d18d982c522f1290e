@@ -1,0 +1,22 @@
+/**
+ ******************************************************************************
+ * osci.h
+ * Sandro Pedrett
+ ******************************************************************************
+ **/
+
+#ifndef _OSCI_H
+#define _OSCI_H
+
+#include "xparameters.h"
+
+
+#define OSCI_DEVICE_ID XPAR_OSCITOCPU_0_DEVICE_ID
+#define OSCI_INTERRUPT_ID XPAR_FABRIC_OSCI_0_CH1_IRQ_INTR
+
+
+void OSCI_Handler(void *CallbackRef);
+int OSCI_Init();
+void OSCI_EnableInterrupt();
+
+#endif // _OSCI_H

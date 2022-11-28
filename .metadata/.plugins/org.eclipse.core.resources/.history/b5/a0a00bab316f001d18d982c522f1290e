@@ -1,0 +1,73 @@
+#include "int.h"
+
+
+/**
+ ******************************************************************************
+ * Function prototypes
+ ******************************************************************************
+ **/
+void XGpio_InterruptClear(XGpio * InstancePtr, u32 Mask);
+
+/**
+ ******************************************************************************
+ * This is the interrupt handler routine for the GPIO .
+ ******************************************************************************
+ **/
+void GPIO_Handler(void *CallbackRef) {
+	uint32_t address = 0;
+	INT_disable();
+
+	address = XGpio_DiscreteRead(&GpioInst, 1);
+	BMP_setFast(address, (uint16_t) XGpio_DiscreteRead(&GpioInst, 2));
+
+	INT_enable();
+}
+
+int GPIO_Init() {
+	int Status;
+
+	/* Initialize the GPIO driver. If an error occurs then exit */
+	Status = XGpio_Initialize(&GpioInst, GPIO_DEVICE_ID);
+	if (Status != XST_SUCCESS) {
+		return XST_FAILURE;
+	}
+
+	/*
+	 * Connect a device driver handler that will be called when an interrupt
+	 * for the device occurs, the device driver handler performs the specific
+	 * interrupt processing for the device.
+	 */
+	Status = INT_connect(GPIO_INTERRUPT_ID, (XInterruptHandler) GPIO_Handler,
+			(void *) &GpioInst);
+	if (Status != XST_SUCCESS) {
+		return XST_FAILURE;
+	}
+
+	/*
+	 * Enable the GPIO channel interrupts so that push button can be
+	 * detected and enable interrupts for the GPIO device
+	 */
+
+	//XGpio_InterruptGlobalEnable(&GpioInst);
+	// Change the priority
+	//INT_setPriorityTriggerType (GPIO_INTERRUPT_ID, 0, 1);
+	/*
+	 * Enable the interrupt for the gpio
+	 */
+	//INT_enableInterrupt(GPIO_INTERRUPT_ID);
+	// Success
+	return XST_SUCCESS;
+}
+
+/**
+ ******************************************************************************
+ * Enables the GPIO interrupts
+ ******************************************************************************
+ **/
+void GPIO_EnableInterrupt() {
+	/* Enable interrupts after setup interrupt */
+	XGpio_InterruptEnable(&GpioInst, 0xFF);
+
+	/* Clear the Interrupt */
+	XGpio_InterruptClear(&GpioInst, 0xFF);
+}

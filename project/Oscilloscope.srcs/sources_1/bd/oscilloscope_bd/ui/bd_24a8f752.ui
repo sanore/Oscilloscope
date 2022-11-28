@@ -1,7 +1,7 @@
 {
    "ActiveEmotionalView":"Default View",
    "Default View_ScaleFactor":"0.667403",
-   "Default View_TopLeft":"1816,289",
+   "Default View_TopLeft":"1509,211",
    "ExpandedHierarchyInLayout":"",
    "guistr":"# # String gsaved with Nlview 7.0r6  2020-01-29 bk=1.5227 VDI=41 GEI=36 GUI=JA:10.0 non-TLS
 #  -string -flagsOSRD
@@ -16,9 +16,9 @@ preplace inst xlconstant_0 -pg 1 -lvl 4 -x 1040 -y 550 -defaultsOSRD
 preplace inst clk_wiz_0 -pg 1 -lvl 1 -x 110 -y 800 -defaultsOSRD
 preplace inst proc_sys_reset_0 -pg 1 -lvl 2 -x 380 -y 750 -defaultsOSRD
 preplace inst processing_system7_0 -pg 1 -lvl 6 -x 1830 -y 400 -defaultsOSRD
-preplace inst osci_0 -pg 1 -lvl 5 -x 1430 -y 140 -defaultsOSRD
 preplace inst adc_processing_0 -pg 1 -lvl 4 -x 1040 -y 100 -defaultsOSRD
 preplace inst OsciToCpu_0 -pg 1 -lvl 8 -x 2510 -y 540 -defaultsOSRD
+preplace inst osci_0 -pg 1 -lvl 5 -x 1430 -y 140 -defaultsOSRD
 preplace netloc OsciToCpu_0_ch1_edge_sel 1 4 5 1230 290 1610J 300 NJ 300 NJ 300 2690
 preplace netloc OsciToCpu_0_ch1_edge_thre 1 4 5 1240 300 1620J 290 NJ 290 NJ 290 2720
 preplace netloc OsciToCpu_0_ch1_en 1 4 5 1200 320 NJ 320 NJ 320 NJ 320 2670

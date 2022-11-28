@@ -1,0 +1,26 @@
+#include "osci.h"
+
+/**
+ ******************************************************************************
+ * This is the interrupt handler routine for the OSCI .
+ ******************************************************************************
+ **/
+void OSCI_Handler(void *CallbackRef) {
+	INT_disable();
+
+	// TODO data ready
+	// write to buffer
+
+	INT_enable();
+}
+
+int OSCI_Init() {
+	int status;
+
+	status = INT_connect(OSCI_INTERRUPT_ID, (XInterruptHandler) OSCI_Handler, 0);
+	if (status != XST_SUCCESS) {
+		return XST_FAILURE;
+	}
+
+	return XST_SUCCESS;
+}
