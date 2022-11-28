@@ -55,8 +55,8 @@ USE ieee.numeric_std.ALL;
 
 ENTITY oscilloscope_bd_adc_processing_0_0 IS
   PORT (
-    adc_tdata : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
-    adc_tvalid : IN STD_LOGIC;
+    adc_data : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+    adc_valid : IN STD_LOGIC;
     ch1_adc : OUT STD_LOGIC_VECTOR(11 DOWNTO 0)
   );
 END oscilloscope_bd_adc_processing_0_0;
@@ -66,23 +66,18 @@ ARCHITECTURE oscilloscope_bd_adc_processing_0_0_arch OF oscilloscope_bd_adc_proc
   ATTRIBUTE DowngradeIPIdentifiedWarnings OF oscilloscope_bd_adc_processing_0_0_arch: ARCHITECTURE IS "yes";
   COMPONENT adc_processing IS
     PORT (
-      adc_tdata : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
-      adc_tvalid : IN STD_LOGIC;
+      adc_data : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+      adc_valid : IN STD_LOGIC;
       ch1_adc : OUT STD_LOGIC_VECTOR(11 DOWNTO 0)
     );
   END COMPONENT adc_processing;
   ATTRIBUTE IP_DEFINITION_SOURCE : STRING;
   ATTRIBUTE IP_DEFINITION_SOURCE OF oscilloscope_bd_adc_processing_0_0_arch: ARCHITECTURE IS "module_ref";
-  ATTRIBUTE X_INTERFACE_INFO : STRING;
-  ATTRIBUTE X_INTERFACE_PARAMETER : STRING;
-  ATTRIBUTE X_INTERFACE_INFO OF adc_tvalid: SIGNAL IS "xilinx.com:interface:axis:1.0 adc TVALID";
-  ATTRIBUTE X_INTERFACE_PARAMETER OF adc_tdata: SIGNAL IS "XIL_INTERFACENAME adc, TDATA_NUM_BYTES 2, TDEST_WIDTH 0, TID_WIDTH 0, TUSER_WIDTH 0, HAS_TREADY 0, HAS_TSTRB 0, HAS_TKEEP 0, HAS_TLAST 0, FREQ_HZ 100000000, PHASE 0.0, LAYERED_METADATA undef, INSERT_VIP 0";
-  ATTRIBUTE X_INTERFACE_INFO OF adc_tdata: SIGNAL IS "xilinx.com:interface:axis:1.0 adc TDATA";
 BEGIN
   U0 : adc_processing
     PORT MAP (
-      adc_tdata => adc_tdata,
-      adc_tvalid => adc_tvalid,
+      adc_data => adc_data,
+      adc_valid => adc_valid,
       ch1_adc => ch1_adc
     );
 END oscilloscope_bd_adc_processing_0_0_arch;

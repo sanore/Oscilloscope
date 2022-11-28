@@ -1,8 +1,8 @@
 --Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------
 --Tool Version: Vivado v.2021.1 (win64) Build 3247384 Thu Jun 10 19:36:33 MDT 2021
---Date        : Sun Nov 27 14:06:56 2022
---Host        : DESKTOP-5F25APE running 64-bit major release  (build 9200)
+--Date        : Mon Nov 28 15:06:46 2022
+--Host        : WS-EL-501017 running 64-bit major release  (build 9200)
 --Command     : generate_target oscilloscope_bd.bd
 --Design      : oscilloscope_bd
 --Purpose     : IP block netlist
@@ -379,13 +379,6 @@ architecture STRUCTURE of oscilloscope_bd is
     PS_PORB : inout STD_LOGIC
   );
   end component oscilloscope_bd_processing_system7_0_1;
-  component oscilloscope_bd_adc_processing_0_0 is
-  port (
-    adc_tdata : in STD_LOGIC_VECTOR ( 15 downto 0 );
-    adc_tvalid : in STD_LOGIC;
-    ch1_adc : out STD_LOGIC_VECTOR ( 11 downto 0 )
-  );
-  end component oscilloscope_bd_adc_processing_0_0;
   component oscilloscope_bd_osci_0_1 is
   port (
     clk : in STD_LOGIC;
@@ -401,6 +394,13 @@ architecture STRUCTURE of oscilloscope_bd is
     ch1_ram_adr : in STD_LOGIC_VECTOR ( 12 downto 0 )
   );
   end component oscilloscope_bd_osci_0_1;
+  component oscilloscope_bd_adc_processing_0_0 is
+  port (
+    adc_data : in STD_LOGIC_VECTOR ( 15 downto 0 );
+    adc_valid : in STD_LOGIC;
+    ch1_adc : out STD_LOGIC_VECTOR ( 11 downto 0 )
+  );
+  end component oscilloscope_bd_adc_processing_0_0;
   component oscilloscope_bd_OsciToCpu_0_3 is
   port (
     ch1_en : out STD_LOGIC;
@@ -468,6 +468,7 @@ architecture STRUCTURE of oscilloscope_bd is
   signal osci_0_ch1_ram_data : STD_LOGIC_VECTOR ( 15 downto 0 );
   signal proc_sys_reset_0_interconnect_aresetn : STD_LOGIC_VECTOR ( 0 to 0 );
   signal proc_sys_reset_0_peripheral_aresetn : STD_LOGIC_VECTOR ( 0 to 0 );
+  signal proc_sys_reset_0_peripheral_reset : STD_LOGIC_VECTOR ( 0 to 0 );
   signal processing_system7_0_FIXED_IO_MIO : STD_LOGIC_VECTOR ( 53 downto 0 );
   signal processing_system7_0_FIXED_IO_PS_CLK : STD_LOGIC;
   signal processing_system7_0_FIXED_IO_PS_PORB : STD_LOGIC;
@@ -486,7 +487,6 @@ architecture STRUCTURE of oscilloscope_bd is
   signal NLW_axi_interconnect_0_S00_AXI_wready_UNCONNECTED : STD_LOGIC;
   signal NLW_proc_sys_reset_0_mb_reset_UNCONNECTED : STD_LOGIC;
   signal NLW_proc_sys_reset_0_bus_struct_reset_UNCONNECTED : STD_LOGIC_VECTOR ( 0 to 0 );
-  signal NLW_proc_sys_reset_0_peripheral_reset_UNCONNECTED : STD_LOGIC_VECTOR ( 0 to 0 );
   signal NLW_xadc_wiz_0_alarm_out_UNCONNECTED : STD_LOGIC;
   signal NLW_xadc_wiz_0_busy_out_UNCONNECTED : STD_LOGIC;
   signal NLW_xadc_wiz_0_eoc_out_UNCONNECTED : STD_LOGIC;
@@ -592,8 +592,8 @@ OsciToCpu_0: component oscilloscope_bd_OsciToCpu_0_3
     );
 adc_processing_0: component oscilloscope_bd_adc_processing_0_0
      port map (
-      adc_tdata(15 downto 0) => xadc_wiz_0_m_axis_tdata(15 downto 0),
-      adc_tvalid => xadc_wiz_0_m_axis_tvalid,
+      adc_data(15 downto 0) => xadc_wiz_0_m_axis_tdata(15 downto 0),
+      adc_valid => xadc_wiz_0_m_axis_tvalid,
       ch1_adc(11 downto 0) => adc_processing_0_ch1_adc(11 downto 0)
     );
 axi_interconnect_0: entity work.oscilloscope_bd_axi_interconnect_0_0
@@ -662,7 +662,7 @@ osci_0: component oscilloscope_bd_osci_0_1
       ch1_ram_data(15 downto 0) => osci_0_ch1_ram_data(15 downto 0),
       ch1_rst => OsciToCpu_0_ch1_rst,
       clk => clk_wiz_0_clk_out1,
-      rst => '0'
+      rst => proc_sys_reset_0_peripheral_reset(0)
     );
 proc_sys_reset_0: component oscilloscope_bd_proc_sys_reset_0_0
      port map (
@@ -674,7 +674,7 @@ proc_sys_reset_0: component oscilloscope_bd_proc_sys_reset_0_0
       mb_debug_sys_rst => '0',
       mb_reset => NLW_proc_sys_reset_0_mb_reset_UNCONNECTED,
       peripheral_aresetn(0) => proc_sys_reset_0_peripheral_aresetn(0),
-      peripheral_reset(0) => NLW_proc_sys_reset_0_peripheral_reset_UNCONNECTED(0),
+      peripheral_reset(0) => proc_sys_reset_0_peripheral_reset(0),
       slowest_sync_clk => clk_wiz_0_clk_out1
     );
 processing_system7_0: component oscilloscope_bd_processing_system7_0_1

@@ -16,13 +16,13 @@ entity OsciToCpu_v1 is
 	);
 	port (
 		-- Users to add ports here
-        ch1_en        : out std_ulogic; 
-        ch1_rst       : out std_ulogic; 
-        ch1_mode      : out std_ulogic_vector(3 downto 0);
-        ch1_edge_sel  : out std_ulogic_vector(3 downto 0);
-        ch1_edge_thre : out std_ulogic_vector(15 downto 0);
-        ch1_ram_data  : in  std_ulogic_vector(15 downto 0);
-        ch1_ram_adr   : out std_ulogic_vector(12 downto 0);
+        ch1_en        : out std_logic; 
+        ch1_rst       : out std_logic; 
+        ch1_mode      : out std_logic_vector(3 downto 0);
+        ch1_edge_sel  : out std_logic_vector(3 downto 0);
+        ch1_edge_thre : out std_logic_vector(15 downto 0);
+        ch1_ram_data  : in  std_logic_vector(15 downto 0);
+        ch1_ram_adr   : out std_logic_vector(12 downto 0);
 		-- User ports ends
 		-- Do not modify the ports beyond this line
 
@@ -64,7 +64,7 @@ architecture arch_imp of OsciToCpu_v1 is
         reg0 : out std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
         reg1 : out std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
         reg2 : out std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
-        reg3 : out std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
+        reg3 : in std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
         reg4 : out std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
         reg5 : out std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
         reg6 : out std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
@@ -140,13 +140,13 @@ OsciToCpu_v1_S00_AXI_inst : OsciToCpu_v1_S00_AXI
 
 	-- Add user logic here
 	
-    ch1_en            <= std_ulogic(reg0(0));
-    ch1_rst           <= std_ulogic(reg0(1));
-    ch1_mode          <= std_ulogic_vector(reg1(3 downto 0));
-    ch1_edge_sel      <= std_ulogic_vector(reg2(3 downto 0));
-    ch1_edge_thre     <= std_ulogic_vector(reg2(31 downto 16));
-    ch1_ram_adr       <= std_ulogic_vector(reg4(12 downto 0));
-    reg3(15 downto 0) <= std_logic_vector(ch1_ram_data);
+    ch1_en            <= reg0(0);
+    ch1_rst           <= reg0(1);
+    ch1_mode          <= reg1(3 downto 0);
+    ch1_edge_sel      <= reg2(3 downto 0);
+    ch1_edge_thre     <= reg2(31 downto 16);
+    ch1_ram_adr       <= reg4(12 downto 0);
+    reg3(15 downto 0) <= ch1_ram_data;
 	-- User logic ends
 
 end arch_imp;

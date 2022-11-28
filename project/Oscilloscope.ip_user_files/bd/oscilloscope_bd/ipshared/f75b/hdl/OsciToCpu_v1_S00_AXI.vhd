@@ -19,7 +19,7 @@ entity OsciToCpu_v1_S00_AXI is
         reg0	:out std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
         reg1	:out std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
         reg2	:out std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
-        reg3	:out std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
+        reg3	:in std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
         reg4	:out std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
         reg5	:out std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
         reg6	:out std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
@@ -447,7 +447,7 @@ begin
 	reg0 <= slv_reg0;
 	reg1 <= slv_reg1;
 	reg2 <= slv_reg2;
-	reg3 <= slv_reg3;
+	slv_reg3 <= reg3;
 	reg4 <= slv_reg4;
 	reg5 <= slv_reg5;
 	reg6 <= slv_reg6;

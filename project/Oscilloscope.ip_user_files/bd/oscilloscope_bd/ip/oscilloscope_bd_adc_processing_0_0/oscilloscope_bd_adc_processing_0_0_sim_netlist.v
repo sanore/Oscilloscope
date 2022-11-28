@@ -1,10 +1,10 @@
 // Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2021.1 (win64) Build 3247384 Thu Jun 10 19:36:33 MDT 2021
-// Date        : Sun Nov 27 13:55:42 2022
-// Host        : DESKTOP-5F25APE running 64-bit major release  (build 9200)
+// Date        : Mon Nov 28 14:50:18 2022
+// Host        : WS-EL-501017 running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode funcsim
-//               d:/Work/50_Dev/Oscilloscope/project/Oscilloscope.gen/sources_1/bd/oscilloscope_bd/ip/oscilloscope_bd_adc_processing_0_0/oscilloscope_bd_adc_processing_0_0_sim_netlist.v
+//               u:/DigMe/Oscilloscope/project/Oscilloscope.gen/sources_1/bd/oscilloscope_bd/ip/oscilloscope_bd_adc_processing_0_0/oscilloscope_bd_adc_processing_0_0_sim_netlist.v
 // Design      : oscilloscope_bd_adc_processing_0_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -16,106 +16,106 @@
 (* x_core_info = "adc_processing,Vivado 2021.1" *) 
 (* NotValidForBitStream *)
 module oscilloscope_bd_adc_processing_0_0
-   (adc_tdata,
-    adc_tvalid,
+   (adc_data,
+    adc_valid,
     ch1_adc);
-  (* x_interface_info = "xilinx.com:interface:axis:1.0 adc TDATA" *) (* x_interface_parameter = "XIL_INTERFACENAME adc, TDATA_NUM_BYTES 2, TDEST_WIDTH 0, TID_WIDTH 0, TUSER_WIDTH 0, HAS_TREADY 0, HAS_TSTRB 0, HAS_TKEEP 0, HAS_TLAST 0, FREQ_HZ 100000000, PHASE 0.0, LAYERED_METADATA undef, INSERT_VIP 0" *) input [15:0]adc_tdata;
-  (* x_interface_info = "xilinx.com:interface:axis:1.0 adc TVALID" *) input adc_tvalid;
+  input [15:0]adc_data;
+  input adc_valid;
   output [11:0]ch1_adc;
 
-  wire [15:0]adc_tdata;
-  wire adc_tvalid;
+  wire [15:0]adc_data;
+  wire adc_valid;
   wire [11:0]ch1_adc;
 
   oscilloscope_bd_adc_processing_0_0_adc_processing U0
-       (.adc_tdata(adc_tdata[11:0]),
-        .adc_tvalid(adc_tvalid),
+       (.adc_data(adc_data[11:0]),
+        .adc_valid(adc_valid),
         .ch1_adc(ch1_adc));
 endmodule
 
 (* ORIG_REF_NAME = "adc_processing" *) 
 module oscilloscope_bd_adc_processing_0_0_adc_processing
    (ch1_adc,
-    adc_tdata,
-    adc_tvalid);
+    adc_data,
+    adc_valid);
   output [11:0]ch1_adc;
-  input [11:0]adc_tdata;
-  input adc_tvalid;
+  input [11:0]adc_data;
+  input adc_valid;
 
-  wire [11:0]adc_tdata;
-  wire adc_tvalid;
+  wire [11:0]adc_data;
+  wire adc_valid;
   wire [11:0]ch1_adc;
 
   FDRE \ch1_data_reg_reg[0] 
-       (.C(adc_tvalid),
+       (.C(adc_valid),
         .CE(1'b1),
-        .D(adc_tdata[0]),
+        .D(adc_data[0]),
         .Q(ch1_adc[0]),
         .R(1'b0));
   FDRE \ch1_data_reg_reg[10] 
-       (.C(adc_tvalid),
+       (.C(adc_valid),
         .CE(1'b1),
-        .D(adc_tdata[10]),
+        .D(adc_data[10]),
         .Q(ch1_adc[10]),
         .R(1'b0));
   FDRE \ch1_data_reg_reg[11] 
-       (.C(adc_tvalid),
+       (.C(adc_valid),
         .CE(1'b1),
-        .D(adc_tdata[11]),
+        .D(adc_data[11]),
         .Q(ch1_adc[11]),
         .R(1'b0));
   FDRE \ch1_data_reg_reg[1] 
-       (.C(adc_tvalid),
+       (.C(adc_valid),
         .CE(1'b1),
-        .D(adc_tdata[1]),
+        .D(adc_data[1]),
         .Q(ch1_adc[1]),
         .R(1'b0));
   FDRE \ch1_data_reg_reg[2] 
-       (.C(adc_tvalid),
+       (.C(adc_valid),
         .CE(1'b1),
-        .D(adc_tdata[2]),
+        .D(adc_data[2]),
         .Q(ch1_adc[2]),
         .R(1'b0));
   FDRE \ch1_data_reg_reg[3] 
-       (.C(adc_tvalid),
+       (.C(adc_valid),
         .CE(1'b1),
-        .D(adc_tdata[3]),
+        .D(adc_data[3]),
         .Q(ch1_adc[3]),
         .R(1'b0));
   FDRE \ch1_data_reg_reg[4] 
-       (.C(adc_tvalid),
+       (.C(adc_valid),
         .CE(1'b1),
-        .D(adc_tdata[4]),
+        .D(adc_data[4]),
         .Q(ch1_adc[4]),
         .R(1'b0));
   FDRE \ch1_data_reg_reg[5] 
-       (.C(adc_tvalid),
+       (.C(adc_valid),
         .CE(1'b1),
-        .D(adc_tdata[5]),
+        .D(adc_data[5]),
         .Q(ch1_adc[5]),
         .R(1'b0));
   FDRE \ch1_data_reg_reg[6] 
-       (.C(adc_tvalid),
+       (.C(adc_valid),
         .CE(1'b1),
-        .D(adc_tdata[6]),
+        .D(adc_data[6]),
         .Q(ch1_adc[6]),
         .R(1'b0));
   FDRE \ch1_data_reg_reg[7] 
-       (.C(adc_tvalid),
+       (.C(adc_valid),
         .CE(1'b1),
-        .D(adc_tdata[7]),
+        .D(adc_data[7]),
         .Q(ch1_adc[7]),
         .R(1'b0));
   FDRE \ch1_data_reg_reg[8] 
-       (.C(adc_tvalid),
+       (.C(adc_valid),
         .CE(1'b1),
-        .D(adc_tdata[8]),
+        .D(adc_data[8]),
         .Q(ch1_adc[8]),
         .R(1'b0));
   FDRE \ch1_data_reg_reg[9] 
-       (.C(adc_tvalid),
+       (.C(adc_valid),
         .CE(1'b1),
-        .D(adc_tdata[9]),
+        .D(adc_data[9]),
         .Q(ch1_adc[9]),
         .R(1'b0));
 endmodule

@@ -1,10 +1,10 @@
 // Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2021.1 (win64) Build 3247384 Thu Jun 10 19:36:33 MDT 2021
-// Date        : Sat Nov 26 14:48:00 2022
-// Host        : DESKTOP-5F25APE running 64-bit major release  (build 9200)
-// Command     : write_verilog -force -mode funcsim -rename_top oscilloscope_bd_xadc_wiz_0_0 -prefix
-//               oscilloscope_bd_xadc_wiz_0_0_ oscilloscope_bd_xadc_wiz_0_0_sim_netlist.v
+// Date        : Mon Nov 28 14:42:12 2022
+// Host        : WS-EL-501017 running 64-bit major release  (build 9200)
+// Command     : write_verilog -force -mode funcsim
+//               u:/DigMe/Oscilloscope/project/Oscilloscope.gen/sources_1/bd/oscilloscope_bd/ip/oscilloscope_bd_xadc_wiz_0_0/oscilloscope_bd_xadc_wiz_0_0_sim_netlist.v
 // Design      : oscilloscope_bd_xadc_wiz_0_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -12,6 +12,144 @@
 // --------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
+(* NotValidForBitStream *)
+module oscilloscope_bd_xadc_wiz_0_0
+   (s_axis_aclk,
+    m_axis_aclk,
+    m_axis_resetn,
+    m_axis_tdata,
+    m_axis_tvalid,
+    m_axis_tid,
+    m_axis_tready,
+    busy_out,
+    channel_out,
+    eoc_out,
+    eos_out,
+    alarm_out,
+    vp_in,
+    vn_in);
+  input s_axis_aclk;
+  input m_axis_aclk;
+  input m_axis_resetn;
+  output [15:0]m_axis_tdata;
+  output m_axis_tvalid;
+  output [4:0]m_axis_tid;
+  input m_axis_tready;
+  output busy_out;
+  output [4:0]channel_out;
+  output eoc_out;
+  output eos_out;
+  output alarm_out;
+  input vp_in;
+  input vn_in;
+
+  wire alarm_out;
+  wire busy_out;
+  wire [4:0]channel_out;
+  wire eoc_out;
+  wire eos_out;
+  wire m_axis_aclk;
+  wire m_axis_resetn;
+  wire [15:0]m_axis_tdata;
+  wire [4:0]m_axis_tid;
+  wire m_axis_tready;
+  wire m_axis_tvalid;
+  wire s_axis_aclk;
+  wire vn_in;
+  wire vp_in;
+  wire [6:0]NLW_U0_alarm_out_UNCONNECTED;
+
+  oscilloscope_bd_xadc_wiz_0_0_axi_xadc U0
+       (.alarm_out({alarm_out,NLW_U0_alarm_out_UNCONNECTED[6:0]}),
+        .busy_out(busy_out),
+        .channel_out(channel_out),
+        .eoc_out(eoc_out),
+        .eos_out(eos_out),
+        .m_axis_aclk(m_axis_aclk),
+        .m_axis_resetn(m_axis_resetn),
+        .m_axis_tdata(m_axis_tdata),
+        .m_axis_tid(m_axis_tid),
+        .m_axis_tready(m_axis_tready),
+        .m_axis_tvalid(m_axis_tvalid),
+        .s_axis_aclk(s_axis_aclk),
+        .vn_in(vn_in),
+        .vp_in(vp_in));
+endmodule
+
+module oscilloscope_bd_xadc_wiz_0_0_axi_xadc
+   (s_axis_aclk,
+    m_axis_aclk,
+    m_axis_resetn,
+    m_axis_tdata,
+    m_axis_tvalid,
+    m_axis_tid,
+    m_axis_tready,
+    busy_out,
+    channel_out,
+    eoc_out,
+    eos_out,
+    alarm_out,
+    vp_in,
+    vn_in);
+  input s_axis_aclk;
+  input m_axis_aclk;
+  input m_axis_resetn;
+  output [15:0]m_axis_tdata;
+  output m_axis_tvalid;
+  output [4:0]m_axis_tid;
+  input m_axis_tready;
+  output busy_out;
+  output [4:0]channel_out;
+  output eoc_out;
+  output eos_out;
+  output [7:0]alarm_out;
+  input vp_in;
+  input vn_in;
+
+  wire \<const0> ;
+  wire [7:7]\^alarm_out ;
+  wire busy_out;
+  wire [4:0]channel_out;
+  wire eoc_out;
+  wire eos_out;
+  wire m_axis_aclk;
+  wire m_axis_resetn;
+  wire [15:0]m_axis_tdata;
+  wire [4:0]m_axis_tid;
+  wire m_axis_tready;
+  wire m_axis_tvalid;
+  wire s_axis_aclk;
+  wire vn_in;
+  wire vp_in;
+
+  assign alarm_out[7] = \^alarm_out [7];
+  assign alarm_out[6] = \<const0> ;
+  assign alarm_out[5] = \<const0> ;
+  assign alarm_out[4] = \<const0> ;
+  assign alarm_out[3] = \<const0> ;
+  assign alarm_out[2] = \<const0> ;
+  assign alarm_out[1] = \<const0> ;
+  assign alarm_out[0] = \<const0> ;
+  oscilloscope_bd_xadc_wiz_0_0_xadc_core_drp AXI_XADC_CORE_I
+       (.alarm_out(\^alarm_out ),
+        .busy_out(busy_out),
+        .channel_out(channel_out),
+        .eoc_out(eoc_out),
+        .eos_out(eos_out),
+        .m_axis_aclk(m_axis_aclk),
+        .m_axis_resetn(m_axis_resetn),
+        .m_axis_tdata(m_axis_tdata),
+        .m_axis_tid(m_axis_tid),
+        .m_axis_tready(m_axis_tready),
+        .m_axis_tvalid(m_axis_tvalid),
+        .s_axis_aclk(s_axis_aclk),
+        .vn_in(vn_in),
+        .vp_in(vp_in));
+  GND GND
+       (.G(\<const0> ));
+endmodule
+
+(* ORIG_REF_NAME = "drp_to_axi4stream" *) 
 module oscilloscope_bd_xadc_wiz_0_0_drp_to_axi4stream
    (m_axis_tdata,
     AR,
@@ -423,144 +561,7 @@ module oscilloscope_bd_xadc_wiz_0_0_drp_to_axi4stream
         .Q(valid_data_wren_reg_n_0));
 endmodule
 
-(* NotValidForBitStream *)
-module oscilloscope_bd_xadc_wiz_0_0
-   (s_axis_aclk,
-    m_axis_aclk,
-    m_axis_resetn,
-    m_axis_tdata,
-    m_axis_tvalid,
-    m_axis_tid,
-    m_axis_tready,
-    busy_out,
-    channel_out,
-    eoc_out,
-    eos_out,
-    alarm_out,
-    vp_in,
-    vn_in);
-  input s_axis_aclk;
-  input m_axis_aclk;
-  input m_axis_resetn;
-  output [15:0]m_axis_tdata;
-  output m_axis_tvalid;
-  output [4:0]m_axis_tid;
-  input m_axis_tready;
-  output busy_out;
-  output [4:0]channel_out;
-  output eoc_out;
-  output eos_out;
-  output alarm_out;
-  input vp_in;
-  input vn_in;
-
-  wire alarm_out;
-  wire busy_out;
-  wire [4:0]channel_out;
-  wire eoc_out;
-  wire eos_out;
-  wire m_axis_aclk;
-  wire m_axis_resetn;
-  wire [15:0]m_axis_tdata;
-  wire [4:0]m_axis_tid;
-  wire m_axis_tready;
-  wire m_axis_tvalid;
-  wire s_axis_aclk;
-  wire vn_in;
-  wire vp_in;
-  wire [6:0]NLW_U0_alarm_out_UNCONNECTED;
-
-  oscilloscope_bd_xadc_wiz_0_0_oscilloscope_bd_xadc_wiz_0_0_axi_xadc U0
-       (.alarm_out({alarm_out,NLW_U0_alarm_out_UNCONNECTED[6:0]}),
-        .busy_out(busy_out),
-        .channel_out(channel_out),
-        .eoc_out(eoc_out),
-        .eos_out(eos_out),
-        .m_axis_aclk(m_axis_aclk),
-        .m_axis_resetn(m_axis_resetn),
-        .m_axis_tdata(m_axis_tdata),
-        .m_axis_tid(m_axis_tid),
-        .m_axis_tready(m_axis_tready),
-        .m_axis_tvalid(m_axis_tvalid),
-        .s_axis_aclk(s_axis_aclk),
-        .vn_in(vn_in),
-        .vp_in(vp_in));
-endmodule
-
-module oscilloscope_bd_xadc_wiz_0_0_oscilloscope_bd_xadc_wiz_0_0_axi_xadc
-   (s_axis_aclk,
-    m_axis_aclk,
-    m_axis_resetn,
-    m_axis_tdata,
-    m_axis_tvalid,
-    m_axis_tid,
-    m_axis_tready,
-    busy_out,
-    channel_out,
-    eoc_out,
-    eos_out,
-    alarm_out,
-    vp_in,
-    vn_in);
-  input s_axis_aclk;
-  input m_axis_aclk;
-  input m_axis_resetn;
-  output [15:0]m_axis_tdata;
-  output m_axis_tvalid;
-  output [4:0]m_axis_tid;
-  input m_axis_tready;
-  output busy_out;
-  output [4:0]channel_out;
-  output eoc_out;
-  output eos_out;
-  output [7:0]alarm_out;
-  input vp_in;
-  input vn_in;
-
-  wire \<const0> ;
-  wire [7:7]\^alarm_out ;
-  wire busy_out;
-  wire [4:0]channel_out;
-  wire eoc_out;
-  wire eos_out;
-  wire m_axis_aclk;
-  wire m_axis_resetn;
-  wire [15:0]m_axis_tdata;
-  wire [4:0]m_axis_tid;
-  wire m_axis_tready;
-  wire m_axis_tvalid;
-  wire s_axis_aclk;
-  wire vn_in;
-  wire vp_in;
-
-  assign alarm_out[7] = \^alarm_out [7];
-  assign alarm_out[6] = \<const0> ;
-  assign alarm_out[5] = \<const0> ;
-  assign alarm_out[4] = \<const0> ;
-  assign alarm_out[3] = \<const0> ;
-  assign alarm_out[2] = \<const0> ;
-  assign alarm_out[1] = \<const0> ;
-  assign alarm_out[0] = \<const0> ;
-  oscilloscope_bd_xadc_wiz_0_0_oscilloscope_bd_xadc_wiz_0_0_xadc_core_drp AXI_XADC_CORE_I
-       (.alarm_out(\^alarm_out ),
-        .busy_out(busy_out),
-        .channel_out(channel_out),
-        .eoc_out(eoc_out),
-        .eos_out(eos_out),
-        .m_axis_aclk(m_axis_aclk),
-        .m_axis_resetn(m_axis_resetn),
-        .m_axis_tdata(m_axis_tdata),
-        .m_axis_tid(m_axis_tid),
-        .m_axis_tready(m_axis_tready),
-        .m_axis_tvalid(m_axis_tvalid),
-        .s_axis_aclk(s_axis_aclk),
-        .vn_in(vn_in),
-        .vp_in(vp_in));
-  GND GND
-       (.G(\<const0> ));
-endmodule
-
-module oscilloscope_bd_xadc_wiz_0_0_oscilloscope_bd_xadc_wiz_0_0_xadc_core_drp
+module oscilloscope_bd_xadc_wiz_0_0_xadc_core_drp
    (m_axis_tdata,
     m_axis_tid,
     busy_out,

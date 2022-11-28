@@ -1,10 +1,10 @@
 -- Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2021.1 (win64) Build 3247384 Thu Jun 10 19:36:33 MDT 2021
--- Date        : Sat Nov 26 14:48:00 2022
--- Host        : DESKTOP-5F25APE running 64-bit major release  (build 9200)
--- Command     : write_vhdl -force -mode funcsim -rename_top oscilloscope_bd_xadc_wiz_0_0 -prefix
---               oscilloscope_bd_xadc_wiz_0_0_ oscilloscope_bd_xadc_wiz_0_0_sim_netlist.vhdl
+-- Date        : Mon Nov 28 14:42:12 2022
+-- Host        : WS-EL-501017 running 64-bit major release  (build 9200)
+-- Command     : write_vhdl -force -mode funcsim
+--               u:/DigMe/Oscilloscope/project/Oscilloscope.gen/sources_1/bd/oscilloscope_bd/ip/oscilloscope_bd_xadc_wiz_0_0/oscilloscope_bd_xadc_wiz_0_0_sim_netlist.vhdl
 -- Design      : oscilloscope_bd_xadc_wiz_0_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -31,6 +31,8 @@ entity oscilloscope_bd_xadc_wiz_0_0_drp_to_axi4stream is
     CHANNEL : in STD_LOGIC_VECTOR ( 4 downto 0 );
     den_o_reg_0 : in STD_LOGIC
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of oscilloscope_bd_xadc_wiz_0_0_drp_to_axi4stream : entity is "drp_to_axi4stream";
 end oscilloscope_bd_xadc_wiz_0_0_drp_to_axi4stream;
 
 architecture STRUCTURE of oscilloscope_bd_xadc_wiz_0_0_drp_to_axi4stream is
@@ -513,7 +515,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity oscilloscope_bd_xadc_wiz_0_0_oscilloscope_bd_xadc_wiz_0_0_xadc_core_drp is
+entity oscilloscope_bd_xadc_wiz_0_0_xadc_core_drp is
   port (
     m_axis_tdata : out STD_LOGIC_VECTOR ( 15 downto 0 );
     m_axis_tid : out STD_LOGIC_VECTOR ( 4 downto 0 );
@@ -530,9 +532,9 @@ entity oscilloscope_bd_xadc_wiz_0_0_oscilloscope_bd_xadc_wiz_0_0_xadc_core_drp i
     vp_in : in STD_LOGIC;
     m_axis_resetn : in STD_LOGIC
   );
-end oscilloscope_bd_xadc_wiz_0_0_oscilloscope_bd_xadc_wiz_0_0_xadc_core_drp;
+end oscilloscope_bd_xadc_wiz_0_0_xadc_core_drp;
 
-architecture STRUCTURE of oscilloscope_bd_xadc_wiz_0_0_oscilloscope_bd_xadc_wiz_0_0_xadc_core_drp is
+architecture STRUCTURE of oscilloscope_bd_xadc_wiz_0_0_xadc_core_drp is
   signal XADC_INST_n_35 : STD_LOGIC;
   signal XADC_INST_n_36 : STD_LOGIC;
   signal XADC_INST_n_37 : STD_LOGIC;
@@ -654,7 +656,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity oscilloscope_bd_xadc_wiz_0_0_oscilloscope_bd_xadc_wiz_0_0_axi_xadc is
+entity oscilloscope_bd_xadc_wiz_0_0_axi_xadc is
   port (
     s_axis_aclk : in STD_LOGIC;
     m_axis_aclk : in STD_LOGIC;
@@ -671,9 +673,9 @@ entity oscilloscope_bd_xadc_wiz_0_0_oscilloscope_bd_xadc_wiz_0_0_axi_xadc is
     vp_in : in STD_LOGIC;
     vn_in : in STD_LOGIC
   );
-end oscilloscope_bd_xadc_wiz_0_0_oscilloscope_bd_xadc_wiz_0_0_axi_xadc;
+end oscilloscope_bd_xadc_wiz_0_0_axi_xadc;
 
-architecture STRUCTURE of oscilloscope_bd_xadc_wiz_0_0_oscilloscope_bd_xadc_wiz_0_0_axi_xadc is
+architecture STRUCTURE of oscilloscope_bd_xadc_wiz_0_0_axi_xadc is
   signal \<const0>\ : STD_LOGIC;
   signal \^alarm_out\ : STD_LOGIC_VECTOR ( 7 to 7 );
 begin
@@ -685,7 +687,7 @@ begin
   alarm_out(2) <= \<const0>\;
   alarm_out(1) <= \<const0>\;
   alarm_out(0) <= \<const0>\;
-AXI_XADC_CORE_I: entity work.oscilloscope_bd_xadc_wiz_0_0_oscilloscope_bd_xadc_wiz_0_0_xadc_core_drp
+AXI_XADC_CORE_I: entity work.oscilloscope_bd_xadc_wiz_0_0_xadc_core_drp
      port map (
       alarm_out(0) => \^alarm_out\(7),
       busy_out => busy_out,
@@ -735,7 +737,7 @@ end oscilloscope_bd_xadc_wiz_0_0;
 architecture STRUCTURE of oscilloscope_bd_xadc_wiz_0_0 is
   signal NLW_U0_alarm_out_UNCONNECTED : STD_LOGIC_VECTOR ( 6 downto 0 );
 begin
-U0: entity work.oscilloscope_bd_xadc_wiz_0_0_oscilloscope_bd_xadc_wiz_0_0_axi_xadc
+U0: entity work.oscilloscope_bd_xadc_wiz_0_0_axi_xadc
      port map (
       alarm_out(7) => alarm_out,
       alarm_out(6 downto 0) => NLW_U0_alarm_out_UNCONNECTED(6 downto 0),

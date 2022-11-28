@@ -5,8 +5,8 @@ use ieee.numeric_std.all;
 -- converts XADC output to Osci ADC width
 entity adc_processing is
     port(
-        adc_tdata : in std_ulogic_vector(15 downto 0);
-        adc_tvalid : in std_ulogic;
+        adc_data : in std_ulogic_vector(15 downto 0);
+        adc_valid : in std_ulogic;
         
         -- output
         ch1_adc : out std_ulogic_vector(11 downto 0)
@@ -20,8 +20,8 @@ begin
     -- select adc data and buffer it until next is valid
     proc : process is
     begin
-        if (rising_edge(adc_tvalid)) then
-            ch1_data_reg <= adc_tdata(11 downto 0);
+        if (rising_edge(adc_valid)) then
+            ch1_data_reg <= adc_data(11 downto 0);
         end if;
     end process proc;
     

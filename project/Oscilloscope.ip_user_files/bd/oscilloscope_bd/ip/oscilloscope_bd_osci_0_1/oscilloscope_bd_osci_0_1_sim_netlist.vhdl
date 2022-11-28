@@ -1,10 +1,10 @@
 -- Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2021.1 (win64) Build 3247384 Thu Jun 10 19:36:33 MDT 2021
--- Date        : Sun Nov 27 13:56:13 2022
--- Host        : DESKTOP-5F25APE running 64-bit major release  (build 9200)
+-- Date        : Mon Nov 28 14:48:57 2022
+-- Host        : WS-EL-501017 running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode funcsim
---               d:/Work/50_Dev/Oscilloscope/project/Oscilloscope.gen/sources_1/bd/oscilloscope_bd/ip/oscilloscope_bd_osci_0_1/oscilloscope_bd_osci_0_1_sim_netlist.vhdl
+--               u:/DigMe/Oscilloscope/project/Oscilloscope.gen/sources_1/bd/oscilloscope_bd/ip/oscilloscope_bd_osci_0_1/oscilloscope_bd_osci_0_1_sim_netlist.vhdl
 -- Design      : oscilloscope_bd_osci_0_1
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
