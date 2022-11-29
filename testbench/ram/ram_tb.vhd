@@ -46,7 +46,8 @@ architecture RTL of ram_tb is
     ----------------------------------------------------------------------------
     
     constant f_clk : real := 100.0e6;
-    constant t_clk : time := (1.0 sec) / f_clk; 
+    constant t_clk : time := (1.0 sec) / f_clk;
+    constant t_wait: time :=  2 ns;
     
     ----------------------------------------------------------------------------
     -- internal signals
@@ -91,6 +92,52 @@ begin
         end loop;
         wait;
     end process clock_generator;
+
+    insert_dummy_data: process
+        -- dummy data to be fed into RAM
+        file test_data_file : text read_mode is "ram_data.csv";
+
+        -- buffer variables
+        variable line_buff      : line;
+        variable delimiter_buff : character;
+        variable test_data_buff : std_ulogic_vector(15 downto 0);
+        variable test_addr_buff : std_ulogic_vector(12 downto 0);
+    begin
+
+    -- write entire data file into RAM
+    while not endfile(test_data_file) loop
+        readline(test_data_file, line_buff);
+
+        -- wait for middle of clock cycle + half a clock pulse
+        wait for falling_edge(tb_clk);
+        wait for tb_clk / 4.0;
+
+        -- set address
+        read(line_buff, test_addr_buff);
+        tb_write_address <= test_addr_buff;
+
+        -- discard delimiter
+        read(line_buff, delimiter_buff);
+
+        -- set test data
+        read(line_buff, test_data_buff);
+        tb_write_data <= test_data_buff;
+
+        -- set write enable
+        tb_write_en <= '1';
+
+        -- wait for rising edge + half a clock pulse
+        wait for rising_edge(tb_clk);
+        wait for tb_clk / 4.0;
+
+        -- disable write
+        tb_write_en <= '0';
+
+    end loop;
+
+    wait;
+
+    end process insert_dummy_data;
 
     
 
