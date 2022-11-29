@@ -64,7 +64,7 @@ begin
     with trigger_internal_mode select
         -- edge mode triggers
         trig_pulse <= trigger_edge_event when "0000",
-        -- other tryger modes (to be defined)
+        -- other trigger modes (to be defined)
         trig_pulse <= '0' when others;
 
     -- edge mode trigger aggregation
@@ -93,6 +93,15 @@ begin
             end if;
         end if;
     end process reg_process;
+
+    -- state transition logic
+    next_state_process: process(current_trigger_state)
+    begin
+        case current_trigger_state is
+            when state_stopped => next_trigger_state <= state_starting;
+            when others => next_trigger_state <= state_armed;
+        end case;
+    end process next_state_process;
 
     -- detect rising edges in input samples on falling clock
     rising_edge_trigger: process(clk)
