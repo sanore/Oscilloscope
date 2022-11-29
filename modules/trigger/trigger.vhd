@@ -44,9 +44,14 @@ architecture RTL of trigger is
     signal trigger_internal_sel         : std_ulogic_vector(3 downto 0);
     signal trigger_internal_threshold   : std_ulogic_vector(3 downto 0);
 
+    -- trigger type selection signals
+    alias trigger_sel_0: std_ulogic is trigger_internal_sel(0);
+    alias trigger_sel_1: std_ulogic is trigger_internal_sel(1);
+
     -- trigger events
-    signal trigger_rising_edge_event: std_ulogic;
-    signal trigger_falling_edge_event: std_ulogic;
+    signal trigger_edge_event           : std_ulogic; -- global event for edge type trigger
+    signal trigger_rising_edge_event    : std_ulogic;
+    signal trigger_falling_edge_event   : std_ulogic;
 
     -- states (required to not trigger immediately when initial sample is non zero)
     type trigger_state_type is (state_stopped, state_starting, state_armed);
@@ -54,6 +59,19 @@ architecture RTL of trigger is
     signal next_trigger_state: trigger_state_type := state_stopped;
 
 begin
+
+    -- trigger output logic
+    with trigger_internal_mode select
+        -- edge mode triggers
+        trig_pulse <= trigger_edge_event when "0000",
+        -- other tryger modes (to be defined)
+        trig_pulse <= '0' when others;
+
+    -- edge mode trigger aggregation
+    -- sel_0 controlls rising edge, sel_1 controlls falling edge 
+    trigger_edge_event <= (trigger_sel_0 and trigger_rising_edge_event) or
+                      (trigger_sel_1 and trigger_falling_edge_event);
+
     -- state and sample registers
     -- sample is taken at the rising edge of the clock
     reg_process: process(clk)
@@ -92,5 +110,22 @@ begin
             end if;
         end if;
     end process rising_edge_trigger;
+
+    -- detect falling edges in input samples on falling clock
+    falling_edge_trigger: process(clk)
+    begin
+        if falling_edge(clk) then
+            if current_trigger_state = state_armed then
+                if unsigned(previous_sample) >= unsigned(trigger_internal_threshold) and
+                    unsigned(current_sample) <= unsigned(trigger_internal_threshold) then
+                    trigger_falling_edge_event <= '1';
+                else
+                    trigger_falling_edge_event <= '0';
+                end if;
+            else
+                trigger_falling_edge_event <= '0';
+            end if;
+        end if;
+    end process falling_edge_trigger;
 
 end architecture RTL;
