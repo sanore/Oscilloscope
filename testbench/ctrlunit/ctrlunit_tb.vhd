@@ -2,10 +2,10 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-entity ctrlunit_tb is
-end entity ctrlunit_tb;
+entity ctrlunit_tb_tb is
+end entity ctrlunit_tb_tb;
 
-architecture RTL of ctrlunit_tb is
+architecture RTL of ctrlunit_tb_tb is
     component ctrlunit
         generic(
             ADDR_WIDTH : integer := 13;
@@ -59,24 +59,7 @@ begin
         );
     dut_state : process is
     begin
-        wait for 10 ns;
-        assert (dut_write_en = '0');
-        assert (dut_write_address = "000000000000");
-        assert (dut_write_data = "0000000000000000");
-        wait for 100 ns;
-        assert (dut_write_en = '1');
-        wait for 1 us;
-        assert (dut_write_address = "0000000000001");
-        wait for 2 us;
-        assert dut_write_address = dut_trigger_index report "dut_trigger_index wrong" severity error;
-        wait for 1 us;
-        assert (dut_write_address = std_ulogic_vector(unsigned(dut_trigger_index) + 1));
-        
-        wait for 10 us;
-        dut_trigger_pulse <= '1';
-        wait for 10 ns;
-        dut_trigger_pulse <= '0';
-                
+        wait for 20 ns;   
     end process dut_state;
 
 end architecture RTL;

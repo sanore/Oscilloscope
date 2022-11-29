@@ -22,7 +22,8 @@ entity channel is
         edge_sel          : in std_ulogic_vector(3 downto 0);
         edge_thre         : in std_ulogic_vector(15 downto 0);
         record_ready_irq  : out std_ulogic; 
-        adc_val           : in  std_ulogic_vector(11 downto 0)
+        adc_val           : in  std_ulogic_vector(11 downto 0);
+        trigger_index : out std_ulogic_vector(ADDR_WIDTH - 1 downto 0)
     );
 end entity channel;
 
@@ -96,7 +97,7 @@ begin
             write_address => write_address,
             write_data    => write_data,
             write_en      => write_en,
-            trigger_index => open, --TODO
+            trigger_index => trigger_index,
             record_ready_irq => record_ready_irq
         );
     

@@ -17,7 +17,8 @@ entity osci is
         ch1_edge_sel  : in std_ulogic_vector(3 downto 0);
         ch1_edge_thre : in std_ulogic_vector(15 downto 0);
         ch1_ram_data  : out  std_ulogic_vector(15 downto 0);
-        ch1_ram_adr   : in std_ulogic_vector(12 downto 0)
+        ch1_ram_adr   : in std_ulogic_vector(12 downto 0);
+        trigger_index    : out std_ulogic_vector(12 downto 0)
     );
 end entity osci;
 
@@ -38,7 +39,8 @@ architecture RTL of osci is
             edge_sel         : in  std_ulogic_vector(3 downto 0);
             edge_thre        : in  std_ulogic_vector(15 downto 0);
             record_ready_irq : out std_ulogic;
-            adc_val          : in  std_ulogic_vector(11 downto 0)
+            adc_val          : in  std_ulogic_vector(11 downto 0);
+            trigger_index    : out std_ulogic_vector(ADDR_WIDTH - 1 downto 0)
         );
     end component channel;
     
@@ -63,6 +65,10 @@ begin
     
     -- channel 1
     ch1 : component channel
+        generic map(
+            ADDR_WIDTH => 13,
+            DATA_WIDTH => 16
+        )
         port map(
             clk              => clk,
             rst              => ch1_reset,
@@ -76,7 +82,8 @@ begin
             edge_sel         => ch1_edge_sel,
             edge_thre        => ch1_edge_thre,
             record_ready_irq => ch1_irq,
-            adc_val          => ch1_adc
+            adc_val          => ch1_adc,
+            trigger_index => trigger_index
         ) ;
     
 end architecture RTL;
