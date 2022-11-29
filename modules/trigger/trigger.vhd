@@ -81,7 +81,11 @@ begin
     begin
         if falling_edge(clk) then
             if current_trigger_state = state_armed then
-                if unsigned(previous_sample) <= unsigned(trig_threshold) then
+                if unsigned(previous_sample) <= unsigned(trigger_internal_threshold) and
+                    unsigned(current_sample) >= unsigned(trigger_internal_threshold) then
+                    trigger_rising_edge_event <= '1';
+                else
+                    trigger_rising_edge_event <= '0';
                 end if;
             else
                 trigger_rising_edge_event <= '0';
