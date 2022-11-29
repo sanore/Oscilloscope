@@ -47,7 +47,6 @@ architecture RTL of ram_tb is
     
     constant f_clk : real := 100.0e6;
     constant t_clk : time := (1.0 sec) / f_clk;
-    constant t_wait: time :=  2 ns;
     
     ----------------------------------------------------------------------------
     -- internal signals
@@ -64,6 +63,14 @@ architecture RTL of ram_tb is
     signal tb_read_en : std_ulogic;
 
 begin
+
+    -- start test in reset state
+    tb_rst <= '1';
+    tb_write_address <= (others => '0');
+    tb_write_data <= (others => '0');
+    tb_write_en <= '0';
+    tb_read_address <= (others => '0');
+    tb_read_en <= '0';
 
     DUT: component ram 
     generic map(
@@ -104,6 +111,9 @@ begin
         variable test_addr_buff : std_ulogic_vector(12 downto 0);
     begin
 
+    -- wait for reset to be low
+    wait for falling_edge(tb_rst);
+
     -- write entire data file into RAM
     while not endfile(test_data_file) loop
         readline(test_data_file, line_buff);
@@ -139,6 +149,62 @@ begin
 
     end process insert_dummy_data;
 
-    
+    check_dummy_data: process
+        -- dummy data to be checked
+        file test_data_file : text read_mode is "ram_data.csv";
+
+        -- buffer variables
+        variable line_buff      : line;
+        variable delimiter_buff : character;
+        variable test_data_buff : std_ulogic_vector(15 downto 0);
+        variable test_addr_buff : std_ulogic_vector(12 downto 0);
+    begin
+
+    -- wait for reset release + 100ns
+    wait for falling_edge(tb_rst);
+    wait for 100 ns;
+
+    -- check entire RAM data
+    while not endfile(test_data_file) loop
+        readline(test_data_file, line_buff);
+
+        -- wait for middle of clock cycle + half a clock pulse
+        wait for falling_edge(tb_clk);
+        wait for tb_clk / 4.0;
+
+        -- set address
+        read(line_buff, test_addr_buff);
+        tb_read_address <= test_addr_buff;
+
+        -- discard delimiter
+        read(line_buff, delimiter_buff);
+
+        -- read expected test data
+        read(line_buff, test_data_buff);
+
+        -- set read enable
+        tb_read_en <= '1';
+
+        -- wait for rising edge + half a clock pulse
+        wait for rising_edge(tb_clk);
+        wait for tb_clk / 4.0;
+
+        -- check data
+        assert (tb_read_data = test_data_buff) report "Error: data at address "
+            & integer'image(test_addr_buff) & " does not match. (Expected: "
+            & integer'image(test_data_buff) & ", read: " 
+            & integer'image(tb_read_data) & ")." severity error;
+
+        -- disable read
+        tb_read_en <= '0';
+
+    end loop;
+
+    -- stop simulation
+    assert false report "Simulation completed.";
+
+    wait;
+
+    end process check_dummy_data;    
 
 end architecture RTL;
