@@ -59,7 +59,7 @@ begin
         if (mode = wait_for_trigger or mode = wait_for_full or mode = triggered) then
             write_en <= '1';
             write_address <= sample_counter;
-            write_data <= "0000" & adc_val; -- @suppress "Incorrect array size in assignment: expected (<DATA_WIDTH>) but was (<16>)"
+            write_data <= "0000" & adc_val;
         end if;
     end process write_data_process;
 
