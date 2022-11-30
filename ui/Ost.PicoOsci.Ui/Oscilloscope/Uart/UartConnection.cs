@@ -36,6 +36,7 @@ namespace Ost.PicoOsci.Ui.Oscilloscope.Uart {
                 m_receiver = new Receiver(m_port, new UartReceiverSm(m_listener));
                 m_sender   = new Sender(m_port);
 
+                m_port.Open();
                 m_receiver.Start();
             }
             catch (Exception ex) { m_listener.Error(ex); }

@@ -25,6 +25,7 @@ using Ost.PicoOsci.Ui.Core.Docking;
 using Ost.PicoOsci.Ui.Oscilloscope;
 using Ost.PicoOsci.Ui.Presentation.RecordViewer.Chart;
 using Syncfusion.Windows.Tools.Controls;
+using System.Windows;
 
 namespace Ost.PicoOsci.Ui.Presentation.RecordViewer {
     public class RecordViewerPanelViewModel : PanelViewModel, OscilloscopeListenerIfc {
@@ -39,8 +40,19 @@ namespace Ost.PicoOsci.Ui.Presentation.RecordViewer {
 
         /// <inheritdoc />
         public void OnRecordReceived(Record record) {
-            ChartVm.Clear();
-            ChartVm.Render(record);
+            Application.Current.Dispatcher.Invoke(() => {
+                foreach (var prop in record.Values) {
+                    fullRecord.Add(prop.Value);
+                }
+
+                ChartVm.Render(fullRecord);
+            });
         }
+
+        public void Clear() {
+            fullRecord = new Record();
+        }
+
+        private Record fullRecord;
     }
 }

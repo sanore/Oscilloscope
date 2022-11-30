@@ -19,6 +19,7 @@ void OSCI_Handler(void *CallbackRef) {
 
 void OSCI_ReadData(u8 buffer[], u8 length) {
 	for (int i = 0; i < length; i++) {
+		buffer[i] = i;
 		// TODO read ram
 	}
 }
@@ -26,8 +27,10 @@ void OSCI_ReadData(u8 buffer[], u8 length) {
 void OSCI_StartAcquire() {
 	OSCI_Clear();
 
-	AXI_setBitPattern(ADD_TRIGGER_EN, BIT_CH1_EN);
-	// TODO set ch1_ctrl.en = 1
+	AXI_setBitPattern(ADD_CH1_EN, BIT_CH1_EN);
+
+	// TODO remove test
+	s_dataReady += 1;
 }
 
 int OSCI_Init() {

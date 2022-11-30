@@ -42,21 +42,16 @@ namespace Ost.PicoOsci.Ui.Presentation.RecordViewer.Chart {
             Series = new ChartSeriesCollection();
         }
 
-        public void Clear() {
-            Series.Clear();
-        }
-
         public void Render(Record record) {
-            var seriesViewModel = new FastLineSeries {
-                YBindingPath      = record.BindingY,
-                XBindingPath      = record.BindingX,
-                ItemsSource       = record.Values,
-                DataContext       = record,
-                EnableAnimation   = true,
+            Series.Clear();
+            Series.Add(new FastLineSeries {
+                YBindingPath = record.BindingY,
+                XBindingPath = record.BindingX,
+                ItemsSource = record.Values,
+                DataContext = record,
+                EnableAnimation = true,
                 AnimationDuration = TimeSpan.FromMilliseconds(500)
-            };
-
-            Series.Add(seriesViewModel);
+            });
         }
     }
 }

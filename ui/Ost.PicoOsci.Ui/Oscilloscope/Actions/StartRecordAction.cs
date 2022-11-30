@@ -21,14 +21,16 @@
 // SOFTWARE.
 
 using Ost.PicoOsci.Ui.Core.Actions;
+using Ost.PicoOsci.Ui.Presentation.RecordViewer;
 
 namespace Ost.PicoOsci.Ui.Oscilloscope.Actions {
     public class StartRecordAction : AnAction {
         public const string ID = "Record.Start";
 
         /// <inheritdoc />
-        public StartRecordAction(OscilloscopeMgntIfc oscilloscope) : base(ID) {
+        public StartRecordAction(OscilloscopeMgntIfc oscilloscope, RecordViewerPanelViewModel viewModel) : base(ID) {
             m_oscilloscope = oscilloscope;
+            this.viewModel = viewModel;
         }
 
         /// <inheritdoc />
@@ -43,9 +45,11 @@ namespace Ost.PicoOsci.Ui.Oscilloscope.Actions {
                 m_oscilloscope.Connect(comPort);
             }
 
+            viewModel.Clear();
             m_oscilloscope.StartRecord();
         }
 
         private readonly OscilloscopeMgntIfc m_oscilloscope;
+        private readonly RecordViewerPanelViewModel viewModel;
     }
 }

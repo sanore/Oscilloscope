@@ -23,7 +23,8 @@
       "processing_system7_0": "",
       "OsciToCpu_0": "",
       "adc_processing_0": "",
-      "osci_0": ""
+      "osci_0": "",
+      "ila_0": ""
     },
     "interface_ports": {
       "FIXED_IO": {
@@ -1673,6 +1674,10 @@
               "SENSITIVITY": {
                 "value": "LEVEL_HIGH",
                 "value_src": "constant"
+              },
+              "PortWidth": {
+                "value": "1",
+                "value_src": "default_prop"
               }
             }
           },
@@ -1714,6 +1719,38 @@
             "right": "0"
           }
         }
+      },
+      "ila_0": {
+        "vlnv": "xilinx.com:ip:ila:6.2",
+        "xci_name": "oscilloscope_bd_ila_0_0",
+        "xci_path": "ip\\oscilloscope_bd_ila_0_0\\oscilloscope_bd_ila_0_0.xci",
+        "inst_hier_path": "ila_0",
+        "parameters": {
+          "ALL_PROBE_SAME_MU_CNT": {
+            "value": "1"
+          },
+          "C_ENABLE_ILA_AXI_MON": {
+            "value": "false"
+          },
+          "C_MONITOR_TYPE": {
+            "value": "Native"
+          },
+          "C_NUM_OF_PROBES": {
+            "value": "3"
+          },
+          "C_PROBE0_MU_CNT": {
+            "value": "1"
+          },
+          "C_PROBE1_MU_CNT": {
+            "value": "1"
+          },
+          "C_PROBE2_MU_CNT": {
+            "value": "1"
+          },
+          "C_TRIGOUT_EN": {
+            "value": "false"
+          }
+        }
       }
     },
     "interface_nets": {
@@ -1752,7 +1789,8 @@
       "OsciToCpu_0_ch1_en": {
         "ports": [
           "OsciToCpu_0/ch1_en",
-          "osci_0/ch1_en"
+          "osci_0/ch1_en",
+          "ila_0/probe0"
         ]
       },
       "OsciToCpu_0_ch1_mode": {
@@ -1770,7 +1808,8 @@
       "OsciToCpu_0_ch1_rst": {
         "ports": [
           "OsciToCpu_0/ch1_rst",
-          "osci_0/ch1_rst"
+          "osci_0/ch1_rst",
+          "ila_0/probe2"
         ]
       },
       "adc_processing_0_ch1_adc": {
@@ -1808,7 +1847,8 @@
           "xadc_wiz_0/s_axis_aclk",
           "processing_system7_0/M_AXI_GP0_ACLK",
           "OsciToCpu_0/s00_axi_aclk",
-          "osci_0/clk"
+          "osci_0/clk",
+          "ila_0/clk"
         ]
       },
       "clk_wiz_0_locked": {
@@ -1820,7 +1860,8 @@
       "osci_0_ch1_irq": {
         "ports": [
           "osci_0/ch1_irq",
-          "processing_system7_0/Core0_nIRQ"
+          "processing_system7_0/Core0_nIRQ",
+          "ila_0/probe1"
         ]
       },
       "osci_0_ch1_ram_data": {

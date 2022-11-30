@@ -58,16 +58,16 @@ namespace Ost.PicoOsci.Ui.Core.Docking {
             /// Constructor
             /// </summary>
             /// <param name="application">the main ioc container</param>
-            public Panel(IContainer application) {
-                m_viewModel = new Lazy<T>(() => application.New<T>());
+            public Panel(IContainer application, T viewModel) {
+                m_viewModel = viewModel;
             }
 
             /// <inheritdoc />
             public T Create() {
-                return m_viewModel.Value;
+                return m_viewModel;
             }
 
-            private readonly Lazy<T> m_viewModel;
+            private readonly T m_viewModel;
         }
     }
 }

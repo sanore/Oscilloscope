@@ -20,6 +20,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
+using System.Collections.Concurrent;
 using System.IO.Ports;
 using System.Threading;
 
@@ -33,6 +34,7 @@ namespace Ost.PicoOsci.Ui.Oscilloscope.Uart {
 
             m_cancellationTokenSource = new CancellationTokenSource();
             m_waiter                  = new ManualResetEventSlim();
+            m_queue                   = new ConcurrentQueue<byte[]>();
         }
 
         public void Start() {
@@ -46,25 +48,28 @@ namespace Ost.PicoOsci.Ui.Oscilloscope.Uart {
 
         private void Read() {
             while (!m_cancellationTokenSource.IsCancellationRequested) {
-                // Timeout for 10s
-                m_waiter.Wait(10000);
+                m_waiter.Wait();
                 if (!m_waiter.IsSet) {
                     m_cancellationTokenSource.Cancel();
                     continue;
                 }
 
                 m_waiter.Reset();
-
-                var bytesToRead = m_port.BytesToRead;
-
-                for (var i = 0; i < bytesToRead; i++) {
-                    var data = (byte)m_port.ReadByte();
-                    m_receiver.Process(data);
+                while (m_queue.TryDequeue(out var buffer)) {
+                    foreach (var packet in buffer) {
+                        m_receiver.Process(packet);
+                    }
                 }
             }
         }
 
         private void OnDataReceived(object sender, SerialDataReceivedEventArgs e) {
+            var bytesToRead = m_port.BytesToRead;
+            var buffer = new byte[bytesToRead];
+
+            m_port.Read(buffer, 0, bytesToRead);
+            m_queue.Enqueue(buffer);
+
             m_waiter.Set();
         }
 
@@ -73,5 +78,6 @@ namespace Ost.PicoOsci.Ui.Oscilloscope.Uart {
         private readonly ManualResetEventSlim    m_waiter;
         private readonly CancellationTokenSource m_cancellationTokenSource;
         private          Thread                  m_thread;
+        private ConcurrentQueue<byte[]> m_queue;
     }
 }

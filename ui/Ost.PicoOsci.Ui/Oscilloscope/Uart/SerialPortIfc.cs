@@ -14,9 +14,11 @@ namespace Ost.PicoOsci.Ui.Oscilloscope.Uart {
 
         bool IsOpen { get; }
 
+        void Open();
         void Write(byte[] data, int offset, int length);
         int Read(byte[] data, int offset, int length);
         int ReadByte();
+        string ReadLine();
 
         event SerialDataReceivedEventHandler DataReceived;
     }

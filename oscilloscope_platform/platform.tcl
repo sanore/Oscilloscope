@@ -16,3 +16,8 @@ platform write
 platform generate -domains 
 platform active {oscilloscope_platform}
 platform generate
+domain active {zynq_fsbl}
+bsp reload
+bsp reload
+domain active {standalone_domain}
+bsp reload

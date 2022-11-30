@@ -70,9 +70,11 @@ namespace Ost.PicoOsci.Ui.Oscilloscope {
         /// Constructor.
         /// </summary>
         /// <param name="bytes"></param>
-        public Record(byte[] bytes) {
+        public Record(byte[] bytes = null) {
             var tmp = new List<TimePoint>();
-            foreach (byte b in bytes) { tmp.Add(new TimePoint(tmp.Count, b)); }
+            if (bytes != null) {
+                foreach (byte b in bytes) { tmp.Add(new TimePoint(tmp.Count, b)); }
+            }
 
             m_values = new ObservableCollection<TimePoint>(tmp);
         }
@@ -92,8 +94,8 @@ namespace Ost.PicoOsci.Ui.Oscilloscope {
         /// </summary>
         /// <param name="time">The time</param>
         /// <param name="value">The value</param>
-        public void Add(double time, double value) {
-            m_values.Add(new TimePoint(time, value));
+        public void Add(double value) {
+            m_values.Add(new TimePoint(m_values.Count, value));
         }
 
         private readonly IList<TimePoint> m_values;

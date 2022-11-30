@@ -25,7 +25,8 @@ using System.IO.Ports;
 namespace Ost.PicoOsci.Ui.Oscilloscope.Uart {
     public class ComPort : SerialPortIfc {
         public ComPort(string comPort) {
-            m_serialPort = new SerialPort(comPort, 115200, Parity.Even, 8, StopBits.One);
+            m_serialPort = new SerialPort(comPort, 115200);
+            m_serialPort.NewLine = "\r\n";
         }
 
         /// <inheritdoc />
@@ -59,6 +60,15 @@ namespace Ost.PicoOsci.Ui.Oscilloscope.Uart {
         /// <inheritdoc />
         public int ReadByte() {
             return m_serialPort.ReadByte();
+        }
+
+        /// <inheritdoc />
+        public void Open() {
+            m_serialPort.Open();
+        }
+
+        public string ReadLine() {
+            return m_serialPort.ReadLine();
         }
 
         private SerialPort m_serialPort;

@@ -56,6 +56,8 @@ namespace Ost.PicoOsci.Ui {
         /// <param name="registrator">The registrator</param>
         public static void RegisterApplication(IContainer registrator) {
             // Panels
+            registrator.Register<RecordViewerPanelViewModel>();
+            registrator.Register<TriggerCfgPanelViewModel>();
             registrator.Register<PanelFactoryIfc<RecordViewerPanelViewModel>, PanelFactory.Panel<RecordViewerPanelViewModel>>();
             registrator.Register<PanelFactoryIfc<TriggerCfgPanelViewModel>, PanelFactory.Panel<TriggerCfgPanelViewModel>>();
             registrator.Register<DockingManagerIfc, DockingManager>();

@@ -53,7 +53,7 @@
 #include "xil_printf.h"
 
 
-#define RAM_SIZE 255
+#define RAM_SIZE 253
 
 
 void process(u8 header1, u8 header2);
@@ -61,8 +61,6 @@ void process(u8 header1, u8 header2);
 int main() {
     init_platform();
 
-    // Print some string over the UART
-    xil_printf("\r\noscilloscope\r\n");
 
     // Initialize the interrupts
     INT_init();
@@ -98,15 +96,12 @@ void process(u8 header1, u8 header2) {
 		// wait for data
 		while (OSCI_DataReady() == 0);
 
-		static u8 buffer[RAM_SIZE];
-		OSCI_ReadData(buffer, RAM_SIZE);
+		static u8 buffer[RAM_SIZE + 2];
+		OSCI_ReadData(&buffer[2], RAM_SIZE);
 
-		// send header
-		UART_Write(0b10000010); // ToPC and Acquiere
-		UART_Write(RAM_SIZE);   // length
-		for (int i = 0; i < RAM_SIZE; i++) {
-			UART_Write(buffer[i]);
-		}
+		buffer[0] = 0b10000010;
+		buffer[1] = RAM_SIZE; // ToPC and Acquiere, length
+		UART_Write(buffer, sizeof(buffer)/sizeof(buffer[0]));
 	}
 	else if (tag == 0b1000) { // TriggerEdge
 		// TODO
