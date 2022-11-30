@@ -75,7 +75,37 @@ for i in range(1, test_data.shape[0]):
 # store file
 with open(FILE_NAMES['rising_edge'], 'w+') as f:
     f.writelines(output_lines)
-    
+
+# determine falling edge trigger and save to file
+output_lines = ["0000\n", # trigger mode
+                "0010\n", # trigger sel
+                f"{TRIGGER_VALUE:012b}\n"] # trigger threshold
+output_lines.append(f"{test_data[0]:012b};0\n")
+for i in range(1, test_data.shape[0]):
+    if test_data[i] <= TRIGGER_VALUE and test_data[i - 1] >= TRIGGER_VALUE:
+        output_lines.append(f"{test_data[i]:012b};1\n")
+    else:
+        output_lines.append(f"{test_data[i]:012b};0\n")
+
+# store file
+with open(FILE_NAMES['falling_edge'], 'w+') as f:
+    f.writelines(output_lines)
+
+# determine trigger for both edges and save to file
+output_lines = ["0000\n", # trigger mode
+                "0011\n", # trigger sel
+                f"{TRIGGER_VALUE:012b}\n"] # trigger threshold
+output_lines.append(f"{test_data[0]:012b};0\n")
+for i in range(1, test_data.shape[0]):
+    if test_data[i] <= TRIGGER_VALUE and test_data[i - 1] >= TRIGGER_VALUE or\
+        test_data[i] >= TRIGGER_VALUE and test_data[i - 1] <= TRIGGER_VALUE:
+        output_lines.append(f"{test_data[i]:012b};1\n")
+    else:
+        output_lines.append(f"{test_data[i]:012b};0\n")
+
+# store file
+with open(FILE_NAMES['both_edges'], 'w+') as f:
+    f.writelines(output_lines)
 
 plotx = np.arange(test_data.shape[0])
 plt.plot(plotx, test_data)

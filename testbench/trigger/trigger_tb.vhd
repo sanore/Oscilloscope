@@ -65,7 +65,7 @@ architecture RTL of trigger_tb is
     ----------------------------------------------------------------------------
     signal tb_clk       : std_ulogic;
     signal tb_sample_clk   : std_ulogic;
-    signal tb_enable    : std_ulogic;
+    signal tb_enable    : std_logic;
     
     signal tb_adc_val   : std_ulogic_vector(11 downto 0);
 
@@ -73,9 +73,6 @@ architecture RTL of trigger_tb is
     signal tb_trig_sel          : std_ulogic_vector(3 downto 0);
     signal tb_trig_threshold    : std_ulogic_vector(11 downto 0);
     signal tb_trig_pulse        : std_ulogic;
-
-    signal tb_rising_edge_finished  : std_ulogic := '0';
-    signal tb_falling_edge_finished : std_logic := '0';
 
 begin
     DUT: component trigger 
@@ -109,7 +106,7 @@ begin
         wait;
     end process sample_clock_generator;
 
-    trigger_stimulus_rising_edge: process
+    trigger_stimulus: process
         file waveform_data_file : text;
         variable line_buff      : line;
         variable delimiter_buff : character;
@@ -123,7 +120,7 @@ begin
     -- open test data file
     file_open(waveform_data_file, "rising_edge_test.csv", READ_MODE);
 
-    -- wait for first rising edge
+    -- wait for next rising edge
     wait until rising_edge(tb_clk);
     
     -- configure trigger
@@ -148,8 +145,73 @@ begin
     tb_enable <= '1';
 
     -- feed in data
+    while not endfile(waveform_data_file) loop        
+        readline(waveform_data_file, line_buff);
+
+        -- wait until next sample
+        wait until rising_edge(tb_sample_clk);
+        
+        -- set next adc test val
+        read(line_buff, input_val_buff);
+        tb_adc_val <= input_val_buff;
+        -- discard delimiter
+        read(line_buff, delimiter_buff);
+        -- read expeced trigger_pulse value
+        read(line_buff, expected_trig_pulse_buff);
+
+        -- wait for rising clock edge (adc value sampled)
+        wait until rising_edge(tb_clk);
+
+        -- wait until falling clock edge (trigger pulse generated)
+        wait until falling_edge(tb_clk);
+        -- wait a bit more
+        wait for 1 ns;
+
+        -- check if trigger outputs expected signal
+        assert (tb_trig_pulse = expected_trig_pulse_buff) report
+            "Invalid trigger in rising edge test." severity failure;
+        
+    end loop;
+
+    file_close(waveform_data_file);
+
+    -- open falling edge test data file
+    file_open(waveform_data_file, "falling_edge_test.csv", READ_MODE);
+
+    -- wait for first rising edge
+    wait until rising_edge(tb_clk);
+    
+    -- configure trigger
+    -- disable trigger to write configuration
+    tb_enable <= '0';
+
+    -- wait for nex rising clock edge
+    wait until rising_edge(tb_clk);
+
+    -- set trigger mode
+    readline(waveform_data_file, line_buff);
+    read(line_buff, trig_mode_buff);
+    tb_trig_mode <= trig_mode_buff;
+    -- select rising edge
+    readline(waveform_data_file, line_buff);
+    read(line_buff, trig_sel_buff);
+    tb_trig_sel <= trig_sel_buff;
+    -- set threshold
+    readline(waveform_data_file, line_buff);
+    read(line_buff, trig_threshold_buff);
+    tb_trig_threshold <= trig_threshold_buff;
+
+    -- wait for nex rising clock edge
+    wait until rising_edge(tb_clk);
+    -- trigger config now is stored internally in module, enable it
+    tb_enable <= '1';
+
+    -- feed in data
     while not endfile(waveform_data_file) loop
         readline(waveform_data_file, line_buff);
+
+        -- wait until next sample
+        wait until rising_edge(tb_sample_clk);
         
         -- set next adc test val
         read(line_buff, input_val_buff);
@@ -168,17 +230,74 @@ begin
 
         -- check if trigger outputs expected signal
         assert (tb_trig_pulse = expected_trig_pulse_buff) report
-            "Invalid trigger output." severity failure;
+            "Invalid trigger output in falling edge test." severity failure;
         
     end loop;
 
     file_close(waveform_data_file);
 
-    -- signal falling edge process to start testing
-    tb_rising_edge_finished <= '1';
+    -- open both edges test data file
+    file_open(waveform_data_file, "both_edges_test.csv", READ_MODE);
 
-    wait;
+    -- wait for first rising edge
+    wait until rising_edge(tb_clk);
+    
+    -- configure trigger
+    -- disable trigger to write configuration
+    tb_enable <= '0';
 
-    end process trigger_stimulus_rising_edge;
+    -- wait for nex rising clock edge
+    wait until rising_edge(tb_clk);
+    
+    -- set trigger mode
+    readline(waveform_data_file, line_buff);
+    read(line_buff, trig_mode_buff);
+    tb_trig_mode <= trig_mode_buff;
+    -- select rising edge
+    readline(waveform_data_file, line_buff);
+    read(line_buff, trig_sel_buff);
+    tb_trig_sel <= trig_sel_buff;
+    -- set threshold
+    readline(waveform_data_file, line_buff);
+    read(line_buff, trig_threshold_buff);
+    tb_trig_threshold <= trig_threshold_buff;
 
+    -- wait for nex rising clock edge
+    wait until rising_edge(tb_clk);
+    -- trigger config now is stored internally in module, enable it
+    tb_enable <= '1';
+
+    -- feed in data
+    while not endfile(waveform_data_file) loop
+        readline(waveform_data_file, line_buff);
+        
+        -- wait until next sample
+        wait until rising_edge(tb_sample_clk);
+
+        -- set next adc test val
+        read(line_buff, input_val_buff);
+        tb_adc_val <= input_val_buff;
+        -- discard delimiter
+        read(line_buff, delimiter_buff);
+        -- read expeced trigger_pulse value
+        read(line_buff, expected_trig_pulse_buff);
+
+        -- wait for rising clock edge (adc value sampled)
+        wait until rising_edge(tb_clk);
+        -- wait until falling clock edge (trigger pulse generated)
+        wait until falling_edge(tb_clk);
+        -- wait a bit more
+        wait for 1 ns;
+
+        -- check if trigger outputs expected signal
+        assert (tb_trig_pulse = expected_trig_pulse_buff) report
+            "Invalid trigger output in both edges test." severity failure;
+        
+    end loop;
+
+    file_close(waveform_data_file);
+
+    assert false report "Simulation completed." severity failure;
+
+    end process trigger_stimulus;
 end architecture RTL;
