@@ -65,12 +65,7 @@ architecture RTL of ram_tb is
 begin
 
     -- start test in reset state
-    tb_rst <= '1';
-    tb_write_address <= (others => '0');
-    tb_write_data <= (others => '0');
-    tb_write_en <= '0';
-    tb_read_address <= (others => '0');
-    tb_read_en <= '0';
+    tb_rst <= '1', '0' after 1 ns;
 
     DUT: component ram 
     generic map(
@@ -102,7 +97,7 @@ begin
 
     insert_dummy_data: process
         -- dummy data to be fed into RAM
-        file test_data_file : text read_mode is "ram_data.csv";
+        file test_data_file : text;
 
         -- buffer variables
         variable line_buff      : line;
@@ -110,17 +105,20 @@ begin
         variable test_data_buff : std_ulogic_vector(15 downto 0);
         variable test_addr_buff : std_ulogic_vector(12 downto 0);
     begin
+    
+    -- open file
+    file_open(test_data_file, "ram_data.csv", READ_MODE);
 
     -- wait for reset to be low
-    wait for falling_edge(tb_rst);
+    wait until falling_edge(tb_rst);
 
     -- write entire data file into RAM
     while not endfile(test_data_file) loop
         readline(test_data_file, line_buff);
 
         -- wait for middle of clock cycle + half a clock pulse
-        wait for falling_edge(tb_clk);
-        wait for tb_clk / 4.0;
+        wait until falling_edge(tb_clk);
+        wait for t_clk / 4.0;
 
         -- set address
         read(line_buff, test_addr_buff);
@@ -137,13 +135,16 @@ begin
         tb_write_en <= '1';
 
         -- wait for rising edge + half a clock pulse
-        wait for rising_edge(tb_clk);
-        wait for tb_clk / 4.0;
+        wait until rising_edge(tb_clk);
+        wait for t_clk / 4.0;
 
         -- disable write
         tb_write_en <= '0';
 
     end loop;
+
+    -- close file
+    file_close(test_data_file);
 
     wait;
 
@@ -151,7 +152,7 @@ begin
 
     check_dummy_data: process
         -- dummy data to be checked
-        file test_data_file : text read_mode is "ram_data.csv";
+        file test_data_file : text;
 
         -- buffer variables
         variable line_buff      : line;
@@ -159,9 +160,12 @@ begin
         variable test_data_buff : std_ulogic_vector(15 downto 0);
         variable test_addr_buff : std_ulogic_vector(12 downto 0);
     begin
+    
+    -- open file
+    file_open(test_data_file, "ram_data.csv", READ_MODE);
 
     -- wait for reset release + 100ns
-    wait for falling_edge(tb_rst);
+    wait until falling_edge(tb_rst);
     wait for 100 ns;
 
     -- check entire RAM data
@@ -169,8 +173,8 @@ begin
         readline(test_data_file, line_buff);
 
         -- wait for middle of clock cycle + half a clock pulse
-        wait for falling_edge(tb_clk);
-        wait for tb_clk / 4.0;
+        wait until falling_edge(tb_clk);
+        wait for t_clk / 4.0;
 
         -- set address
         read(line_buff, test_addr_buff);
@@ -186,20 +190,23 @@ begin
         tb_read_en <= '1';
 
         -- wait for rising edge + half a clock pulse
-        wait for rising_edge(tb_clk);
-        wait for tb_clk / 4.0;
+        wait until rising_edge(tb_clk);
+        wait for t_clk / 4.0;
 
         -- check data
         assert (tb_read_data = test_data_buff) report "Error: data at address "
-            & integer'image(test_addr_buff) & " does not match. (Expected: "
-            & integer'image(test_data_buff) & ", read: " 
-            & integer'image(tb_read_data) & ")." severity error;
+            & to_hstring(to_bitvector(test_addr_buff)) & " does not match. (Expected: "
+            & to_hstring(to_bitvector(test_data_buff)) & ", read: " 
+            & to_hstring(to_bitvector(tb_read_data)) & ")." severity error;
 
         -- disable read
         tb_read_en <= '0';
 
     end loop;
 
+    -- close file
+    file_close(test_data_file);
+    
     -- stop simulation
     assert false report "Simulation completed.";
 
