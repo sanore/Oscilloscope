@@ -64,7 +64,7 @@ test_data[3*SAMPLES_PER_WAVE_PERIOD*PERIODS_PER_WAVE_SHAPE:] = \
 # determine rising edge trigger and save to file
 output_lines = ["0000\n", # trigger mode
                 "0001\n", # trigger sel
-                "{TRIGGER_VALUE:012b}\n"] # trigger threshold
+                f"{TRIGGER_VALUE:012b}\n"] # trigger threshold
 output_lines.append(f"{test_data[0]:012b};0\n")
 for i in range(1, test_data.shape[0]):
     if test_data[i] >= TRIGGER_VALUE and test_data[i - 1] <= TRIGGER_VALUE:

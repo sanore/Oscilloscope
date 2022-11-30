@@ -4,9 +4,9 @@
 -- # Miniproject Digital Microelectronics (Fall Semester 2022)           #
 -- # OST Rapperswil-Jona                                                 #
 -- #                                                                     #
--- # Group 7:   Pelé Constam                                             #
+-- # Group 7:   PelÃ© Constam                                             #
 -- #            Sandro Pedrett                                           #
--- #            Erik Löffler                                             #
+-- #            Erik LÃ¶ffler                                             #
 -- #                                                                     #
 -- # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 -- #                                                                     #
@@ -64,17 +64,18 @@ architecture RTL of trigger_tb is
     -- internal signals
     ----------------------------------------------------------------------------
     signal tb_clk       : std_ulogic;
+    signal tb_sample_clk   : std_ulogic;
     signal tb_enable    : std_ulogic;
     
     signal tb_adc_val   : std_ulogic_vector(11 downto 0);
 
     signal tb_trig_mode         : std_ulogic_vector(3 downto 0);
     signal tb_trig_sel          : std_ulogic_vector(3 downto 0);
-    signal tb_trig_threshold    : std_ulogic_vector(12 downto 0);
-    signal tb_trig_pulse        : std_ulogic_vector;
+    signal tb_trig_threshold    : std_ulogic_vector(11 downto 0);
+    signal tb_trig_pulse        : std_ulogic;
 
-    signal tb_rising_edge_finished  : std_ulogic_vector := '0';
-    signal tb_falling_edge_finished : std_logic_vector := '0';
+    signal tb_rising_edge_finished  : std_ulogic := '0';
+    signal tb_falling_edge_finished : std_logic := '0';
 
 begin
     DUT: component trigger 
@@ -88,7 +89,7 @@ begin
         trig_pulse => tb_trig_pulse
     );
 
-    clock_generator: process
+    tb_clock_generator: process
     begin
         tb_clk <= '0';
         loop
@@ -96,7 +97,17 @@ begin
             tb_clk <= not tb_clk;
         end loop;
         wait;
-    end process clock_generator;
+    end process tb_clock_generator;
+
+    sample_clock_generator: process
+    begin
+        tb_sample_clk <= '0';
+        loop
+            wait for t_sample / 2.0;
+            tb_sample_clk <= not tb_sample_clk;
+        end loop;
+        wait;
+    end process sample_clock_generator;
 
     trigger_stimulus_rising_edge: process
         file waveform_data_file : text;
@@ -152,12 +163,12 @@ begin
         wait until rising_edge(tb_clk);
         -- wait until falling clock edge (trigger pulse generated)
         wait until falling_edge(tb_clk);
+        -- wait a bit more
+        wait for 1 ns;
 
         -- check if trigger outputs expected signal
-        assert tb_trig_pulse = expected_trig_pulse_buff report
-            "Invalid trigger output. (expected: " &
-            to_hstring(to_bit(expected_trig_pulse_buff)) & ", actual: "
-            & to_hstring(to_bit(tb_trig_pulse)) & ")." severity failure;
+        assert (tb_trig_pulse = expected_trig_pulse_buff) report
+            "Invalid trigger output." severity failure;
         
     end loop;
 

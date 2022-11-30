@@ -42,7 +42,7 @@ architecture RTL of trigger is
     -- internal config registers
     signal trigger_internal_mode        : std_ulogic_vector(3 downto 0);
     signal trigger_internal_sel         : std_ulogic_vector(3 downto 0);
-    signal trigger_internal_threshold   : std_ulogic_vector(3 downto 0);
+    signal trigger_internal_threshold   : std_ulogic_vector(11 downto 0);
 
     -- trigger type selection signals
     alias trigger_sel_0: std_ulogic is trigger_internal_sel(0);
@@ -65,7 +65,7 @@ begin
         -- edge mode triggers
         trig_pulse <= trigger_edge_event when "0000",
         -- other trigger modes (to be defined)
-        trig_pulse <= '0' when others;
+        '0' when others;
 
     -- edge mode trigger aggregation
     -- sel_0 controlls rising edge, sel_1 controlls falling edge 
