@@ -21,8 +21,8 @@
       "clk_wiz_0": "",
       "proc_sys_reset_0": "",
       "processing_system7_0": "",
-      "adc_processing_0": "",
       "OsciToCpu_0": "",
+      "adc_processing_0": "",
       "osci_0": ""
     },
     "interface_ports": {
@@ -1586,10 +1586,16 @@
           }
         }
       },
+      "OsciToCpu_0": {
+        "vlnv": "ost.ch:user:OsciToCpu:3",
+        "xci_name": "oscilloscope_bd_OsciToCpu_0_3",
+        "xci_path": "ip\\oscilloscope_bd_OsciToCpu_0_3\\oscilloscope_bd_OsciToCpu_0_3.xci",
+        "inst_hier_path": "OsciToCpu_0"
+      },
       "adc_processing_0": {
         "vlnv": "xilinx.com:module_ref:adc_processing:1.0",
-        "xci_name": "oscilloscope_bd_adc_processing_0_0",
-        "xci_path": "ip\\oscilloscope_bd_adc_processing_0_0\\oscilloscope_bd_adc_processing_0_0.xci",
+        "xci_name": "oscilloscope_bd_adc_processing_0_1",
+        "xci_path": "ip\\oscilloscope_bd_adc_processing_0_1\\oscilloscope_bd_adc_processing_0_1.xci",
         "inst_hier_path": "adc_processing_0",
         "reference_info": {
           "ref_type": "hdl",
@@ -1611,12 +1617,6 @@
             "right": "0"
           }
         }
-      },
-      "OsciToCpu_0": {
-        "vlnv": "ost.ch:user:OsciToCpu:3",
-        "xci_name": "oscilloscope_bd_OsciToCpu_0_3",
-        "xci_path": "ip\\oscilloscope_bd_OsciToCpu_0_3\\oscilloscope_bd_OsciToCpu_0_3.xci",
-        "inst_hier_path": "OsciToCpu_0"
       },
       "osci_0": {
         "vlnv": "xilinx.com:module_ref:osci:1.0",
@@ -1705,6 +1705,11 @@
           },
           "ch1_ram_adr": {
             "direction": "I",
+            "left": "12",
+            "right": "0"
+          },
+          "trigger_index": {
+            "direction": "O",
             "left": "12",
             "right": "0"
           }
