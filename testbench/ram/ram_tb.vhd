@@ -9,6 +9,11 @@
 -- #            Erik Löffler                                             #
 -- #                                                                     #
 -- # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+-- #                                                                     #
+-- # Input file format (.csv):                                           #
+-- #    1-nth line: address (13bit);value (16bit)                        #
+-- #                                                                     #
+-- # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 library ieee;
 use ieee.std_logic_1164.all;

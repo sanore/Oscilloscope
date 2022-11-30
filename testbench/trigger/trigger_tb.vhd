@@ -9,10 +9,20 @@
 -- #            Erik Löffler                                             #
 -- #                                                                     #
 -- # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+-- #                                                                     #
+-- # Input file format (.csv):                                           #
+-- #    1 line:     trig_mode (4bit)                                     #
+-- #    2 line:     trig_sel  (4bit)                                     #
+-- #    3 line:     trig_threshold  (12bit)                              #
+-- #    4-nth line: adc_val (12bit);[expected trigger output](1bit)      #
+-- #                                                                     #
+-- # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
+use std.textio.all;
+use ieee.std_logic_textio.all;
 
 entity trigger_tb is
 end entity trigger_tb;
@@ -74,5 +84,16 @@ begin
         trig_pulse => tb_trig_pulse
     );
 
+    clock_generator: process
+    begin
+        tb_clk <= '0';
+        loop
+            wait for t_clk / 2.0;
+            tb_clk <= not tb_clk;
+        end loop;
+        wait;
+    end process clock_generator;
+
     
+
 end architecture RTL;
