@@ -38,14 +38,12 @@ int INT_init() {
 
   /* Initialize the interrupt controller driver */
   IntcConfig = XScuGic_LookupConfig(INT_DEVICE_ID);
-  if (NULL == IntcConfig)
-  {
+  if (NULL == IntcConfig) {
     return XST_FAILURE;
   }
 
   Status = XScuGic_CfgInitialize(&IntcInstance, IntcConfig, IntcConfig->CpuBaseAddress);
-  if (Status != XST_SUCCESS)
-  {
+  if (Status != XST_SUCCESS) {
     return XST_FAILURE;
   }
 

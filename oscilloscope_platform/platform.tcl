@@ -52,3 +52,11 @@ platform clean
 platform generate
 platform config -updatehw {U:/DigMe/Oscilloscope/project/oscilloscope.xsa}
 platform generate -domains 
+platform config -updatehw {U:/DigMe/Oscilloscope/project/oscilloscope.xsa}
+platform generate -domains 
+platform config -updatehw {U:/DigMe/Oscilloscope/project/oscilloscope.xsa}
+platform generate -domains 
+platform config -updatehw {U:/DigMe/Oscilloscope/project/oscilloscope.xsa}
+platform generate -domains 
+platform config -updatehw {U:/DigMe/Oscilloscope/project/oscilloscope.xsa}
+platform generate -domains 

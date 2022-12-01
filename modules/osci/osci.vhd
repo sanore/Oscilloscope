@@ -54,6 +54,8 @@ begin
     proc_ram : process (clk) is
     begin
         if (rising_edge(clk)) then
+			ch1_irq <= ch1_rst;
+			
             ch1_read_en <= '0';
         
             if (last_read_address /= ch1_ram_adr) then
@@ -81,9 +83,10 @@ begin
             mode             => ch1_mode,
             edge_sel         => ch1_edge_sel,
             edge_thre        => ch1_edge_thre,
-            record_ready_irq => ch1_irq,
+            record_ready_irq => open,
             adc_val          => ch1_adc,
             trigger_index => trigger_index
         ) ;
     
+	
 end architecture RTL;

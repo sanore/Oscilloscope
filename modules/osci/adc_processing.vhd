@@ -21,7 +21,7 @@ begin
     proc : process is
     begin
         if (rising_edge(adc_valid)) then
-            ch1_data_reg <= adc_data(11 downto 0);
+            ch1_data_reg <= adc_data(15 downto 4);
         end if;
     end process proc;
     

@@ -43,13 +43,13 @@ namespace Ost.PicoOsci.Ui.Oscilloscope.Uart {
         }
 
         public void SetTrigger(TriggerConfig trigger) {
-            var threshold = (ushort)trigger.Threshold.Value.Map(-1, 1, ushort.MinValue, ushort.MaxValue);
+            var threshold = (short)trigger.Threshold.Value.Map(-1, 1, 0, 4095);
             var data = new byte[4];
-            data[0] = (byte)(threshold >> 8);
+            data[0] = (byte)((threshold & 0x0FFF) >> 8);
             data[1] = (byte)(threshold & 0x00FF);
             // TODO EdgeSel & EdgeMode
-            // data[2] = (byte)(trigger.EdgeSel & 0x000F);
-            // data[3] = (byte)(trigger.EdgeMode & 0x000F);
+            data[2] = 1; // (byte)(trigger.EdgeSel & 0x000F); // rising (0001), falling (0010), both/threshold (0011), ...
+            data[3] = 0; // (byte)(trigger.EdgeMode & 0x000F); // EdgeMode=0
 
             Send(Tag.TriggerEdge, data);
         }

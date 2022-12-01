@@ -24,7 +24,7 @@
         <TextBlock Text="Threshold"
                    Margin="5"
                    Grid.Row="0" Grid.Column="0" />
-        <TextBox Text="{Binding Trigger.Value.Threshold.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+        <TextBox Text="{Binding Threshold.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                  Margin="5"
                  PreviewTextInput="UIElement_OnPreviewTextInput"
                  Grid.Row="0" Grid.Column="1" />

@@ -6,8 +6,9 @@
 #include "xil_printf.h"
 
 
-#define MAX_PACKET_SIZE 255
-#define RAM_SIZE 32*MAX_PACKET_SIZE
+#define MAX_PACKET_SIZE 128
+ //2^13
+#define RAM_SIZE 8192
 
 
 void process(u8 header1, u8 header2);
@@ -22,7 +23,6 @@ int main() {
 
     INT_enable();
 
-    UART_WriteByte(0x61);
 
     while (1) {
     	// wait for header
@@ -49,20 +49,17 @@ void process(u8 header1, u8 header2) {
 		OSCI_StartAcquire();
 
 		// wait for data
-		while (OSCI_DataReady() == 0);
+		//while (OSCI_DataReady() == 0);
 
-		static u8 buffer[MAX_PACKET_SIZE];
-		buffer[0] = 0b10000010;
-		buffer[1] = MAX_PACKET_SIZE; // ToPC and Acquiere, length
+		static u8 packetBuffer[4];
+		packetBuffer[0] = 0b10000010; // ToPC and Acquiere
+		packetBuffer[1] = 2; // length
+		for (int i = 0; i < RAM_SIZE; i++) {
+			u16 adcValue = OSCI_ReadByte(i);
+			packetBuffer[2] = adcValue >> 8;
+			packetBuffer[3] = adcValue & 0x00FF;
 
-		// read ram from fpga, and sent to PC
-		u32 readData = 0;
-		while (readData < RAM_SIZE) {
-			OSCI_ReadData(&buffer[2], readData, MAX_PACKET_SIZE - 2);
-
-			UART_Write(buffer, sizeof(buffer)/sizeof(buffer[0]));
-
-			readData += MAX_PACKET_SIZE - 2;
+			UART_Write(packetBuffer, sizeof(packetBuffer)/sizeof(packetBuffer[0]));
 		}
 	}
 	else if (tag == 0b1000) { // TriggerEdge
@@ -71,7 +68,7 @@ void process(u8 header1, u8 header2) {
     	uint8_t sel = (uint8_t)UART_Read();
     	uint8_t mode = (uint8_t)UART_Read();
 
-    	int16_t threshold = thr0 << 8 | thr1;
+    	uint16_t threshold = thr0 << 8 | thr1;
     	OSCI_SetTriggerCfg(threshold, sel, mode);
 	}
 }

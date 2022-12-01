@@ -43,6 +43,7 @@ namespace Ost.PicoOsci.Ui.Oscilloscope {
 
             m_listeners = new List<OscilloscopeListenerIfc>();
             m_uart = new UartConnection(this, port => new ComPort(port));
+            m_frameBuffer = new List<byte>();
         }
 
         /// <inheritdoc />
@@ -56,6 +57,7 @@ namespace Ost.PicoOsci.Ui.Oscilloscope {
             if (!IsConnected.Value) { return; }
 
             StatusDescription.Value = "Starting...";
+            m_uart.SetTrigger(TriggerConfig.Value);
             m_uart.StartAcquire();
         }
 
@@ -81,9 +83,26 @@ namespace Ost.PicoOsci.Ui.Oscilloscope {
         public void OnAcquireCompleted(byte[] data, int length) {
             StatusDescription.Value = "Trigger Received";
 
-            foreach (var listener in m_listeners) { listener.OnRecordReceived(new Record(data)); }
+            const int RAM_LENGTH = 8192;
+            foreach (byte b in data) {
+                m_frameBuffer.Add(b);
+            }
+
+            if (m_frameBuffer.Count == RAM_LENGTH * 2) {
+                var adcValues = new List<short>();
+                var rawBytes = m_frameBuffer.ToArray();
+
+                for (int i = 0; i < rawBytes.Length; i+=2) {
+                    short adc = (short)(rawBytes[i] << 8 | rawBytes[i+1]);
+                    adcValues.Add(adc);
+                }
+
+                foreach (var listener in m_listeners) { listener.OnRecordReceived(new Record(adcValues)); }
+            }
+
         }
 
+        private List<byte> m_frameBuffer;
         private readonly List<OscilloscopeListenerIfc> m_listeners;
         private readonly UartConnectionIfc             m_uart;
     }

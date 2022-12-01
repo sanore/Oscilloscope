@@ -27,11 +27,19 @@ using Syncfusion.Windows.Tools.Controls;
 
 namespace Ost.PicoOsci.Ui.Presentation.TriggerCfg {
     public class TriggerCfgPanelViewModel : PanelViewModel {
-        public NotifyRefIfc<TriggerConfig> Trigger => m_oscilloscope.TriggerConfig;
+
+        public NotifyStringIfc Threshold { get; }
 
         /// <inheritdoc />
         public TriggerCfgPanelViewModel(OscilloscopeMgntIfc oscilloscope) : base("Trigger Config", DockSide.Left) {
             m_oscilloscope = oscilloscope;
+            Threshold = Notify.MakeString("0.5");
+            Threshold.PropertyChanged += Threshold_PropertyChanged;
+        }
+
+        private void Threshold_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e) {
+            var trigger = m_oscilloscope.TriggerConfig.Value;
+            trigger.Threshold.Value = double.Parse(Threshold.Value);
         }
 
         private readonly OscilloscopeMgntIfc m_oscilloscope;

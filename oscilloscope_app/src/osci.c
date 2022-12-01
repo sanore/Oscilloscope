@@ -17,22 +17,22 @@ void OSCI_Handler(void *CallbackRef) {
 	INT_enable();
 }
 
-void OSCI_ReadData(u8 buffer[], u32 offset, u8 length) {
-	for (int i = 0; i < length; i++) {
-		Xil_Out32(REG_CH1_Ram_Adr, offset + i);
-		u32 data = Xil_In32(REG_CH1_Ram_Data);
-
-		buffer[i] = data;
-	}
+u16 OSCI_ReadByte(u32 offset) {
+	Xil_Out32(REG_CH1_Ram_Adr, offset);
+	return (u16)(Xil_In32(REG_CH1_Ram_Data) & 0xFFFF);
 }
 
 void OSCI_StartAcquire() {
 	OSCI_Clear();
 
+	AXI_setBitPattern(ADD_CH1_RST, BIT_CH1_RST);
+	AXI_clearBitPattern(ADD_CH1_RST, BIT_CH1_RST);
+
 	AXI_setBitPattern(ADD_CH1_EN, BIT_CH1_EN);
+	AXI_clearBitPattern(ADD_CH1_EN, BIT_CH1_EN);
 }
 
-void OSCI_SetTriggerCfg(int16_t threshold, uint8_t sel, uint8_t  mode) {
+void OSCI_SetTriggerCfg(uint16_t threshold, uint8_t sel, uint8_t  mode) {
 	// reset osci
 	AXI_setBitPattern(ADD_CH1_RST, BIT_CH1_RST);
 

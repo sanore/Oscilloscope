@@ -58,22 +58,22 @@ namespace Ost.PicoOsci.Ui.Oscilloscope {
         /// Gets the maximum value
         /// </summary>
         public double MaxValue => Values.Select(x => x.Value)
-                                        .Max();
+                                        .Max() * 1.1;
 
         /// <summary>
         /// Gets the minimum value
         /// </summary>
         public double MinValue => Values.Select(x => x.Value)
-                                        .Min();
+                                        .Min() * 1.1;
 
         /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="bytes"></param>
-        public Record(byte[] bytes = null) {
+        public Record(IEnumerable<short> bytes = null) {
             var tmp = new List<TimePoint>();
             if (bytes != null) {
-                foreach (byte b in bytes) { tmp.Add(new TimePoint(tmp.Count, b)); }
+                foreach (short b in bytes) { tmp.Add(new TimePoint(tmp.Count, b)); }
             }
 
             m_values = new ObservableCollection<TimePoint>(tmp);
