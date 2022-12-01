@@ -171,13 +171,22 @@ begin
     -- trigger config now is stored internally in module, enable it
     tb_reset <= '0';
 
+    -- wait for next rising clock edge
+    wait until rising_edge(tb_clk);
+
+    -- start waiting for trigger
+    tb_start <= '1';
+
     -- feed in data
     while not endfile(waveform_data_file) loop        
         readline(waveform_data_file, line_buff);
 
         -- wait until next sample
         wait until rising_edge(tb_sample_clk);
-        
+
+        -- disable start to prevent
+         tb_start <= '0';
+
         -- set next adc test val
         read(line_buff, input_val_buff);
         tb_adc_val <= input_val_buff;
@@ -194,7 +203,30 @@ begin
         
     end loop;
 
+    -- waveform finished
     file_close(waveform_data_file);
+    tb_start <= '0';
+
+    -- read sampled data
+    tb_read_enable <= '1'
+    tb_read_data_addr <= (others => '0');
+
+    while not (tb_read_data_addr = (others => '1')) loop
+    
+        -- wait for next clock edge
+        wait until rising_edge(tb_clk);
+
+        -- increment address
+        tb_read_data_addr <= to_stdulogicvector(unsigned(tb_read_data_addr) + 1);
+    
+    end loop;  
+
+    -- wait for a bit
+    wait for 100 ns;
+
+    -- disable chanel
+    tb_reset <= '1';
+    tb_read_enable <= '0';
 
     assert false report "Simulation completed." severity failure;
 
