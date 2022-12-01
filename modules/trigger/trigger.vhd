@@ -90,6 +90,7 @@ begin
                 -- reset state and sample register
                 current_trigger_state <= state_stopped;
                 current_sample <= (others => '0');
+                previous_sample <= (others => '0');
             end if;
         end if;
     end process reg_process;
