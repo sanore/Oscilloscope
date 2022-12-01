@@ -21,3 +21,34 @@ bsp reload
 bsp reload
 domain active {standalone_domain}
 bsp reload
+platform config -updatehw {U:/DigMe/Oscilloscope/project/oscilloscope.xsa}
+platform generate -domains 
+domain active {zynq_fsbl}
+bsp reload
+domain active {standalone_domain}
+bsp reload
+bsp config stdin "ps7_coresight_comp_0"
+bsp config stdout "ps7_coresight_comp_0"
+bsp write
+bsp reload
+catch {bsp regenerate}
+domain active {zynq_fsbl}
+bsp config stdin "ps7_coresight_comp_0"
+bsp config stdout "ps7_coresight_comp_0"
+bsp write
+bsp reload
+catch {bsp regenerate}
+platform generate -domains standalone_domain,zynq_fsbl 
+platform generate -domains standalone_domain 
+domain active {standalone_domain}
+bsp reload
+bsp config stdin "ps7_uart_1"
+bsp config stdout "ps7_uart_1"
+bsp write
+bsp reload
+catch {bsp regenerate}
+platform generate -domains standalone_domain 
+platform clean
+platform generate
+platform config -updatehw {U:/DigMe/Oscilloscope/project/oscilloscope.xsa}
+platform generate -domains 

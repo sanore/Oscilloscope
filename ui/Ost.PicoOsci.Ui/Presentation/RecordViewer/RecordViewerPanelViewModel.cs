@@ -40,7 +40,7 @@ namespace Ost.PicoOsci.Ui.Presentation.RecordViewer {
 
         /// <inheritdoc />
         public void OnRecordReceived(Record record) {
-            Application.Current.Dispatcher.Invoke(() => {
+            Application.Current?.Dispatcher.Invoke(() => {
                 foreach (var prop in record.Values) {
                     fullRecord.Add(prop.Value);
                 }

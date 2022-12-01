@@ -13,6 +13,10 @@ u8 UART_Read() {
 	return XUartPs_RecvByte(uartCfg->BaseAddress);
 }
 
+void UART_WriteByte(u8 buffer) {
+	XUartPs_SendByte(uartCfg->BaseAddress, buffer);
+}
+
 void UART_Write(u8 buffer[], u32 length) {
 	uartPS0.SendBuffer.RequestedBytes = length;
 	uartPS0.SendBuffer.RemainingBytes = length;
@@ -31,15 +35,14 @@ int UART_Init() {
 		return XST_FAILURE;
 	}
 
+
+	XUartPs_ResetHw(uartCfg->BaseAddress);
+
 	Status = XUartPs_CfgInitialize(&uartPS0, uartCfg, uartCfg->BaseAddress);
 	if (Status != XST_SUCCESS) {
 		return XST_FAILURE;
 	}
 
-	XUartPs_SetBaudRate(&uartPS0, 115200);
 
-	Status = XUartPs_SelfTest(&uartPS0);
-	if (Status != XST_SUCCESS) {
-		return XST_FAILURE;
-	}
+	XUartPs_SetBaudRate(&uartPS0, 115200);
 }

@@ -52,11 +52,12 @@
   "../../../bd/oscilloscope_bd/ip/oscilloscope_bd_processing_system7_0_1/sim/oscilloscope_bd_processing_system7_0_1.v" \
 -endlib
 -makelib xcelium_lib/xil_defaultlib \
-  "../../../bd/oscilloscope_bd/ip/oscilloscope_bd_adc_processing_0_0/sim/oscilloscope_bd_adc_processing_0_0.vhd" \
-  "../../../bd/oscilloscope_bd/ip/oscilloscope_bd_osci_0_1/sim/oscilloscope_bd_osci_0_1.vhd" \
   "../../../bd/oscilloscope_bd/ipshared/8a47/hdl/OsciToCpu_v1_S00_AXI.vhd" \
   "../../../bd/oscilloscope_bd/ipshared/8a47/hdl/OsciToCpu_v1.vhd" \
   "../../../bd/oscilloscope_bd/ip/oscilloscope_bd_OsciToCpu_0_3/sim/oscilloscope_bd_OsciToCpu_0_3.vhd" \
+  "../../../bd/oscilloscope_bd/ip/oscilloscope_bd_adc_processing_0_1/sim/oscilloscope_bd_adc_processing_0_1.vhd" \
+  "../../../bd/oscilloscope_bd/ip/oscilloscope_bd_osci_0_1/sim/oscilloscope_bd_osci_0_1.vhd" \
+  "../../../bd/oscilloscope_bd/ip/oscilloscope_bd_ila_0_0/sim/oscilloscope_bd_ila_0_0.vhd" \
 -endlib
 -makelib xcelium_lib/generic_baseblocks_v2_1_0 \
   "../../../../Oscilloscope.gen/sources_1/bd/oscilloscope_bd/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v" \

@@ -135,7 +135,7 @@ class processing_system7_v5_5_tlm : public sc_core::sc_module   {
     public:
     // Non-AXI ports are declared here
     sc_core::sc_in<bool> M_AXI_GP0_ACLK;
-    sc_core::sc_in<bool> Core0_nIRQ;
+    sc_core::sc_in<sc_dt::sc_bv<1> >  IRQ_F2P;
     sc_core::sc_inout<sc_dt::sc_bv<54> >  MIO;
     sc_core::sc_inout<bool> PS_SRSTB;
     sc_core::sc_inout<bool> PS_CLK;
@@ -181,6 +181,7 @@ processing_system7_v5_5_tlm(sc_core::sc_module_name name,
 
     
     
+    void IRQ_F2P_method();
 
     sc_signal<bool> qemu_rst;
     void start_of_simulation();

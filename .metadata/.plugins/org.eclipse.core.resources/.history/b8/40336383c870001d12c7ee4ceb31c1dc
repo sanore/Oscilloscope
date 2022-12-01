@@ -1,0 +1,47 @@
+#include "uart.h"
+
+#include "xuartps.h"
+#include "platform_config.h"
+
+static XUartPs_Config* uartCfg;
+static XUartPs uartPS0;
+
+#define NUM_OF_BYTES 1
+
+u8 UART_Read() {
+	return XUartPs_RecvByte(uartCfg->BaseAddress);
+}
+
+void UART_Write() {
+	uartPS0.SendBuffer.NextBytePtr = buffer;
+	uartPS0.SendBuffer.RemainingBytes = length;
+	XUartPs_SendBuffer(&uartPS0);
+}
+
+void UART_Write(u8 val) {
+	XUartPs_SendByte(uartCfg->BaseAddress, val);
+
+	// wait until is sending
+	while (XUartPs_IsSending(&uartPS0));
+}
+
+int UART_Init() {
+	int Status;
+
+	uartCfg = XUartPs_LookupConfig(XPAR_XUARTPS_0_DEVICE_ID);
+	if (NULL == uartCfg) {
+		return XST_FAILURE;
+	}
+
+	Status = XUartPs_CfgInitialize(&uartPS0, uartCfg, uartCfg->BaseAddress);
+	if (Status != XST_SUCCESS) {
+		return XST_FAILURE;
+	}
+
+	XUartPs_SetBaudRate(&uartPS0, 115200);
+
+	Status = XUartPs_SelfTest(&uartPS0);
+	if (Status != XST_SUCCESS) {
+		return XST_FAILURE;
+	}
+}

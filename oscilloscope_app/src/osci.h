@@ -66,7 +66,7 @@ int OSCI_DataReady();
 /**
  * Read ram from fpga
  */
-void OSCI_ReadData(u8 buffer[], u8 length);
+void OSCI_ReadData(u8 buffer[], u32 offset, u8 length);
 
 /**
  * start osci
@@ -77,5 +77,10 @@ void OSCI_StartAcquire();
  * Clears inernal flags
  */
 void OSCI_Clear();
+
+/**
+ * Set trigger cfg
+ */
+void OSCI_SetTriggerCfg(int16_t threshold, uint8_t sel, uint8_t  mode);
 
 #endif // _OSCI_H
