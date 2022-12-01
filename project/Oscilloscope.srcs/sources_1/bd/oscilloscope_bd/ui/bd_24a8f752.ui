@@ -50,7 +50,7 @@ levelinfo -pg 1 -10 110 390 730 1040 1440 1860 2280 2650 2880
 pagesize -pg 1 -db -bbox -sgen -140 0 3010 850
 ",
    "Color Coded_ScaleFactor":"1.04347",
-   "Color Coded_TopLeft":"1658,88",
+   "Color Coded_TopLeft":"1764,196",
    "Default View_ScaleFactor":"0.667403",
    "Default View_TopLeft":"698,-28",
    "Display-PortTypeClock":"true",

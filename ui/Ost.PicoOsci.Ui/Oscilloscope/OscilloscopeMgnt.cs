@@ -98,6 +98,7 @@ namespace Ost.PicoOsci.Ui.Oscilloscope {
                 }
 
                 foreach (var listener in m_listeners) { listener.OnRecordReceived(new Record(adcValues)); }
+                m_frameBuffer.Clear();
             }
 
         }
