@@ -26,8 +26,7 @@ end entity ctrlunit;
 
 architecture RTL of ctrlunit is
     type State is (reset, idle, wait_for_trigger, triggered, wait_for_full);
-    constant addr_offset : unsigned(ADDR_WIDTH - 1 downto 0) := to_unsigned(integer(2 ** (ADDR_WIDTH) - 1) / 2, write_address'length);
-
+    constant addr_offset : unsigned(ADDR_WIDTH - 1 downto 0) := to_unsigned(4096, write_address'length);
     signal sample_counter      : std_ulogic_vector(ADDR_WIDTH - 1 downto 0);
     signal trigger_counter_idx : std_ulogic_vector(ADDR_WIDTH - 1 downto 0);
     signal sample_counter_en   : std_ulogic;
@@ -54,8 +53,7 @@ begin
 
     write_data_process : process(mode, sample_counter, adc_val) is
     begin
-        write_en <= '0';
-        
+        write_en      <= '0';
         if (mode = wait_for_trigger or mode = wait_for_full or mode = triggered) then
             write_en <= '1';
             write_address <= sample_counter;
@@ -65,8 +63,8 @@ begin
 
     trigger_process : process(trigger_pulse, mode, sample_counter, start_record, trigger_counter_idx) is
     begin
-        record_ready_irq <= '0';
         sample_counter_rst <= '0';
+        record_ready_irq <= '0';
         if (mode = reset) then
             mode_next           <= idle;
             sample_counter_rst  <= '1';
@@ -78,7 +76,7 @@ begin
             sample_counter_rst <= '0';
             sample_counter_en  <= '1';
 
-            if (rising_edge(trigger_pulse)) then
+            if (trigger_pulse = '1') then
                 mode_next <= triggered;
             end if;
 
@@ -88,7 +86,7 @@ begin
 
         elsif (mode = wait_for_full) then
             -- wait until sample counter is ram offset
-            if ((unsigned(sample_counter) + addr_offset) = (unsigned(trigger_counter_idx) - 1)) then
+            if ((unsigned(sample_counter) - addr_offset) = (unsigned(trigger_counter_idx))) then
                 mode_next          <= idle;
                 sample_counter_rst <= '1';
                 record_ready_irq <= '1';
@@ -105,8 +103,8 @@ begin
                 mode          <= reset;
                 trigger_index <= (others => '0');
             else
-                mode          <= mode_next;
                 trigger_index <= trigger_counter_idx;
+                mode          <= mode_next;
             end if;
         end if;
     end process reg_proc;

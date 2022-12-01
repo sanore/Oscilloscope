@@ -65,7 +65,7 @@ begin
         -- edge mode triggers
         trig_pulse <= trigger_edge_event when "0000",
         -- other trigger modes (to be defined)
-                      '0' when others;
+        '0' when others;
 
     -- edge mode trigger aggregation
     -- sel_0 controlls rising edge, sel_1 controlls falling edge 
