@@ -82,6 +82,7 @@ architecture RTL of channel is
     signal write_en      : std_ulogic;
     
     signal trigger_pulse : std_ulogic;
+    signal trigger_enable: std_ulogic;
 begin
     ctrl : ctrlunit
         generic map(
@@ -117,10 +118,12 @@ begin
             read_en       => read_en
         ) ;
 
+
+    trigger_enable <= not rst;
     trig : trigger
         port map(
             clk            => clk,
-            enable         => '1',
+            enable         => trigger_enable,
             adc_val        => adc_val,
             trig_mode      => mode,                   -- mode posEdge
             trig_sel       => edge_sel,               -- rising     
