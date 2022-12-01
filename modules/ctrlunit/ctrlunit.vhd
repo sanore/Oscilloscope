@@ -65,6 +65,7 @@ begin
     begin
         sample_counter_rst <= '0';
         record_ready_irq <= '0';
+        sample_counter_en  <= '0';
         if (mode = reset) then
             mode_next           <= idle;
             sample_counter_rst  <= '1';
@@ -83,8 +84,11 @@ begin
         elsif (mode = triggered) then
             trigger_counter_idx <= sample_counter;
             mode_next           <= wait_for_full;
+            sample_counter_en  <= '1';
 
         elsif (mode = wait_for_full) then
+            
+            sample_counter_en  <= '1';
             -- wait until sample counter is ram offset
             if ((unsigned(sample_counter) - addr_offset) = (unsigned(trigger_counter_idx))) then
                 mode_next          <= idle;

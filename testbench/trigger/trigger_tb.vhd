@@ -201,6 +201,9 @@ begin
     read(line_buff, trig_threshold_buff);
     tb_trig_threshold <= trig_threshold_buff;
 
+    -- reset adc value to avoid false trigger pulse
+    tb_adc_val <= (others => '0');
+
     -- wait for nex rising clock edge
     wait until rising_edge(tb_clk);
     -- trigger config now is stored internally in module, enable it
@@ -261,6 +264,9 @@ begin
     readline(waveform_data_file, line_buff);
     read(line_buff, trig_threshold_buff);
     tb_trig_threshold <= trig_threshold_buff;
+
+    -- reset adc value to avoid false trigger pulse
+    tb_adc_val <= (others => '0');
 
     -- wait for nex rising clock edge
     wait until rising_edge(tb_clk);
