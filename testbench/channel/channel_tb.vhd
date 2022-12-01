@@ -87,7 +87,11 @@ architecture RTL of chanel_tb is
     signal tb_recording_ready_irq : std_ulogic;
     signal tb_trigger_index       : std_ulogic_vector(12 downto 0);
     
+    signal threshold_conversion : std_ulogic_vector(15 downto 0);
+    
 begin
+
+    threshold_conversion <= "0000" & tb_trig_threshold;
 
     DUT: component channel
         generic map(
@@ -107,7 +111,7 @@ begin
             -- channel state
             mode          => tb_trig_mode,
             edge_sel      => tb_trig_sel,
-            edge_thre     => tb_trig_threshold,
+            edge_thre     => threshold_conversion,
             record_ready_irq  => tb_recording_ready_irq,
             adc_val           => tb_adc_val,
             trigger_index => tb_trigger_index
@@ -208,16 +212,16 @@ begin
     tb_start <= '0';
 
     -- read sampled data
-    tb_read_enable <= '1'
+    tb_read_enable <= '1';
     tb_read_data_addr <= (others => '0');
 
-    while not (tb_read_data_addr = (others => '1')) loop
+    while not (tb_read_data_addr = "1111111111111") loop
     
         -- wait for next clock edge
         wait until rising_edge(tb_clk);
 
         -- increment address
-        tb_read_data_addr <= to_stdulogicvector(unsigned(tb_read_data_addr) + 1);
+        tb_read_data_addr <= std_ulogic_vector(unsigned(tb_read_data_addr) + 1);
     
     end loop;  
 
