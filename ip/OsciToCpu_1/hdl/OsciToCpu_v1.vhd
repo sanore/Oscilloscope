@@ -23,6 +23,7 @@ entity OsciToCpu_v1 is
         ch1_edge_thre : out std_logic_vector(15 downto 0);
         ch1_ram_adr   : out std_logic_vector(12 downto 0);
         ch1_ram_data  : in  std_logic_vector(15 downto 0);
+        ch1_irq       : in  std_logic;
 		-- User ports ends
 		-- Do not modify the ports beyond this line
 
@@ -146,6 +147,7 @@ OsciToCpu_v1_S00_AXI_inst : OsciToCpu_v1_S00_AXI
     ch1_edge_sel      <= reg2(3 downto 0);
     ch1_edge_thre     <= reg2(31 downto 16);
     reg3(15 downto 0) <= ch1_ram_data;
+    reg3(31)           <= ch1_irq;
     ch1_ram_adr       <= reg4(12 downto 0);
 	-- User logic ends
 
