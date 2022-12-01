@@ -79,7 +79,6 @@ architecture RTL of chanel_tb is
     signal tb_trig_mode         : std_ulogic_vector(3 downto 0);
     signal tb_trig_sel          : std_ulogic_vector(3 downto 0);
     signal tb_trig_threshold    : std_ulogic_vector(11 downto 0);
-    signal tb_trig_pulse        : std_ulogic;
 
     signal tb_read_data_addr    : std_ulogic_vector(12 downto 0);
     signal tb_read_data         : std_ulogic_vector(15 downto 0);
@@ -139,7 +138,6 @@ begin
         variable line_buff      : line;
         variable delimiter_buff : character;
         variable input_val_buff : std_ulogic_vector(11 downto 0);
-        variable expected_trig_pulse_buff: std_ulogic;
         variable trig_mode_buff : std_ulogic_vector(3 downto 0);
         variable trig_sel_buff  : std_ulogic_vector(3 downto 0);
         variable trig_threshold_buff    : std_ulogic_vector(11 downto 0);
@@ -185,8 +183,6 @@ begin
         tb_adc_val <= input_val_buff;
         -- discard delimiter
         read(line_buff, delimiter_buff);
-        -- read expeced trigger_pulse value
-        read(line_buff, expected_trig_pulse_buff);
 
         -- wait for rising clock edge (adc value sampled)
         wait until rising_edge(tb_clk);
@@ -195,10 +191,6 @@ begin
         wait until falling_edge(tb_clk);
         -- wait a bit more
         wait for 1 ns;
-
-        -- check if trigger outputs expected signal
-        assert (tb_trig_pulse = expected_trig_pulse_buff) report
-            "Invalid trigger in rising edge test." severity failure;
         
     end loop;
 
