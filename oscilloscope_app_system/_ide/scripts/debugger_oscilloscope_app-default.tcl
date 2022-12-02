@@ -13,6 +13,8 @@ connect -url tcp:127.0.0.1:3121
 targets -set -nocase -filter {name =~"APU*"}
 rst -system
 after 3000
+targets -set -filter {jtag_cable_name =~ "Digilent Zed 210248650632" && level==0 && jtag_device_ctx=="jsn-Zed-210248650632-23727093-0"}
+fpga -file U:/DigMe/Oscilloscope/oscilloscope_app/_ide/bitstream/oscilloscope.bit
 targets -set -nocase -filter {name =~"APU*"}
 loadhw -hw U:/DigMe/Oscilloscope/oscilloscope_platform/export/oscilloscope_platform/hw/oscilloscope.xsa -mem-ranges [list {0x40000000 0xbfffffff}] -regs
 configparams force-mem-access 1

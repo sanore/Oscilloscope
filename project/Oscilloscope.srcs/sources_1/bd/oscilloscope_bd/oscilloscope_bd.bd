@@ -18,14 +18,13 @@
       },
       "clk_wiz_0": "",
       "proc_sys_reset_0": "",
-      "processing_system7_0": "",
-      "ila_1": "",
       "ila_0": "",
-      "OsciToCpu_0": "",
       "xadc_wiz_0": "",
       "xlconstant_1": "",
       "adc_processing_0": "",
-      "osci_0": ""
+      "osci_0": "",
+      "processing_system7_0": "",
+      "OsciToCpu_0": ""
     },
     "interface_ports": {
       "DDR": {
@@ -361,13 +360,244 @@
         "vlnv": "xilinx.com:ip:clk_wiz:6.0",
         "xci_name": "oscilloscope_bd_clk_wiz_0_0",
         "xci_path": "ip\\oscilloscope_bd_clk_wiz_0_0\\oscilloscope_bd_clk_wiz_0_0.xci",
-        "inst_hier_path": "clk_wiz_0"
+        "inst_hier_path": "clk_wiz_0",
+        "parameters": {
+          "USE_LOCKED": {
+            "value": "false"
+          }
+        }
       },
       "proc_sys_reset_0": {
         "vlnv": "xilinx.com:ip:proc_sys_reset:5.0",
         "xci_name": "oscilloscope_bd_proc_sys_reset_0_0",
         "xci_path": "ip\\oscilloscope_bd_proc_sys_reset_0_0\\oscilloscope_bd_proc_sys_reset_0_0.xci",
         "inst_hier_path": "proc_sys_reset_0"
+      },
+      "ila_0": {
+        "vlnv": "xilinx.com:ip:ila:6.2",
+        "xci_name": "oscilloscope_bd_ila_0_0",
+        "xci_path": "ip\\oscilloscope_bd_ila_0_0\\oscilloscope_bd_ila_0_0.xci",
+        "inst_hier_path": "ila_0",
+        "parameters": {
+          "C_ENABLE_ILA_AXI_MON": {
+            "value": "false"
+          },
+          "C_MONITOR_TYPE": {
+            "value": "Native"
+          },
+          "C_NUM_OF_PROBES": {
+            "value": "9"
+          },
+          "C_PROBE2_WIDTH": {
+            "value": "4"
+          },
+          "C_PROBE3_WIDTH": {
+            "value": "4"
+          },
+          "C_PROBE4_WIDTH": {
+            "value": "16"
+          },
+          "C_PROBE5_WIDTH": {
+            "value": "13"
+          },
+          "C_PROBE6_WIDTH": {
+            "value": "16"
+          },
+          "C_PROBE7_WIDTH": {
+            "value": "1"
+          },
+          "C_PROBE8_WIDTH": {
+            "value": "13"
+          }
+        }
+      },
+      "xadc_wiz_0": {
+        "vlnv": "xilinx.com:ip:xadc_wiz:3.3",
+        "xci_name": "oscilloscope_bd_xadc_wiz_0_1",
+        "xci_path": "ip\\oscilloscope_bd_xadc_wiz_0_1\\oscilloscope_bd_xadc_wiz_0_1.xci",
+        "inst_hier_path": "xadc_wiz_0",
+        "parameters": {
+          "ENABLE_AXI4STREAM": {
+            "value": "true"
+          },
+          "ENABLE_RESET": {
+            "value": "true"
+          },
+          "ENABLE_VCCDDRO_ALARM": {
+            "value": "false"
+          },
+          "ENABLE_VCCPAUX_ALARM": {
+            "value": "false"
+          },
+          "ENABLE_VCCPINT_ALARM": {
+            "value": "false"
+          },
+          "INTERFACE_SELECTION": {
+            "value": "ENABLE_DRP"
+          },
+          "OT_ALARM": {
+            "value": "false"
+          },
+          "SINGLE_CHANNEL_SELECTION": {
+            "value": "VP_VN"
+          },
+          "USER_TEMP_ALARM": {
+            "value": "false"
+          },
+          "VCCAUX_ALARM": {
+            "value": "false"
+          },
+          "VCCINT_ALARM": {
+            "value": "false"
+          }
+        }
+      },
+      "xlconstant_1": {
+        "vlnv": "xilinx.com:ip:xlconstant:1.1",
+        "xci_name": "oscilloscope_bd_xlconstant_1_0",
+        "xci_path": "ip\\oscilloscope_bd_xlconstant_1_0\\oscilloscope_bd_xlconstant_1_0.xci",
+        "inst_hier_path": "xlconstant_1",
+        "parameters": {
+          "CONST_VAL": {
+            "value": "3"
+          },
+          "CONST_WIDTH": {
+            "value": "7"
+          }
+        }
+      },
+      "adc_processing_0": {
+        "vlnv": "xilinx.com:module_ref:adc_processing:1.0",
+        "xci_name": "oscilloscope_bd_adc_processing_0_1",
+        "xci_path": "ip\\oscilloscope_bd_adc_processing_0_1\\oscilloscope_bd_adc_processing_0_1.xci",
+        "inst_hier_path": "adc_processing_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "adc_processing",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "adc_data": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "adc_valid": {
+            "direction": "I"
+          },
+          "ch1_adc": {
+            "direction": "O",
+            "left": "11",
+            "right": "0"
+          }
+        }
+      },
+      "osci_0": {
+        "vlnv": "xilinx.com:module_ref:osci:1.0",
+        "xci_name": "oscilloscope_bd_osci_0_1",
+        "xci_path": "ip\\oscilloscope_bd_osci_0_1\\oscilloscope_bd_osci_0_1.xci",
+        "inst_hier_path": "osci_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "osci",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "rst",
+                "value_src": "constant"
+              },
+              "FREQ_HZ": {
+                "value": "100000000",
+                "value_src": "ip_prop"
+              },
+              "PHASE": {
+                "value": "0.0",
+                "value_src": "ip_prop"
+              },
+              "CLK_DOMAIN": {
+                "value": "/clk_wiz_0_clk_out1",
+                "value_src": "ip_prop"
+              }
+            }
+          },
+          "rst": {
+            "type": "rst",
+            "direction": "I",
+            "parameters": {
+              "POLARITY": {
+                "value": "ACTIVE_HIGH",
+                "value_src": "const_prop"
+              }
+            }
+          },
+          "ch1_adc": {
+            "direction": "I",
+            "left": "11",
+            "right": "0"
+          },
+          "ch1_irq": {
+            "type": "intr",
+            "direction": "O",
+            "parameters": {
+              "SENSITIVITY": {
+                "value": "LEVEL_HIGH",
+                "value_src": "constant"
+              },
+              "PortWidth": {
+                "value": "1",
+                "value_src": "default_prop"
+              }
+            }
+          },
+          "ch1_en": {
+            "direction": "I"
+          },
+          "ch1_rst": {
+            "type": "rst",
+            "direction": "I"
+          },
+          "ch1_mode": {
+            "direction": "I",
+            "left": "3",
+            "right": "0"
+          },
+          "ch1_edge_sel": {
+            "direction": "I",
+            "left": "3",
+            "right": "0"
+          },
+          "ch1_edge_thre": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "ch1_ram_data": {
+            "direction": "O",
+            "left": "15",
+            "right": "0"
+          },
+          "ch1_ram_adr": {
+            "direction": "I",
+            "left": "12",
+            "right": "0"
+          },
+          "trigger_index": {
+            "direction": "O",
+            "left": "12",
+            "right": "0",
+            "parameters": {
+              "PortWidth": {
+                "value": "1",
+                "value_src": "default_prop"
+              }
+            }
+          }
+        }
       },
       "processing_system7_0": {
         "vlnv": "xilinx.com:ip:processing_system7:5.5",
@@ -2091,251 +2321,11 @@
           }
         }
       },
-      "ila_1": {
-        "vlnv": "xilinx.com:ip:ila:6.2",
-        "xci_name": "oscilloscope_bd_ila_1_0",
-        "xci_path": "ip\\oscilloscope_bd_ila_1_0\\oscilloscope_bd_ila_1_0.xci",
-        "inst_hier_path": "ila_1",
-        "parameters": {
-          "C_ENABLE_ILA_AXI_MON": {
-            "value": "false"
-          },
-          "C_MONITOR_TYPE": {
-            "value": "Native"
-          },
-          "C_NUM_OF_PROBES": {
-            "value": "5"
-          },
-          "C_PROBE0_WIDTH": {
-            "value": "16"
-          },
-          "C_PROBE2_WIDTH": {
-            "value": "12"
-          },
-          "C_PROBE4_WIDTH": {
-            "value": "13"
-          }
-        }
-      },
-      "ila_0": {
-        "vlnv": "xilinx.com:ip:ila:6.2",
-        "xci_name": "oscilloscope_bd_ila_0_0",
-        "xci_path": "ip\\oscilloscope_bd_ila_0_0\\oscilloscope_bd_ila_0_0.xci",
-        "inst_hier_path": "ila_0",
-        "parameters": {
-          "C_ENABLE_ILA_AXI_MON": {
-            "value": "false"
-          },
-          "C_MONITOR_TYPE": {
-            "value": "Native"
-          },
-          "C_NUM_OF_PROBES": {
-            "value": "7"
-          },
-          "C_PROBE2_WIDTH": {
-            "value": "4"
-          },
-          "C_PROBE3_WIDTH": {
-            "value": "4"
-          },
-          "C_PROBE4_WIDTH": {
-            "value": "16"
-          },
-          "C_PROBE5_WIDTH": {
-            "value": "13"
-          },
-          "C_PROBE6_WIDTH": {
-            "value": "16"
-          }
-        }
-      },
       "OsciToCpu_0": {
         "vlnv": "ost.ch:user:OsciToCpu:3",
         "xci_name": "oscilloscope_bd_OsciToCpu_0_3",
         "xci_path": "ip\\oscilloscope_bd_OsciToCpu_0_3\\oscilloscope_bd_OsciToCpu_0_3.xci",
         "inst_hier_path": "OsciToCpu_0"
-      },
-      "xadc_wiz_0": {
-        "vlnv": "xilinx.com:ip:xadc_wiz:3.3",
-        "xci_name": "oscilloscope_bd_xadc_wiz_0_1",
-        "xci_path": "ip\\oscilloscope_bd_xadc_wiz_0_1\\oscilloscope_bd_xadc_wiz_0_1.xci",
-        "inst_hier_path": "xadc_wiz_0",
-        "parameters": {
-          "ENABLE_AXI4STREAM": {
-            "value": "true"
-          },
-          "ENABLE_RESET": {
-            "value": "true"
-          },
-          "ENABLE_VCCDDRO_ALARM": {
-            "value": "false"
-          },
-          "ENABLE_VCCPAUX_ALARM": {
-            "value": "false"
-          },
-          "ENABLE_VCCPINT_ALARM": {
-            "value": "false"
-          },
-          "INTERFACE_SELECTION": {
-            "value": "ENABLE_DRP"
-          },
-          "OT_ALARM": {
-            "value": "false"
-          },
-          "SINGLE_CHANNEL_SELECTION": {
-            "value": "VP_VN"
-          },
-          "USER_TEMP_ALARM": {
-            "value": "false"
-          },
-          "VCCAUX_ALARM": {
-            "value": "false"
-          },
-          "VCCINT_ALARM": {
-            "value": "false"
-          }
-        }
-      },
-      "xlconstant_1": {
-        "vlnv": "xilinx.com:ip:xlconstant:1.1",
-        "xci_name": "oscilloscope_bd_xlconstant_1_0",
-        "xci_path": "ip\\oscilloscope_bd_xlconstant_1_0\\oscilloscope_bd_xlconstant_1_0.xci",
-        "inst_hier_path": "xlconstant_1",
-        "parameters": {
-          "CONST_VAL": {
-            "value": "3"
-          },
-          "CONST_WIDTH": {
-            "value": "7"
-          }
-        }
-      },
-      "adc_processing_0": {
-        "vlnv": "xilinx.com:module_ref:adc_processing:1.0",
-        "xci_name": "oscilloscope_bd_adc_processing_0_1",
-        "xci_path": "ip\\oscilloscope_bd_adc_processing_0_1\\oscilloscope_bd_adc_processing_0_1.xci",
-        "inst_hier_path": "adc_processing_0",
-        "reference_info": {
-          "ref_type": "hdl",
-          "ref_name": "adc_processing",
-          "boundary_crc": "0x0"
-        },
-        "ports": {
-          "adc_data": {
-            "direction": "I",
-            "left": "15",
-            "right": "0"
-          },
-          "adc_valid": {
-            "direction": "I"
-          },
-          "ch1_adc": {
-            "direction": "O",
-            "left": "11",
-            "right": "0"
-          }
-        }
-      },
-      "osci_0": {
-        "vlnv": "xilinx.com:module_ref:osci:1.0",
-        "xci_name": "oscilloscope_bd_osci_0_1",
-        "xci_path": "ip\\oscilloscope_bd_osci_0_1\\oscilloscope_bd_osci_0_1.xci",
-        "inst_hier_path": "osci_0",
-        "reference_info": {
-          "ref_type": "hdl",
-          "ref_name": "osci",
-          "boundary_crc": "0x0"
-        },
-        "ports": {
-          "clk": {
-            "type": "clk",
-            "direction": "I",
-            "parameters": {
-              "ASSOCIATED_RESET": {
-                "value": "rst",
-                "value_src": "constant"
-              },
-              "FREQ_HZ": {
-                "value": "100000000",
-                "value_src": "ip_prop"
-              },
-              "PHASE": {
-                "value": "0.0",
-                "value_src": "ip_prop"
-              },
-              "CLK_DOMAIN": {
-                "value": "/clk_wiz_0_clk_out1",
-                "value_src": "ip_prop"
-              }
-            }
-          },
-          "rst": {
-            "type": "rst",
-            "direction": "I",
-            "parameters": {
-              "POLARITY": {
-                "value": "ACTIVE_HIGH",
-                "value_src": "const_prop"
-              }
-            }
-          },
-          "ch1_adc": {
-            "direction": "I",
-            "left": "11",
-            "right": "0"
-          },
-          "ch1_irq": {
-            "type": "intr",
-            "direction": "O",
-            "parameters": {
-              "SENSITIVITY": {
-                "value": "LEVEL_HIGH",
-                "value_src": "constant"
-              },
-              "PortWidth": {
-                "value": "1",
-                "value_src": "default_prop"
-              }
-            }
-          },
-          "ch1_en": {
-            "direction": "I"
-          },
-          "ch1_rst": {
-            "type": "rst",
-            "direction": "I"
-          },
-          "ch1_mode": {
-            "direction": "I",
-            "left": "3",
-            "right": "0"
-          },
-          "ch1_edge_sel": {
-            "direction": "I",
-            "left": "3",
-            "right": "0"
-          },
-          "ch1_edge_thre": {
-            "direction": "I",
-            "left": "15",
-            "right": "0"
-          },
-          "ch1_ram_data": {
-            "direction": "O",
-            "left": "15",
-            "right": "0"
-          },
-          "ch1_ram_adr": {
-            "direction": "I",
-            "left": "12",
-            "right": "0"
-          },
-          "trigger_index": {
-            "direction": "O",
-            "left": "12",
-            "right": "0"
-          }
-        }
       }
     },
     "interface_nets": {
@@ -2416,7 +2406,6 @@
       "adc_processing_0_ch1_adc": {
         "ports": [
           "adc_processing_0/ch1_adc",
-          "ila_1/probe2",
           "osci_0/ch1_adc"
         ]
       },
@@ -2433,21 +2422,19 @@
           "axi_interconnect_0/S00_ACLK",
           "axi_interconnect_0/M00_ACLK",
           "proc_sys_reset_0/slowest_sync_clk",
-          "processing_system7_0/M_AXI_GP0_ACLK",
-          "ila_1/clk",
           "ila_0/clk",
-          "OsciToCpu_0/s00_axi_aclk",
           "xadc_wiz_0/m_axis_aclk",
           "xadc_wiz_0/s_axis_aclk",
-          "osci_0/clk"
+          "osci_0/clk",
+          "processing_system7_0/M_AXI_GP0_ACLK",
+          "OsciToCpu_0/s00_axi_aclk"
         ]
       },
       "osci_0_ch1_irq": {
         "ports": [
           "osci_0/ch1_irq",
           "processing_system7_0/IRQ_F2P",
-          "ila_1/probe3",
-          "OsciToCpu_0/ch1_irq"
+          "ila_0/probe7"
         ]
       },
       "osci_0_ch1_ram_data": {
@@ -2460,7 +2447,8 @@
       "osci_0_trigger_index": {
         "ports": [
           "osci_0/trigger_index",
-          "ila_1/probe4"
+          "OsciToCpu_0/ch1_trig_idx",
+          "ila_0/probe8"
         ]
       },
       "proc_sys_reset_0_interconnect_aresetn": {
@@ -2474,8 +2462,8 @@
       "proc_sys_reset_0_peripheral_aresetn": {
         "ports": [
           "proc_sys_reset_0/peripheral_aresetn",
-          "OsciToCpu_0/s00_axi_aresetn",
-          "xadc_wiz_0/m_axis_resetn"
+          "xadc_wiz_0/m_axis_resetn",
+          "OsciToCpu_0/s00_axi_aresetn"
         ]
       },
       "proc_sys_reset_0_peripheral_reset": {
@@ -2506,14 +2494,12 @@
       "xadc_wiz_0_m_axis_tdata": {
         "ports": [
           "xadc_wiz_0/do_out",
-          "ila_1/probe0",
           "adc_processing_0/adc_data"
         ]
       },
       "xadc_wiz_0_m_axis_tvalid": {
         "ports": [
           "xadc_wiz_0/drdy_out",
-          "ila_1/probe1",
           "adc_processing_0/adc_valid"
         ]
       },

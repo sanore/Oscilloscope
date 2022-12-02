@@ -71,6 +71,8 @@ ARCHITECTURE oscilloscope_bd_adc_processing_0_1_arch OF oscilloscope_bd_adc_proc
       ch1_adc : OUT STD_LOGIC_VECTOR(11 DOWNTO 0)
     );
   END COMPONENT adc_processing;
+  ATTRIBUTE IP_DEFINITION_SOURCE : STRING;
+  ATTRIBUTE IP_DEFINITION_SOURCE OF oscilloscope_bd_adc_processing_0_1_arch: ARCHITECTURE IS "module_ref";
 BEGIN
   U0 : adc_processing
     PORT MAP (
