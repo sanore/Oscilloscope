@@ -35,8 +35,8 @@ entity channel is
         -- single pulse to start aquisition
         start            : in std_ulogic;
         
-        adc_valid : in std_ulogic;
-        adc_val           : in  std_ulogic_vector(11 downto 0);
+        adc_valid        : in std_ulogic;
+        adc_val          : in  std_ulogic_vector(11 downto 0);
 
         --read ram
         read_address     : in std_ulogic_vector(ADDR_WIDTH - 1 downto 0);
@@ -119,7 +119,7 @@ architecture RTL of channel is
     signal trigger_pulse : std_ulogic;
     signal trigger_enable: std_ulogic;
 
-    signal filtered_samples: std_ulogic_vector(DATA_WIDTH - 1 downto 0);
+    signal filtered_samples: std_ulogic_vector(11 downto 0);
 
 begin
     ctrl : ctrlunit

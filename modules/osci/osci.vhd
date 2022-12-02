@@ -26,7 +26,8 @@ entity osci is
 
         -- channel 1 adc input
         ch1_adc       : in std_ulogic_vector(11 downto 0);
-
+		ch1_adc_valid : in  std_ulogic;
+		
         -- channel irq to notify of  completed aquisition
         ch1_irq       : out std_ulogic;
         -- pulse starts an aquisition
@@ -67,7 +68,8 @@ architecture RTL of osci is
             read_en          : in  std_ulogic;
             mode             : in  std_ulogic_vector(3 downto 0);
             edge_sel         : in  std_ulogic_vector(3 downto 0);
-            edge_thre        : in  std_ulogic_vector(15 downto 0);
+            edge_thre        : in  std_ulogic_vector(15 downto 0);        
+            adc_valid        : in  std_ulogic;
             adc_val          : in  std_ulogic_vector(11 downto 0);
             trigger_index    : out std_ulogic_vector(ADDR_WIDTH - 1 downto 0);
             record_ready_irq : out std_ulogic
@@ -75,7 +77,6 @@ architecture RTL of osci is
     end component channel;
     
     signal ch1_reset : std_ulogic; -- 'real' channel 1 reset signal
-    signal last_read_address : std_ulogic_vector(12 downto 0);
     signal ch1_read_en : std_ulogic;
 begin
     
@@ -91,14 +92,15 @@ begin
             clk              => clk,
             rst              => ch1_reset,
             start            => ch1_en,
-            read_address     => last_read_address,
+            read_address     => ch1_ram_adr,
             read_data        => ch1_ram_data,
             read_en          => '1',
             mode             => ch1_mode,
             edge_sel         => ch1_edge_sel,
             edge_thre        => ch1_edge_thre,
             adc_val          => ch1_adc,
-            trigger_index => trigger_index,
+			adc_valid        => ch1_adc_valid,
+            trigger_index    => trigger_index,
             record_ready_irq => ch1_irq
         ) ;
     

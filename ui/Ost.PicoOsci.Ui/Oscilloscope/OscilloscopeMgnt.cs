@@ -92,7 +92,7 @@ namespace Ost.PicoOsci.Ui.Oscilloscope {
             }
 
             var shiftFactor = (adcValues.Length / 2) - triggerIdx;
-            var values = Extensions.Shift(adcValues, shiftFactor);
+            var values = Extensions.Shift(adcValues, shiftFactor - 1);
             foreach (var listener in m_listeners) { listener.OnRecordReceived(new Record(adcValues.Length/2, values)); }
         }
 

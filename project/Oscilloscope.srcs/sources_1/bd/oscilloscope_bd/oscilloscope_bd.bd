@@ -2268,6 +2268,9 @@
             "left": "11",
             "right": "0"
           },
+          "ch1_adc_valid": {
+            "direction": "I"
+          },
           "ch1_irq": {
             "type": "intr",
             "direction": "O",
@@ -2500,7 +2503,8 @@
       "xadc_wiz_0_m_axis_tvalid": {
         "ports": [
           "xadc_wiz_0/drdy_out",
-          "adc_processing_0/adc_valid"
+          "adc_processing_0/adc_valid",
+          "osci_0/ch1_adc_valid"
         ]
       },
       "xlconstant_1_dout": {

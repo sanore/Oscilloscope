@@ -52,7 +52,9 @@ architecture RTL of chanel_tb is
         edge_thre         : in std_ulogic_vector(15 downto 0);
         record_ready_irq  : out std_ulogic; 
         adc_val           : in  std_ulogic_vector(11 downto 0);
-        trigger_index : out std_ulogic_vector(ADDR_WIDTH - 1 downto 0)
+        trigger_index : out std_ulogic_vector(ADDR_WIDTH - 1 downto 0);
+        
+        adc_valid: std_ulogic
     );
     end component channel;
 
@@ -114,7 +116,9 @@ begin
             edge_thre     => threshold_conversion,
             record_ready_irq  => tb_recording_ready_irq,
             adc_val           => tb_adc_val,
-            trigger_index => tb_trigger_index
+            trigger_index => tb_trigger_index,
+            
+            adc_valid => tb_sample_clk
     );
 
     tb_clock_generator: process

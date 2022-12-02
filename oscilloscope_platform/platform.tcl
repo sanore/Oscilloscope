@@ -80,3 +80,10 @@ platform generate -domains
 platform config -updatehw {U:/DigMe/Oscilloscope/project/oscilloscope.xsa}
 platform generate -domains 
 platform generate -domains standalone_domain,zynq_fsbl 
+platform active {oscilloscope_platform}
+platform config -updatehw {U:/DigMe/Oscilloscope/project/oscilloscope.xsa}
+platform generate -domains 
+platform config -updatehw {U:/DigMe/Oscilloscope/project/oscilloscope.xsa}
+platform generate -domains 
+platform config -updatehw {U:/DigMe/Oscilloscope/project/oscilloscope.xsa}
+platform generate -domains 
