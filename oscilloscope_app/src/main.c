@@ -54,10 +54,11 @@ void process(u8 header1, u8 header2) {
 		// AcquireHeader
 		static u8 packetBuffer[2+4];
 		u16 triggerIndex = OSCI_GetTriggerIndex();
+		u16 ramByteLength = RAM_SIZE * 2;
 		packetBuffer[0] = 0b10000010; // ToPC and AcquireInfo
 		packetBuffer[1] = 4; // length in word
-		packetBuffer[2] = RAM_SIZE >> 8;
-		packetBuffer[3] = RAM_SIZE & 0x00FF;
+		packetBuffer[2] = ramByteLength >> 8;
+		packetBuffer[3] = ramByteLength & 0x00FF;
 		packetBuffer[4] = triggerIndex >> 8;
 		packetBuffer[5] = triggerIndex & 0x00FF;
 		UART_Write(packetBuffer, sizeof(packetBuffer)/sizeof(packetBuffer[0]));
