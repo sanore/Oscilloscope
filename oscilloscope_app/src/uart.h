@@ -10,7 +10,6 @@
 
 #include "xparameters.h"
 #include "xil_types.h"
-#include "platform_config.h"
 
 /**
  * Read blocking a single byte
@@ -20,7 +19,8 @@ u8 UART_Read();
 /**
  * Write blocking a single byte
  */
-void UART_Write(u8 val);
+void UART_Write(u8 buffer[], u32 length);
+void UART_WriteByte(u8 buffer);
 
 /**
  * Initialize osci

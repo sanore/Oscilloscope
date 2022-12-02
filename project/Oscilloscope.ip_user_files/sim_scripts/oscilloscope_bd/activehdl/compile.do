@@ -82,14 +82,16 @@ vlog -work processing_system7_vip_v1_0_12  -sv2k12 "+incdir+../../../../Oscillos
 "../../../../Oscilloscope.gen/sources_1/bd/oscilloscope_bd/ipshared/f42d/hdl/processing_system7_vip_v1_0_vl_rfs.sv" \
 
 vlog -work xil_defaultlib  -v2k5 "+incdir+../../../../Oscilloscope.gen/sources_1/bd/oscilloscope_bd/ipshared/6dcf" "+incdir+../../../../Oscilloscope.gen/sources_1/bd/oscilloscope_bd/ipshared/ec67/hdl" "+incdir+../../../../Oscilloscope.gen/sources_1/bd/oscilloscope_bd/ipshared/f42d/hdl" "+incdir+C:/Xilinx/Vivado/2021.1/data/xilinx_vip/include" \
-"../../../bd/oscilloscope_bd/ip/oscilloscope_bd_processing_system7_0_1/sim/oscilloscope_bd_processing_system7_0_1.v" \
+"../../../bd/oscilloscope_bd/ip/oscilloscope_bd_processing_system7_0_2/sim/oscilloscope_bd_processing_system7_0_2.v" \
 
 vcom -work xil_defaultlib -93 \
-"../../../bd/oscilloscope_bd/ip/oscilloscope_bd_adc_processing_0_0/sim/oscilloscope_bd_adc_processing_0_0.vhd" \
-"../../../bd/oscilloscope_bd/ip/oscilloscope_bd_osci_0_1/sim/oscilloscope_bd_osci_0_1.vhd" \
-"../../../bd/oscilloscope_bd/ipshared/8a47/hdl/OsciToCpu_v1_S00_AXI.vhd" \
-"../../../bd/oscilloscope_bd/ipshared/8a47/hdl/OsciToCpu_v1.vhd" \
+"../../../bd/oscilloscope_bd/ip/oscilloscope_bd_ila_1_0/sim/oscilloscope_bd_ila_1_0.vhd" \
+"../../../bd/oscilloscope_bd/ip/oscilloscope_bd_ila_0_0/sim/oscilloscope_bd_ila_0_0.vhd" \
+"../../../bd/oscilloscope_bd/ipshared/6d8d/hdl/OsciToCpu_v1_S00_AXI.vhd" \
+"../../../bd/oscilloscope_bd/ipshared/6d8d/hdl/OsciToCpu_v1.vhd" \
 "../../../bd/oscilloscope_bd/ip/oscilloscope_bd_OsciToCpu_0_3/sim/oscilloscope_bd_OsciToCpu_0_3.vhd" \
+"../../../bd/oscilloscope_bd/ip/oscilloscope_bd_adc_processing_0_1/sim/oscilloscope_bd_adc_processing_0_1.vhd" \
+"../../../bd/oscilloscope_bd/ip/oscilloscope_bd_osci_0_1/sim/oscilloscope_bd_osci_0_1.vhd" \
 
 vlog -work generic_baseblocks_v2_1_0  -v2k5 "+incdir+../../../../Oscilloscope.gen/sources_1/bd/oscilloscope_bd/ipshared/6dcf" "+incdir+../../../../Oscilloscope.gen/sources_1/bd/oscilloscope_bd/ipshared/ec67/hdl" "+incdir+../../../../Oscilloscope.gen/sources_1/bd/oscilloscope_bd/ipshared/f42d/hdl" "+incdir+C:/Xilinx/Vivado/2021.1/data/xilinx_vip/include" \
 "../../../../Oscilloscope.gen/sources_1/bd/oscilloscope_bd/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v" \

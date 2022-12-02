@@ -18,10 +18,10 @@ architecture RTL of adc_processing is
     signal ch1_data_reg : std_ulogic_vector(11 downto 0);
 begin
     -- select adc data and buffer it until next is valid
-    proc : process is
+    proc : process (adc_valid, adc_data) is
     begin
         if (rising_edge(adc_valid)) then
-            ch1_data_reg <= adc_data(11 downto 0);
+            ch1_data_reg <= adc_data(15 downto 4);
         end if;
     end process proc;
     

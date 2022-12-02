@@ -134,9 +134,31 @@ class processing_system7_v5_5_tlm : public sc_core::sc_module   {
     
     public:
     // Non-AXI ports are declared here
+    sc_core::sc_out<bool> TTC0_WAVE0_OUT;
+    sc_core::sc_out<bool> TTC0_WAVE1_OUT;
+    sc_core::sc_out<bool> TTC0_WAVE2_OUT;
     sc_core::sc_in<bool> M_AXI_GP0_ACLK;
-    sc_core::sc_in<bool> Core0_nIRQ;
+    sc_core::sc_in<sc_dt::sc_bv<1> >  IRQ_F2P;
+    sc_core::sc_out<bool> FCLK_CLK0;
+    sc_core::sc_out<bool> FCLK_RESET0_N;
     sc_core::sc_inout<sc_dt::sc_bv<54> >  MIO;
+    sc_core::sc_inout<bool> DDR_CAS_n;
+    sc_core::sc_inout<bool> DDR_CKE;
+    sc_core::sc_inout<bool> DDR_Clk_n;
+    sc_core::sc_inout<bool> DDR_Clk;
+    sc_core::sc_inout<bool> DDR_CS_n;
+    sc_core::sc_inout<bool> DDR_DRSTB;
+    sc_core::sc_inout<bool> DDR_ODT;
+    sc_core::sc_inout<bool> DDR_RAS_n;
+    sc_core::sc_inout<bool> DDR_WEB;
+    sc_core::sc_inout<sc_dt::sc_bv<3> >  DDR_BankAddr;
+    sc_core::sc_inout<sc_dt::sc_bv<15> >  DDR_Addr;
+    sc_core::sc_inout<bool> DDR_VRN;
+    sc_core::sc_inout<bool> DDR_VRP;
+    sc_core::sc_inout<sc_dt::sc_bv<4> >  DDR_DM;
+    sc_core::sc_inout<sc_dt::sc_bv<32> >  DDR_DQ;
+    sc_core::sc_inout<sc_dt::sc_bv<4> >  DDR_DQS_n;
+    sc_core::sc_inout<sc_dt::sc_bv<4> >  DDR_DQS;
     sc_core::sc_inout<bool> PS_SRSTB;
     sc_core::sc_inout<bool> PS_CLK;
     sc_core::sc_inout<bool> PS_PORB;
@@ -178,9 +200,17 @@ processing_system7_v5_5_tlm(sc_core::sc_module_name name,
     
     // sc_clocks for generating pl clocks
     // output pins FCLK_CLK0..3 are drived by these clocks
+    sc_core::sc_clock FCLK_CLK0_clk;
 
     
+    //Method which is sentive to FCLK_CLK0_clk sc_clock object
+    //FCLK_CLK0 pin written based on FCLK_CLK0_clk clock value 
+    void trigger_FCLK_CLK0_pin();
     
+    void IRQ_F2P_method();
+    //FCLK_RESET0 output reset pin get toggle when emio bank 2's 31th signal gets toggled
+    //EMIO[2] bank 31th(GPIO[95] signal)acts as reset signal to the PL(refer Zynq UltraScale+ TRM, page no:761)
+    void FCLK_RESET0_N_trigger();
 
     sc_signal<bool> qemu_rst;
     void start_of_simulation();

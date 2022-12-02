@@ -17,17 +17,32 @@ void OSCI_Handler(void *CallbackRef) {
 	INT_enable();
 }
 
-void OSCI_ReadData(u8 buffer[], u8 length) {
-	for (int i = 0; i < length; i++) {
-		// TODO read ram
-	}
+u16 OSCI_ReadByte(u32 offset) {
+	Xil_Out32(REG_CH1_Ram_Adr, offset);
+	return (u16)(Xil_In32(REG_CH1_Ram_Data) & 0xFFFF);
 }
 
 void OSCI_StartAcquire() {
 	OSCI_Clear();
 
-	AXI_setBitPattern(ADD_TRIGGER_EN, BIT_CH1_EN);
-	// TODO set ch1_ctrl.en = 1
+	AXI_setBitPattern(ADD_CH1_RST, BIT_CH1_RST);
+	AXI_clearBitPattern(ADD_CH1_RST, BIT_CH1_RST);
+
+	AXI_setBitPattern(ADD_CH1_EN, BIT_CH1_EN);
+	AXI_clearBitPattern(ADD_CH1_EN, BIT_CH1_EN);
+}
+
+void OSCI_SetTriggerCfg(uint16_t threshold, uint8_t sel, uint8_t  mode) {
+	// reset osci
+	AXI_setBitPattern(ADD_CH1_RST, BIT_CH1_RST);
+
+	Xil_Out32(REG_CH1_Trigger, mode);
+
+	uint32_t reg1 = threshold << 16 | sel;
+	Xil_Out32(REG_CH1_Mode_Edge, reg1);
+
+	// clear reset
+	AXI_clearBitPattern(ADD_CH1_RST, BIT_CH1_RST);
 }
 
 int OSCI_Init() {
@@ -38,11 +53,14 @@ int OSCI_Init() {
 		return XST_FAILURE;
 	}
 
+	INT_enableInterrupt(OSCI_INTERRUPT_ID);
+
 	return XST_SUCCESS;
 }
 
 int OSCI_DataReady() {
-	return s_dataReady;
+	// hack: IRQ does not work...
+	return AXI_readBitPattern(ADD_CH1_IRQ, BIT_CH1_IRQ) != 0;
 }
 
 void OSCI_Clear() {

@@ -51,18 +51,6 @@ begin
     
     ch1_reset <= rst or ch1_rst;
     
-    proc_ram : process (clk) is
-    begin
-        if (rising_edge(clk)) then
-            ch1_read_en <= '0';
-        
-            if (last_read_address /= ch1_ram_adr) then
-                last_read_address <= ch1_ram_adr;
-                ch1_read_en <= '1';
-            end if;
-        end if;
-    end process;
-    
     -- channel 1
     ch1 : component channel
         generic map(
@@ -75,15 +63,16 @@ begin
             start            => ch1_en,
             -- TODO use ch1_ram_data, ch1_ram_adr to generate following read access.
             -- an each address change, we must generate a new read op.
-            read_address     => last_read_address,
+            read_address     => ch1_ram_adr,
             read_data        => ch1_ram_data,
-            read_en          => ch1_read_en,
+            read_en          => '1',
             mode             => ch1_mode,
             edge_sel         => ch1_edge_sel,
             edge_thre        => ch1_edge_thre,
             record_ready_irq => ch1_irq,
             adc_val          => ch1_adc,
-            trigger_index => trigger_index
+            trigger_index    => trigger_index
         ) ;
     
+	
 end architecture RTL;

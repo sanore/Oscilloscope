@@ -15,7 +15,7 @@ architecture RTL of counter_tb is
         );
     end component counter;
     signal dut_clk : std_ulogic := '0';
-    signal reset   : std_ulogic := '0';
+    signal reset   : std_ulogic := '1';
     signal enable  : std_ulogic := '0';
     signal dut_cnt : std_ulogic_vector(12 downto 0);
 begin
@@ -28,18 +28,35 @@ begin
         );
 
     dut_clk <= not dut_clk after 5 ns;
-    reset   <= '1', '0' after 50 ns;
-    enable  <= '0', '1' after 50 ns;
+    
     dut_proc : process is
     begin
-        wait for 55 ns;
-        for i in 0 to 10 loop
+        wait for 10 ns;
+        assert(dut_cnt = std_ulogic_vector(to_unsigned(0, dut_cnt'length))) report ("unexpected counter value. Expected 0, got " & integer'image(to_integer(unsigned(dut_cnt)))) severity error;
+        reset <= '0';
+        wait for 10 ns;
+        assert(dut_cnt = std_ulogic_vector(to_unsigned(0, dut_cnt'length))) report "unexpected counter value. Expected 0, got " & integer'image(to_integer(unsigned(dut_cnt))) severity error;
+        enable <= '1';
+        for i in 0 to 2**13 -1 loop
             wait for 5 ns;
-            assert (dut_cnt = std_ulogic_vector(to_unsigned(i, dut_cnt'length))) report "unexpected counter value" severity error;
-            wait for 99 * 10 ns + 5 ns;
+            assert (dut_cnt = std_ulogic_vector(to_unsigned(i, dut_cnt'length))) report "unexpected counter value. Expected " & integer'image(i) & ", got " & integer'image(to_integer(unsigned(dut_cnt))) severity error;
+            wait for 995 ns;
         end loop;
         
-        assert false report "simulation ended" severity error;
+        wait for 5 ns;
+        assert(dut_cnt = std_ulogic_vector(to_unsigned(0, dut_cnt'length))) report "unexpected counter value. Expected 0, got " & integer'image(to_integer(unsigned(dut_cnt))) severity error;
+        wait for 1 us;
+        enable <= '0';
+        -- counter is stopped
+        wait for 50 ns;
+        assert(dut_cnt = std_ulogic_vector(to_unsigned(1, dut_cnt'length))) report "unexpected counter value. Expected 1, got " & integer'image(to_integer(unsigned(dut_cnt))) severity error;
+
+        reset <= '1';
+        wait for 15 ns;
+        assert(dut_cnt = std_ulogic_vector(to_unsigned(0, dut_cnt'length))) report "unexpected counter value. Expected 0, got " & integer'image(to_integer(unsigned(dut_cnt))) severity error;
+        wait for 20 ns;
+        
+        assert false report "simulation ended" severity failure;
     end process dut_proc;
 
 end architecture RTL;
