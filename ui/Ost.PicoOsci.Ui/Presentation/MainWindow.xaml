@@ -16,7 +16,7 @@
                      Height="900"
                      Width="1600"
                      WindowStartupLocation="CenterScreen"
-                     syncfusionskin:SfSkinManager.Theme="{syncfusionskin:SkinManagerExtension ThemeName=FluentDark}">
+                     syncfusionskin:SfSkinManager.Theme="{syncfusionskin:SkinManagerExtension ThemeName=Office365}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -35,13 +35,6 @@
                     <syncfusion:RibbonTextBox Name="ComPortTxt" Text="COM1"
                                               Width="140" Padding="2" Margin="15 15 2 2"
                                               IsEnabled="{Binding IsConnected.Value, Converter={StaticResource InvertedBooleanConverter}}" />
-                </syncfusion:RibbonBar>
-            </syncfusion:RibbonTab>
-
-            <syncfusion:RibbonTab Caption="HELP">
-                <syncfusion:RibbonBar Header="App" IsLauncherButtonVisible="False">
-                    <syncfusion:RibbonButton Label="Update" LargeIcon="Icons/update.png" SizeForm="Large"
-                                             Command="{Binding CheckForUpdate}" />
                 </syncfusion:RibbonBar>
             </syncfusion:RibbonTab>
         </syncfusion:Ribbon>

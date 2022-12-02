@@ -47,9 +47,8 @@ namespace Ost.PicoOsci.Ui.Oscilloscope.Uart {
             var data = new byte[4];
             data[0] = (byte)((threshold & 0x0FFF) >> 8);
             data[1] = (byte)(threshold & 0x00FF);
-            // TODO EdgeSel & EdgeMode
-            data[2] = 1; // (byte)(trigger.EdgeSel & 0x000F); // rising (0001), falling (0010), both/threshold (0011), ...
-            data[3] = 0; // (byte)(trigger.EdgeMode & 0x000F); // EdgeMode=0
+            data[2] = (byte)((int)trigger.EdgeMode.Value & 0x000F);
+            data[3] = (byte)((int)trigger.TriggerMode.Value & 0x000F);
 
             Send(Tag.TriggerEdge, data);
         }
@@ -75,11 +74,13 @@ namespace Ost.PicoOsci.Ui.Oscilloscope.Uart {
                 data.CopyTo(newBuffer, buffer.Length);
 
                 buffer = newBuffer;
+
+                var length = (byte)data.Length;
+                buffer[1] = (byte)(length & 0xFF);
             }
 
-            var length = (byte)buffer.Length;
             buffer[0] = (byte)((byte)tag & 0xF);
-            buffer[1] = (byte)(length & 0xFF);
+
 
             try { m_sender.Send(buffer); }
             catch (Exception ex) { m_listener.Error(ex); }

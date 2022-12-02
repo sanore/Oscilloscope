@@ -33,10 +33,5 @@ namespace Ost.PicoOsci.Ui.Presentation.TriggerCfg {
         public TriggerCfgPanelView() {
             InitializeComponent();
         }
-
-        private void UIElement_OnPreviewTextInput(object sender, TextCompositionEventArgs e) {
-            var regex = new Regex(@"^[0-9]*(?:\.[0-9]*)?$");
-            e.Handled = !regex.IsMatch(e.Text);
-        }
     }
 }

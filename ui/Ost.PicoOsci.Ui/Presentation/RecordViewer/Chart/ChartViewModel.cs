@@ -21,6 +21,7 @@
 // SOFTWARE.
 
 using System;
+using Microsoft.AppCenter.Ingestion.Models;
 using Ost.PicoOsci.Ui.Core.WPF.MVVM;
 using Ost.PicoOsci.Ui.Oscilloscope;
 using Syncfusion.UI.Xaml.Charts;
@@ -43,7 +44,8 @@ namespace Ost.PicoOsci.Ui.Presentation.RecordViewer.Chart {
         }
 
         public void Render(Record record) {
-            Series.Clear();
+            Clear();
+
             Series.Add(new FastLineSeries {
                 YBindingPath = record.BindingY,
                 XBindingPath = record.BindingX,
@@ -52,6 +54,23 @@ namespace Ost.PicoOsci.Ui.Presentation.RecordViewer.Chart {
                 EnableAnimation = true,
                 AnimationDuration = TimeSpan.FromMilliseconds(500)
             });
+
+            var trigger = new Record(record.TriggerIndex);
+            trigger.Add(trigger.TriggerIndex, 0);
+            trigger.Add(trigger.TriggerIndex+1, record.MaxValue);
+            Series.Add(new FastLineSeries {
+                YBindingPath = trigger.BindingY,
+                XBindingPath = trigger.BindingX,
+                ItemsSource = trigger.Values,
+                DataContext = trigger,
+                EnableAnimation = true,
+                AnimationDuration = TimeSpan.FromMilliseconds(500)
+            });
+
+        }
+
+        public void Clear() {
+            Series.Clear();
         }
     }
 }

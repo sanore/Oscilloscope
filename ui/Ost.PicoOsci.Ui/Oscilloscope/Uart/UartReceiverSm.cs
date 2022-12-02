@@ -27,70 +27,78 @@ namespace Ost.PicoOsci.Ui.Oscilloscope.Uart {
     public class UartReceiverSm {
         public UartReceiverSm(UartReceiverIfc listener) {
             m_listener = listener;
-            m_state    = State.HeaderParse;
-            m_buffer   = new List<byte>();
+            m_state    = State.HeaderTagParse;
+            m_dataBuffer   = new List<byte>();
         }
 
-        public void Process(byte value) {
+        public void Process(byte data) {
             switch (m_state) {
-            case State.HeaderParse:
-                ParseHeader(value);
-                break;
+            case State.HeaderTagParse: {
+                    var toPc = (data & 0x80) != 0;
+                    if (!toPc) { return; }
+
+                    m_lastTag = (UartConnection.Tag)(data & 0x0F);
+                    m_state = State.HeaderInfoParse;
+                    m_dataBuffer.Clear();
+                    break;
+                }
+
+            case State.HeaderInfoParse: {
+                    m_headerLength--;
+
+                    if (m_headerLength < 0) {
+                        m_headerLength = data;
+                    } else {
+                        m_dataBuffer.Add(data);
+                    }
+
+                    if (m_headerLength == 0) {
+                        var buffer = m_dataBuffer.ToArray();
+                        m_dataBuffer.Clear();
+
+                        m_lastTriggerIdx = buffer[2] << 8 | buffer[3];
+                        m_lastDataLength = buffer[0] << 8 | buffer[1];
+
+                        if (m_lastTag == UartConnection.Tag.Acquire) {
+                            m_state = State.DataParse;
+                            m_listener.OnAcquireStarted();
+                        }
+                        else {
+                            m_state = State.HeaderTagParse;
+                        }
+                    }
+
+                    break;
+                }
+
             case State.DataParse:
-                ParseData(value);
+                ParseData(data);
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
             }
         }
 
-        private void ParseHeader(byte data) {
-            switch (m_counter) {
-            case 0: {
-                var toPc = (data & 0x80) != 0;
-                if (!toPc) { return; }
-
-                m_counter++;
-                m_lastTag = (UartConnection.Tag)(data & 0x0F);
-                break;
-            }
-
-            case 1: {
-                m_lastLength = data;
-
-                switch (m_lastTag) {
-                case UartConnection.Tag.Acquire:
-                    m_buffer.Clear();
-                    m_listener.OnAcquireStarted();
-                    m_state = State.DataParse;
-                    break;
-                }
-
-                m_counter = 0;
-
-                break;
-            }
-            }
-        }
-
         private void ParseData(byte value) {
-            m_buffer.Add(value);
+            m_dataBuffer.Add(value);
 
-            if (m_buffer.Count == m_lastLength) {
-                m_listener.OnAcquireCompleted(m_buffer.ToArray(), m_lastLength);
-                m_state = State.HeaderParse;
+            if (m_lastDataLength == m_dataBuffer.Count) {
+                m_listener.OnAcquireCompleted(m_lastTriggerIdx, m_dataBuffer);
+                m_state = State.HeaderTagParse;
             }
         }
 
         private readonly UartReceiverIfc    m_listener;
-        private readonly List<byte>         m_buffer;
+        private readonly List<byte>         m_dataBuffer;
         private          State              m_state;
-        private          int                m_counter;
         private          UartConnection.Tag m_lastTag;
-        private          int                m_lastLength;
+        private          int                m_lastTriggerIdx;
+        private          int                m_lastDataLength;
+        private          int                m_headerLength;
 
         private enum State {
-            HeaderParse,
+            HeaderTagParse,
+            HeaderInfoParse,
             DataParse
         }
     }

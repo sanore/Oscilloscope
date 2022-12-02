@@ -23,14 +23,37 @@
 using Ost.PicoOsci.Ui.Core.WPF.Notify;
 
 namespace Ost.PicoOsci.Ui.Oscilloscope {
+
+    /// <summary>
+    /// Do not change the values! Used in uart protocol
+    /// </summary>
+    public enum TriggerMode {
+        Edge = 0b0000
+    }
+
+    /// <summary>
+    /// Do not change the values! Used in uart protocol
+    /// </summary>
+    public enum EdgeMode {
+        Rising   = 0b0001,
+        Falling  = 0b0010,
+        Both     = 0b0011
+    }
+
     public class TriggerConfig {
         /// <summary>
-        /// Range +1 to - 1V
+        /// Range 0..1V
         /// </summary>
         public NotifyValIfc<double> Threshold { get; }
 
+        public NotifyValIfc<TriggerMode> TriggerMode { get; }
+
+        public NotifyValIfc<EdgeMode> EdgeMode { get; }
+
         public TriggerConfig() {
             Threshold = Notify.MakeVal(0.5);
+            TriggerMode = Notify.MakeVal(Oscilloscope.TriggerMode.Edge);
+            EdgeMode = Notify.MakeVal(Oscilloscope.EdgeMode.Rising);
         }
     }
 }

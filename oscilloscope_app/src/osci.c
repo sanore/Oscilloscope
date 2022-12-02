@@ -22,6 +22,10 @@ u16 OSCI_ReadByte(u32 offset) {
 	return (u16)(Xil_In32(REG_CH1_Ram_Data) & 0xFFFF);
 }
 
+u16 OSCI_GetTriggerIndex() {
+	return (u16)(Xil_In32(REG_CH1_Ram_Data) >> 19);
+}
+
 void OSCI_StartAcquire() {
 	OSCI_Clear();
 
@@ -59,8 +63,7 @@ int OSCI_Init() {
 }
 
 int OSCI_DataReady() {
-	// hack: IRQ does not work...
-	return AXI_readBitPattern(ADD_CH1_IRQ, BIT_CH1_IRQ) != 0;
+	return s_dataReady != 0;
 }
 
 void OSCI_Clear() {

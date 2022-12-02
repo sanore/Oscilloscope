@@ -21,12 +21,13 @@
 // SOFTWARE.
 
 using System;
+using System.Collections.Generic;
 
 namespace Ost.PicoOsci.Ui.Oscilloscope.Uart {
     public interface UartReceiverIfc {
         void Error(Exception ex);
 
         void OnAcquireStarted();
-        void OnAcquireCompleted(byte[] data, int length);
+        void OnAcquireCompleted(int triggerIdx, IList<byte> data);
     }
 }

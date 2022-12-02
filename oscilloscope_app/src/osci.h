@@ -13,7 +13,7 @@
 
 
 #define OSCI_DEVICE_ID XPAR_OSCITOCPU_0_DEVICE_ID
-#define OSCI_INTERRUPT_ID XPAR_FABRIC_OSCI_0_CH1_IRQ_INTR
+#define OSCI_INTERRUPT_ID 61
 
 
 enum {
@@ -45,6 +45,7 @@ enum {
 	ADD_CH1_TRIGGER_EDGE_SEL = REG_CH1_Mode_Edge,
 	ADD_CH1_TRIGGER_EDGE_THR = REG_CH1_Mode_Edge,
 	ADD_CH1_DATA = REG_CH1_Ram_Data,
+	ADD_CH1_TRIG_INDEX = REG_CH1_Ram_Data,
 	ADD_CH1_ADR = REG_CH1_Ram_Adr,
 	ADD_CH1_IRQ = REG_CH1_Ram_Adr,
 };
@@ -68,6 +69,11 @@ int OSCI_DataReady();
  * Read ram from fpga
  */
 u16 OSCI_ReadByte(u32 offset);
+
+/**
+ * Gets the trigger index
+ */
+u16 OSCI_GetTriggerIndex();
 
 /**
  * start osci

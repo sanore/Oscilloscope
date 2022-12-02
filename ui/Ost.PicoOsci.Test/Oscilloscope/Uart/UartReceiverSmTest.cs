@@ -23,6 +23,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using Ost.PicoOsci.Ui.Oscilloscope.Uart;
+using System.Collections.Generic;
 
 namespace Ost.PicoOsci.Test.Oscilloscope.Uart {
     [TestClass]
@@ -36,19 +37,21 @@ namespace Ost.PicoOsci.Test.Oscilloscope.Uart {
         [TestMethod]
         public void TestStartTag() {
             m_testObject.Process(0b10000010); // Tag=Acquire
-            m_testObject.Process(0b00000011); // Length=3
+            m_testObject.Process(0b00000100); // Length=4
+            m_testObject.Process(0b00000000); // 0
+            m_testObject.Process(0b00000001); // DataLength
+            m_testObject.Process(0b00000000); // 0
+            m_testObject.Process(0b00000011); // TriggerIndex
 
             m_listener.Received(1)
                       .OnAcquireStarted();
             m_listener.DidNotReceive()
-                      .OnAcquireCompleted(Arg.Any<byte[]>(), Arg.Any<int>());
+                      .OnAcquireCompleted(Arg.Any<int>(), Arg.Any<List<byte>>());
 
-            m_testObject.Process(1);
-            m_testObject.Process(2);
-            m_testObject.Process(3);
+            m_testObject.Process(0b11111111); // 255
 
             m_listener.Received(1)
-                      .OnAcquireCompleted(Arg.Any<byte[]>(), 3);
+                      .OnAcquireCompleted(3, Arg.Any<List<byte>>());
         }
 
         private UartReceiverSm m_testObject;

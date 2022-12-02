@@ -41,18 +41,12 @@ namespace Ost.PicoOsci.Ui.Presentation.RecordViewer {
         /// <inheritdoc />
         public void OnRecordReceived(Record record) {
             Application.Current?.Dispatcher.Invoke(() => {
-                foreach (var prop in record.Values) {
-                    fullRecord.Add(prop.Value);
-                }
-
-                ChartVm.Render(fullRecord);
+                ChartVm.Render(record);
             });
         }
 
         public void Clear() {
-            fullRecord = new Record();
+            ChartVm.Clear();
         }
-
-        private Record fullRecord;
     }
 }

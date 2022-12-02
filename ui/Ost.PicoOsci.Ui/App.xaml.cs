@@ -20,13 +20,9 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Windows;
 using DryIoc;
-using Microsoft.AppCenter;
-using Microsoft.AppCenter.Analytics;
-using Microsoft.AppCenter.Crashes;
 using Ost.PicoOsci.Ui.Core.Window;
 using Ost.PicoOsci.Ui.Presentation;
 using Syncfusion.Licensing;
@@ -41,12 +37,7 @@ namespace Ost.PicoOsci.Ui {
             base.OnStartup(e);
 
             // Syncfusion licence
-            SyncfusionLicenseProvider.RegisterLicense("NTM5NzY5QDMxMzkyZTMzMmUzMEhrY2V4ZzhYcjJSVDhyTHRzRlVsa2NPRUdvcjYzOG91QURqdkJKbUNtcDg9");
-
-            // https://appcenter.ms/users/sandro.pedrett-ost.ch/apps/Oscilloscope/
-            AppCenter.Start("0c5ec483-5a91-4d6d-990f-13ac0e797da0", typeof(Analytics), typeof(Crashes));
-
-            await Crashes.SetEnabledAsync(!Debugger.IsAttached);
+            SyncfusionLicenseProvider.RegisterLicense("NzcyNTE4QDMyMzAyZTMzMmUzMGFKOThBamJwWlI0ampodjljSjJWSGRoUXFSWTV5Q2ZDekw4MUdHaVQ3Ulk9");
 
             var registrator = new Container(rules => rules.WithDefaultReuse(Reuse.Singleton));
 

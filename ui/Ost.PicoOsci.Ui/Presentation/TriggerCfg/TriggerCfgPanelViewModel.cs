@@ -24,22 +24,32 @@ using Ost.PicoOsci.Ui.Core.Docking;
 using Ost.PicoOsci.Ui.Core.WPF.Notify;
 using Ost.PicoOsci.Ui.Oscilloscope;
 using Syncfusion.Windows.Tools.Controls;
+using System.Collections.Generic;
 
 namespace Ost.PicoOsci.Ui.Presentation.TriggerCfg {
     public class TriggerCfgPanelViewModel : PanelViewModel {
 
-        public NotifyStringIfc Threshold { get; }
+        public NotifyValIfc<double> Threshold => m_oscilloscope.TriggerConfig.Value.Threshold;
+
+        public NotifyValIfc<TriggerMode> Mode => m_oscilloscope.TriggerConfig.Value.TriggerMode;
+
+        public NotifyValIfc<EdgeMode> Edge => m_oscilloscope.TriggerConfig.Value.EdgeMode;
+
+        public Dictionary<TriggerMode, string> TriggerModeCollection { get; }
+        public Dictionary<EdgeMode, string> EdgeSelCollection { get; }
 
         /// <inheritdoc />
         public TriggerCfgPanelViewModel(OscilloscopeMgntIfc oscilloscope) : base("Trigger Config", DockSide.Left) {
             m_oscilloscope = oscilloscope;
-            Threshold = Notify.MakeString("0.5");
-            Threshold.PropertyChanged += Threshold_PropertyChanged;
-        }
 
-        private void Threshold_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e) {
-            var trigger = m_oscilloscope.TriggerConfig.Value;
-            trigger.Threshold.Value = double.Parse(Threshold.Value);
+            TriggerModeCollection = new Dictionary<TriggerMode, string> {
+                { TriggerMode.Edge, "Edge Trigger" }
+            };
+            EdgeSelCollection = new Dictionary<EdgeMode, string> {
+                { EdgeMode.Falling, "Falling" },
+                { EdgeMode.Rising, "Rising" },
+                { EdgeMode.Both, "Rising/Falling" },
+            };
         }
 
         private readonly OscilloscopeMgntIfc m_oscilloscope;

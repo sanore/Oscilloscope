@@ -33,6 +33,11 @@ namespace Ost.PicoOsci.Ui.Oscilloscope {
         public IEnumerable<TimePoint> Values => m_values;
 
         /// <summary>
+        /// Gets the trigger index
+        /// </summary>
+        public int TriggerIndex { get; }
+
+        /// <summary>
         /// Gets the binding name for X axis
         /// </summary>
         public string BindingX => nameof(TimePoint.Time);
@@ -70,12 +75,13 @@ namespace Ost.PicoOsci.Ui.Oscilloscope {
         /// Constructor.
         /// </summary>
         /// <param name="bytes"></param>
-        public Record(IEnumerable<short> bytes = null) {
+        public Record(int triggerIndex, IEnumerable<float> bytes = null) {
             var tmp = new List<TimePoint>();
             if (bytes != null) {
-                foreach (short b in bytes) { tmp.Add(new TimePoint(tmp.Count, b)); }
+                foreach (float b in bytes) { tmp.Add(new TimePoint(tmp.Count, b)); }
             }
 
+            TriggerIndex = triggerIndex; 
             m_values = new ObservableCollection<TimePoint>(tmp);
         }
 
@@ -94,8 +100,8 @@ namespace Ost.PicoOsci.Ui.Oscilloscope {
         /// </summary>
         /// <param name="time">The time</param>
         /// <param name="value">The value</param>
-        public void Add(double value) {
-            m_values.Add(new TimePoint(m_values.Count, value));
+        public void Add(double x, double value) {
+            m_values.Add(new TimePoint(x, value));
         }
 
         private readonly IList<TimePoint> m_values;

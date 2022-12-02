@@ -49,18 +49,27 @@ void process(u8 header1, u8 header2) {
 		OSCI_StartAcquire();
 
 		// wait for data
-		// while (OSCI_DataReady() == 0);
+		while (OSCI_DataReady() == 0);
 
-		static u8 packetBuffer[4];
-		packetBuffer[0] = 0b10000010; // ToPC and Acquiere
-		packetBuffer[1] = 2; // length
-		for (int i = 0; i < RAM_SIZE; i++) {
+		// AcquireHeader
+		static u8 packetBuffer[2+4];
+		u16 triggerIndex = OSCI_GetTriggerIndex();
+		packetBuffer[0] = 0b10000010; // ToPC and AcquireInfo
+		packetBuffer[1] = 4; // length in word
+		packetBuffer[2] = RAM_SIZE >> 8;
+		packetBuffer[3] = RAM_SIZE & 0x00FF;
+		packetBuffer[4] = triggerIndex >> 8;
+		packetBuffer[5] = triggerIndex & 0x00FF;
+		UART_Write(packetBuffer, sizeof(packetBuffer)/sizeof(packetBuffer[0]));
+
+		// AcquireData
+		static u8 ramBuffer[RAM_SIZE*2];
+		for (int i = 0; i < RAM_SIZE; i += 2) {
 			u16 adcValue = OSCI_ReadByte(i);
-			packetBuffer[2] = adcValue >> 8;
-			packetBuffer[3] = adcValue & 0x00FF;
-
-			UART_Write(packetBuffer, sizeof(packetBuffer)/sizeof(packetBuffer[0]));
+			ramBuffer[i] = adcValue >> 8;
+			ramBuffer[i+1] = adcValue & 0x00FF;
 		}
+		UART_Write(ramBuffer, sizeof(ramBuffer)/sizeof(ramBuffer[0]));
 	}
 	else if (tag == 0b1000) { // TriggerEdge
     	u8 thr0 = UART_Read();

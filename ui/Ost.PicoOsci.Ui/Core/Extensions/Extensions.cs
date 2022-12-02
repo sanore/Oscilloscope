@@ -25,5 +25,15 @@ namespace Ost.PicoOsci.Ui.Core.Extensions {
         public static double Map(this double value, double fromSource, double toSource, double fromTarget, double toTarget) {
             return (value - fromSource) / (toSource - fromSource) * (toTarget - fromTarget) + fromTarget;
         }
+
+        public static T[] Shift<T>(T[] array, int shiftValue) {
+            var newArray = new T[array.Length];
+            shiftValue *= -1;
+            for (var i = 0; i < array.Length; i++) {
+                var index = (i + shiftValue + array.Length) % array.Length;
+                newArray[i] = array[index];
+            }
+            return newArray;
+        }
     }
 }

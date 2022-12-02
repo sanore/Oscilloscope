@@ -22,7 +22,9 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Ost.PicoOsci.Ui.Core.WPF.Notify;
+using Ost.PicoOsci.Ui.Core.Extensions;
 using Ost.PicoOsci.Ui.Oscilloscope.Uart;
 
 namespace Ost.PicoOsci.Ui.Oscilloscope {
@@ -43,7 +45,6 @@ namespace Ost.PicoOsci.Ui.Oscilloscope {
 
             m_listeners = new List<OscilloscopeListenerIfc>();
             m_uart = new UartConnection(this, port => new ComPort(port));
-            m_frameBuffer = new List<byte>();
         }
 
         /// <inheritdoc />
@@ -56,7 +57,7 @@ namespace Ost.PicoOsci.Ui.Oscilloscope {
         public void StartRecord() {
             if (!IsConnected.Value) { return; }
 
-            StatusDescription.Value = "Starting...";
+            StatusDescription.Value = "Wait for Trigger...";
             m_uart.SetTrigger(TriggerConfig.Value);
             m_uart.StartAcquire();
         }
@@ -76,34 +77,25 @@ namespace Ost.PicoOsci.Ui.Oscilloscope {
 
         /// <inheritdoc />
         public void OnAcquireStarted() {
-            StatusDescription.Value = "Wait for Trigger...";
+            StatusDescription.Value = "Receiving data...";
         }
 
         /// <inheritdoc />
-        public void OnAcquireCompleted(byte[] data, int length) {
-            StatusDescription.Value = "Trigger Received";
+        public void OnAcquireCompleted(int triggerIdx, IList<byte> rawBytes) {
+            StatusDescription.Value = "";
 
-            const int RAM_LENGTH = 8192;
-            foreach (byte b in data) {
-                m_frameBuffer.Add(b);
+            float[] adcValues = new float[rawBytes.Count / 2];
+
+            int countIdx = 0;
+            for (int i = 0; i < rawBytes.Count; i += 2) {
+                adcValues[countIdx++] = (rawBytes[i] << 8 | rawBytes[i + 1]) / 4095.0f; // convert to range 0..1V
             }
 
-            if (m_frameBuffer.Count == RAM_LENGTH * 2) {
-                var adcValues = new List<short>();
-                var rawBytes = m_frameBuffer.ToArray();
-
-                for (int i = 0; i < rawBytes.Length; i+=2) {
-                    short adc = (short)(rawBytes[i] << 8 | rawBytes[i+1]);
-                    adcValues.Add(adc);
-                }
-
-                foreach (var listener in m_listeners) { listener.OnRecordReceived(new Record(adcValues)); }
-                m_frameBuffer.Clear();
-            }
-
+            //var shiftFactor = (adcValues.Length / 2) - triggerIdx;
+            //var values = Extensions.Shift(adcValues, shiftFactor);
+            foreach (var listener in m_listeners) { listener.OnRecordReceived(new Record(triggerIdx, adcValues)); }
         }
 
-        private List<byte> m_frameBuffer;
         private readonly List<OscilloscopeListenerIfc> m_listeners;
         private readonly UartConnectionIfc             m_uart;
     }
