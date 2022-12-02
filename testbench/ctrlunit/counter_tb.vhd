@@ -1,3 +1,15 @@
+-- # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+-- #                                                                     #
+-- # Oscilloscope                                                        #
+-- # Miniproject Digital Microelectronics (Fall Semester 2022)           #
+-- # OST Rapperswil-Jona                                                 #
+-- #                                                                     #
+-- # Group 7:   Pele Constam                                             #
+-- #            Sandro Pedrett                                           #
+-- #            Erik Loeffler                                            #
+-- #                                                                     #
+-- # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
@@ -38,7 +50,7 @@ begin
         assert(dut_cnt = std_ulogic_vector(to_unsigned(0, dut_cnt'length))) report "unexpected counter value. Expected 0, got " & integer'image(to_integer(unsigned(dut_cnt))) severity error;
         
         enable <= '1';
-        -- coutn once through whole range
+        -- count once through whole range
         for i in 0 to 2**13 -1 loop
             wait for 5 ns;
             assert (dut_cnt = std_ulogic_vector(to_unsigned(i, dut_cnt'length))) report "unexpected counter value. Expected " & integer'image(i) & ", got " & integer'image(to_integer(unsigned(dut_cnt))) severity error;

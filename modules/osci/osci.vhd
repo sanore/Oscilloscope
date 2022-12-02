@@ -26,7 +26,7 @@ entity osci is
 
         -- channel 1 adc input
         ch1_adc       : in std_ulogic_vector(11 downto 0);
-		ch1_adc_valid : in  std_ulogic;
+		ch1_adc_valid : in  std_ulogic;  -- pulsed when adc value valid
 		
         -- channel irq to notify of  completed aquisition
         ch1_irq       : out std_ulogic;
