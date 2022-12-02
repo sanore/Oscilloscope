@@ -66,8 +66,23 @@ output_lines = ["0000\n", # trigger mode
                 "0001\n", # trigger sel
                 f"{TRIGGER_VALUE:012b}\n"] # trigger threshold
 output_lines.append(f"{test_data[0]:012b};0\n")
+fir0 = test_data[0] // 4
+fir1 = 0
+fir2 = 0
+fir3 = 0
+last_value = 0
+current_value = test_data[0] // 4
 for i in range(1, test_data.shape[0]):
-    if test_data[i] >= TRIGGER_VALUE and test_data[i - 1] <= TRIGGER_VALUE:
+
+    fir3 = fir2
+    fir2 = fir1
+    fir1 = fir0
+    fir0 = test_data[i]
+
+    last_value = current_value
+    current_value = fir0 // 4 + fir1 // 4 + fir2 // 4 + fir3 // 4
+
+    if current_value >= TRIGGER_VALUE and last_value <= TRIGGER_VALUE:
         output_lines.append(f"{test_data[i]:012b};1\n")
     else:
         output_lines.append(f"{test_data[i]:012b};0\n")
@@ -81,7 +96,19 @@ output_lines = ["0000\n", # trigger mode
                 "0010\n", # trigger sel
                 f"{TRIGGER_VALUE:012b}\n"] # trigger threshold
 output_lines.append(f"{test_data[0]:012b};0\n")
+
+fir0 = test_data[0] // 4
+current_value = test_data[0] // 4
+
 for i in range(1, test_data.shape[0]):
+    fir3 = fir2
+    fir2 = fir1
+    fir1 = fir0
+    fir0 = test_data[i]
+
+    last_value = current_value
+    current_value = fir0 // 4 + fir1 // 4 + fir2 // 4 + fir3 // 4
+
     if test_data[i] <= TRIGGER_VALUE and test_data[i - 1] >= TRIGGER_VALUE:
         output_lines.append(f"{test_data[i]:012b};1\n")
     else:
@@ -96,7 +123,20 @@ output_lines = ["0000\n", # trigger mode
                 "0011\n", # trigger sel
                 f"{TRIGGER_VALUE:012b}\n"] # trigger threshold
 output_lines.append(f"{test_data[0]:012b};0\n")
+
+fir0 = test_data[0] // 4
+current_value = test_data[0] // 4
+
 for i in range(1, test_data.shape[0]):
+
+    fir3 = fir2
+    fir2 = fir1
+    fir1 = fir0
+    fir0 = test_data[i]
+
+    last_value = current_value
+    current_value = fir0 // 4 + fir1 // 4 + fir2 // 4 + fir3 // 4
+
     if test_data[i] <= TRIGGER_VALUE and test_data[i - 1] >= TRIGGER_VALUE or\
         test_data[i] >= TRIGGER_VALUE and test_data[i - 1] <= TRIGGER_VALUE:
         output_lines.append(f"{test_data[i]:012b};1\n")
