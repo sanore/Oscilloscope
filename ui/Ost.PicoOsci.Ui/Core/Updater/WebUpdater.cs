@@ -1,6 +1,6 @@
 ﻿// MIT License
 // 
-// Copyright (c) 2021 LinearSPICE
+// Copyright (c) 2021 Oscilloscope
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -34,7 +34,7 @@ namespace Ost.PicoOsci.Ui.Core.Updater {
         /// <summary>
         /// The URL to the manifest xml file
         /// </summary>
-        private const string URL = "https://test.pbuw.ch/LinearSPICE/Manifest/manifest.xml";
+        private const string URL = "https://test.pbuw.ch/Oscilloscope/Manifest/manifest.xml";
 
         /// <summary>
         /// Constructor

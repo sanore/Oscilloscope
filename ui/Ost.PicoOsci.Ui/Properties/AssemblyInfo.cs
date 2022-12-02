@@ -6,16 +6,16 @@ using System.Windows;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("LinearSPICE")]
+[assembly: AssemblyTitle("Oscilloscope")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("LinearSPICE")]
+[assembly: AssemblyProduct("Oscilloscope")]
 [assembly: AssemblyCopyright("Copyright ©  2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
-[assembly: InternalsVisibleTo("LinearSPICE.App.Ui.UnitTest")]
+[assembly: InternalsVisibleTo("Oscilloscope.App.Ui.UnitTest")]
 
 // Setting ComVisible to false makes the types in this assembly not visible
 // to COM components.  If you need to access a type in this assembly from
