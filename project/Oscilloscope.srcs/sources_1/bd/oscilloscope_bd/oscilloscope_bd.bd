@@ -22,10 +22,10 @@
       "ila_1": "",
       "ila_0": "",
       "OsciToCpu_0": "",
-      "adc_processing_0": "",
-      "osci_0": "",
       "xadc_wiz_0": "",
-      "xlconstant_1": ""
+      "xlconstant_1": "",
+      "adc_processing_0": "",
+      "osci_0": ""
     },
     "interface_ports": {
       "DDR": {
@@ -2155,6 +2155,61 @@
         "xci_path": "ip\\oscilloscope_bd_OsciToCpu_0_3\\oscilloscope_bd_OsciToCpu_0_3.xci",
         "inst_hier_path": "OsciToCpu_0"
       },
+      "xadc_wiz_0": {
+        "vlnv": "xilinx.com:ip:xadc_wiz:3.3",
+        "xci_name": "oscilloscope_bd_xadc_wiz_0_1",
+        "xci_path": "ip\\oscilloscope_bd_xadc_wiz_0_1\\oscilloscope_bd_xadc_wiz_0_1.xci",
+        "inst_hier_path": "xadc_wiz_0",
+        "parameters": {
+          "ENABLE_AXI4STREAM": {
+            "value": "true"
+          },
+          "ENABLE_RESET": {
+            "value": "true"
+          },
+          "ENABLE_VCCDDRO_ALARM": {
+            "value": "false"
+          },
+          "ENABLE_VCCPAUX_ALARM": {
+            "value": "false"
+          },
+          "ENABLE_VCCPINT_ALARM": {
+            "value": "false"
+          },
+          "INTERFACE_SELECTION": {
+            "value": "ENABLE_DRP"
+          },
+          "OT_ALARM": {
+            "value": "false"
+          },
+          "SINGLE_CHANNEL_SELECTION": {
+            "value": "VP_VN"
+          },
+          "USER_TEMP_ALARM": {
+            "value": "false"
+          },
+          "VCCAUX_ALARM": {
+            "value": "false"
+          },
+          "VCCINT_ALARM": {
+            "value": "false"
+          }
+        }
+      },
+      "xlconstant_1": {
+        "vlnv": "xilinx.com:ip:xlconstant:1.1",
+        "xci_name": "oscilloscope_bd_xlconstant_1_0",
+        "xci_path": "ip\\oscilloscope_bd_xlconstant_1_0\\oscilloscope_bd_xlconstant_1_0.xci",
+        "inst_hier_path": "xlconstant_1",
+        "parameters": {
+          "CONST_VAL": {
+            "value": "3"
+          },
+          "CONST_WIDTH": {
+            "value": "7"
+          }
+        }
+      },
       "adc_processing_0": {
         "vlnv": "xilinx.com:module_ref:adc_processing:1.0",
         "xci_name": "oscilloscope_bd_adc_processing_0_1",
@@ -2281,61 +2336,6 @@
             "right": "0"
           }
         }
-      },
-      "xadc_wiz_0": {
-        "vlnv": "xilinx.com:ip:xadc_wiz:3.3",
-        "xci_name": "oscilloscope_bd_xadc_wiz_0_1",
-        "xci_path": "ip\\oscilloscope_bd_xadc_wiz_0_1\\oscilloscope_bd_xadc_wiz_0_1.xci",
-        "inst_hier_path": "xadc_wiz_0",
-        "parameters": {
-          "ENABLE_AXI4STREAM": {
-            "value": "true"
-          },
-          "ENABLE_RESET": {
-            "value": "true"
-          },
-          "ENABLE_VCCDDRO_ALARM": {
-            "value": "false"
-          },
-          "ENABLE_VCCPAUX_ALARM": {
-            "value": "false"
-          },
-          "ENABLE_VCCPINT_ALARM": {
-            "value": "false"
-          },
-          "INTERFACE_SELECTION": {
-            "value": "ENABLE_DRP"
-          },
-          "OT_ALARM": {
-            "value": "false"
-          },
-          "SINGLE_CHANNEL_SELECTION": {
-            "value": "VP_VN"
-          },
-          "USER_TEMP_ALARM": {
-            "value": "false"
-          },
-          "VCCAUX_ALARM": {
-            "value": "false"
-          },
-          "VCCINT_ALARM": {
-            "value": "false"
-          }
-        }
-      },
-      "xlconstant_1": {
-        "vlnv": "xilinx.com:ip:xlconstant:1.1",
-        "xci_name": "oscilloscope_bd_xlconstant_1_0",
-        "xci_path": "ip\\oscilloscope_bd_xlconstant_1_0\\oscilloscope_bd_xlconstant_1_0.xci",
-        "inst_hier_path": "xlconstant_1",
-        "parameters": {
-          "CONST_VAL": {
-            "value": "3"
-          },
-          "CONST_WIDTH": {
-            "value": "7"
-          }
-        }
       }
     },
     "interface_nets": {
@@ -2437,9 +2437,9 @@
           "ila_1/clk",
           "ila_0/clk",
           "OsciToCpu_0/s00_axi_aclk",
-          "osci_0/clk",
           "xadc_wiz_0/m_axis_aclk",
-          "xadc_wiz_0/s_axis_aclk"
+          "xadc_wiz_0/s_axis_aclk",
+          "osci_0/clk"
         ]
       },
       "osci_0_ch1_irq": {

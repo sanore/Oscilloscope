@@ -15,10 +15,10 @@ preplace inst processing_system7_0 -pg 1 -lvl 4 -x 1210 -y 640 -defaultsOSRD
 preplace inst ila_1 -pg 1 -lvl 6 -x 1990 -y 1090 -defaultsOSRD
 preplace inst ila_0 -pg 1 -lvl 6 -x 1990 -y 170 -defaultsOSRD
 preplace inst OsciToCpu_0 -pg 1 -lvl 6 -x 1990 -y 450 -defaultsOSRD
-preplace inst adc_processing_0 -pg 1 -lvl 2 -x 380 -y 1010 -defaultsOSRD
-preplace inst osci_0 -pg 1 -lvl 3 -x 800 -y 180 -defaultsOSRD
 preplace inst xadc_wiz_0 -pg 1 -lvl 6 -x 1990 -y 1360 -defaultsOSRD
 preplace inst xlconstant_1 -pg 1 -lvl 5 -x 1610 -y 1280 -defaultsOSRD
+preplace inst adc_processing_0 -pg 1 -lvl 2 -x 380 -y 1010 -defaultsOSRD
+preplace inst osci_0 -pg 1 -lvl 3 -x 800 -y 180 -defaultsOSRD
 preplace netloc OsciToCpu_0_ch1_edge_sel 1 2 5 610 320 NJ 320 1440J 310 1820 330 2150
 preplace netloc OsciToCpu_0_ch1_edge_thre 1 2 5 620 330 990J 290 NJ 290 1830 310 2190
 preplace netloc OsciToCpu_0_ch1_en 1 2 5 610 30 NJ 30 NJ 30 1830 30 2180
@@ -49,7 +49,7 @@ levelinfo -pg 1 0 110 380 800 1210 1610 1990 2220
 pagesize -pg 1 -db -bbox -sgen -130 0 2350 1520
 ",
    "Color Coded_ScaleFactor":"0.886709",
-   "Color Coded_TopLeft":"1235,981",
+   "Color Coded_TopLeft":"-79,717",
    "Default View_ScaleFactor":"0.667403",
    "Default View_TopLeft":"698,-28",
    "Display-PortTypeClock":"true",
