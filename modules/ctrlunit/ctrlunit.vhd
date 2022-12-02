@@ -64,36 +64,40 @@ begin
     trigger_process : process(trigger_pulse, mode, sample_counter, start_record, trigger_counter_idx) is
     begin
         sample_counter_rst <= '0';
-        record_ready_irq <= '0';
         sample_counter_en  <= '0';
+        record_ready_irq <= '0';
+        mode_next <= reset;
+
         if (mode = reset) then
             mode_next           <= idle;
             sample_counter_rst  <= '1';
         elsif (mode = idle) then
+            mode_next <= idle;
             if (start_record = '1') then
                 mode_next <= wait_for_trigger;
+                sample_counter_en <= '1';
             end if;
         elsif (mode = wait_for_trigger) then
-            sample_counter_rst <= '0';
+            mode_next <= wait_for_trigger;
             sample_counter_en  <= '1';
 
             if (trigger_pulse = '1') then
                 mode_next <= triggered;
             end if;
-
         elsif (mode = triggered) then
             trigger_counter_idx <= sample_counter;
             mode_next           <= wait_for_full;
             sample_counter_en  <= '1';
 
         elsif (mode = wait_for_full) then
-            
+            mode_next <= wait_for_full;
             sample_counter_en  <= '1';
             -- wait until sample counter is ram offset
             if ((unsigned(sample_counter) - addr_offset) = (unsigned(trigger_counter_idx))) then
                 mode_next          <= idle;
                 sample_counter_rst <= '1';
                 record_ready_irq <= '1';
+                sample_counter_en  <= '0';
             end if;
 
         end if;

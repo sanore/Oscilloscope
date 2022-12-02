@@ -12,19 +12,19 @@ entity counter is
 end entity counter;
 
 architecture RTL of counter is
-    signal count_actual : std_ulogic_vector(12 downto 0) := (others => '0');
-    signal count_next : std_ulogic_vector(12 downto 0) := "0000000000001";
+    signal count_actual : std_ulogic_vector(12 downto 0);
+    signal count_next : std_ulogic_vector(12 downto 0) ;
     signal divisor_actual, divisor_next     : std_ulogic_vector(6 downto 0);
 begin
     logic_proc : process(count_actual, divisor_actual) is
     begin
         divisor_next <= std_ulogic_vector(unsigned(divisor_actual) + 1);
-
+        count_next <= count_actual;
         if unsigned(divisor_actual) = 100 - 1 then
             if unsigned(count_actual) = "1111111111111" then
                 count_next <= (others => '0');
             else
-                count_next   <= std_ulogic_vector(unsigned(count_actual) + 1);
+                count_next <= std_ulogic_vector(unsigned(count_actual) + 1);
             end if;
             divisor_next <= (others => '0');
         end if;
@@ -33,7 +33,8 @@ begin
     clk_proc : process(clk) is
     begin
         if (rising_edge(clk)) then
-            if (rst = '1') then
+
+            if rst = '1' then
                 count_actual   <= (others => '0');
                 divisor_actual <= (others => '0');
             else
