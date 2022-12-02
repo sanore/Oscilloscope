@@ -1,7 +1,23 @@
+-- # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+-- #                                                                     #
+-- # Oscilloscope                                                        #
+-- # Miniproject Digital Microelectronics (Fall Semester 2022)           #
+-- # OST Rapperswil-Jona                                                 #
+-- #                                                                     #
+-- # Group 7:   Pele Constam                                             #
+-- #            Sandro Pedrett                                           #
+-- #            Erik Loeffler                                            #
+-- #                                                                     #
+-- # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
+-- A simple 13-bit counter. It counts up by one every 100 'clk' cycles.
+-- The unit only counts up and when 'en'(enable) is '1'.
+-- When 'en' is 0, the counter stops, but holds its last count.
+-- A hard reset is done by settings 'rst' to '1'. This will set the count to 0.
 entity counter is
     port(
         clk   : in  std_logic;

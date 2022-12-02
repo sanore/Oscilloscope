@@ -4,9 +4,9 @@
 -- # Miniproject Digital Microelectronics (Fall Semester 2022)           #
 -- # OST Rapperswil-Jona                                                 #
 -- #                                                                     #
--- # Group 7:   Pelé Constam                                             #
+-- # Group 7:   Pele Constam                                             #
 -- #            Sandro Pedrett                                           #
--- #            Erik Löffler                                             #
+-- #            Erik Loeffler                                             #
 -- #                                                                     #
 -- # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 -- #                                                                     #
