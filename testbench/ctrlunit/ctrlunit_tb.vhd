@@ -54,6 +54,7 @@ begin
         ) ;
     dut_state : process is
     begin
+        -- first run from system reset
         wait for 50 ns;
         reset <= '0';
         wait for 10 ns;
@@ -74,6 +75,35 @@ begin
         wait for 15 ns;
         assert(dut_trigger_index = std_ulogic_vector(to_unsigned(10000 mod 2**13, dut_trigger_index'length))) report "unexpected address, expected " & integer'image(10000 mod 2**13) & ", got " & integer'image(to_integer(unsigned(dut_trigger_index )));
         assert(dut_write_address = std_ulogic_vector(to_unsigned(14096 mod 2**13, dut_write_address'length))) report "unexpected address, expected " & integer'image(14096 mod 2**13) & ", got " & integer'image(to_integer(unsigned(dut_write_address )));
+        assert(dut_write_en = '0') report "expected write enabled = '0'" severity error;
+        
+        -- second run, no system reset
+        wait for 50 us;
+        start <= '1';
+        wait for 10 ns;
+        start <= '0';
+        wait for 10 ns;
+        assert(dut_write_en = '1') report "expected write enabled = '1'" severity error;
+        assert(dut_write_address = std_ulogic_vector(to_unsigned(14096 mod 2**13, dut_write_address'length))) report "unexpected address, expected " & integer'image(14096 mod 2**13) & ", got " & integer'image(to_integer(unsigned(dut_write_address )));
+        
+        wait for 10000 us;
+        
+        dut_trigger_pulse <= '1';
+        wait for 10 ns;
+        dut_trigger_pulse <= '0';
+        wait for 10 ns;
+        assert(dut_write_address = std_ulogic_vector(to_unsigned(24096 mod 2**13, dut_write_address'length))) report "unexpected address, expected " & integer'image(18192 mod 2**13) & ", got " & integer'image(to_integer(unsigned(dut_write_address )));
+        assert(dut_trigger_index  = dut_write_address);
+        
+        wait until rising_edge(dut_rec_ready);
+        wait for 15 ns;
+        
+        assert(dut_trigger_index = std_ulogic_vector(to_unsigned(24096 mod 2**13, dut_trigger_index'length))) 
+        report "unexpected address, expected " & integer'image(24096 mod 2**13) & ", got " & integer'image(to_integer(unsigned(dut_trigger_index )));
+        
+        assert(dut_write_address = std_ulogic_vector(to_unsigned(28192 mod 2**13, dut_write_address'length))) 
+        report "unexpected address, expected " & integer'image(28192 mod 2**13) & ", got " & integer'image(to_integer(unsigned(dut_write_address )));
+        
         assert(dut_write_en = '0') report "expected write enabled = '0'" severity error;
         wait for 50 ns;
         assert false report "simulation end" severity failure;
