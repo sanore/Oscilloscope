@@ -35,6 +35,7 @@ enum {
 	BIT_CH1_TRIGGER_EDGE_THR = 0xFFFF0000,
 	BIT_CH1_DATA = 0x0000FFFF,
 	BIT_CH1_ADR = 0x00000FFF,
+	BIT_CH1_IRQ = 0x80000000,
 };
 
 enum {
@@ -45,7 +46,7 @@ enum {
 	ADD_CH1_TRIGGER_EDGE_THR = REG_CH1_Mode_Edge,
 	ADD_CH1_DATA = REG_CH1_Ram_Data,
 	ADD_CH1_ADR = REG_CH1_Ram_Adr,
-	// TODO
+	ADD_CH1_IRQ = REG_CH1_Ram_Adr,
 };
 
 /**

@@ -59,7 +59,8 @@ int OSCI_Init() {
 }
 
 int OSCI_DataReady() {
-	return s_dataReady;
+	// hack: IRQ does not work...
+	return AXI_readBitPattern(ADD_CH1_IRQ, BIT_CH1_IRQ) != 0;
 }
 
 void OSCI_Clear() {
