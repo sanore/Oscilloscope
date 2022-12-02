@@ -25,7 +25,7 @@ entity ctrlunit is
 end entity ctrlunit;
 
 architecture RTL of ctrlunit is
-    type State is (reset, idle, wait_for_trigger, triggered, wait_for_full);
+    type State is (reset, idle, read_half, wait_for_trigger, triggered, wait_for_full);
     constant addr_offset : unsigned(ADDR_WIDTH - 1 downto 0) := to_unsigned(4096, write_address'length);
     signal sample_counter      : std_ulogic_vector(ADDR_WIDTH - 1 downto 0);
     signal trigger_counter_idx : std_ulogic_vector(ADDR_WIDTH - 1 downto 0);
@@ -54,7 +54,7 @@ begin
     write_data_process : process(mode, sample_counter, adc_val) is
     begin
         write_en      <= '0';
-        if (mode = wait_for_trigger or mode = wait_for_full or mode = triggered) then
+        if (mode = read_half or mode = wait_for_trigger or mode = wait_for_full or mode = triggered) then
             write_en <= '1';
             write_address <= sample_counter;
             write_data <= std_ulogic_vector(to_unsigned(0, DATA_WIDTH - 12)) & adc_val;
@@ -74,8 +74,14 @@ begin
         elsif (mode = idle) then
             mode_next <= idle;
             if (start_record = '1') then
-                mode_next <= wait_for_trigger;
+                mode_next <= read_half;
                 sample_counter_en <= '1';
+            end if;
+        elsif mode = read_half then
+            mode_next <= read_half;
+            sample_counter_en  <= '1';
+            if(unsigned(sample_counter) >= addr_offset) then
+                mode_next <= wait_for_trigger ;
             end if;
         elsif (mode = wait_for_trigger) then
             mode_next <= wait_for_trigger;
@@ -96,6 +102,7 @@ begin
             if ((unsigned(sample_counter) - addr_offset) = (unsigned(trigger_counter_idx))) then
                 mode_next          <= idle;
                 record_ready_irq <= '1';
+                sample_counter_rst <= '1';
                 sample_counter_en  <= '0';
             end if;
 

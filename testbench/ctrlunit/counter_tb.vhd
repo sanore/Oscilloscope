@@ -54,7 +54,7 @@ begin
         reset <= '1';
         wait for 15 ns;
         assert(dut_cnt = std_ulogic_vector(to_unsigned(0, dut_cnt'length))) report "unexpected counter value. Expected 0, got " & integer'image(to_integer(unsigned(dut_cnt))) severity error;
-        wait for 20 ns;
+        wait for 100 ns;
         
         assert false report "simulation ended" severity failure;
     end process dut_proc;
