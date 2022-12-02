@@ -18,9 +18,11 @@ use ieee.numeric_std.all;
 -- It contains a trigger block, a control unit and the block ram.
 -- Pulsing 'start' will start an aquisition. 
 -- When the aquisition is complete, 'record_ready_irq' will provide a single pulse.
--- the trigger index and the ram contents are valid if and only if 'record_ready_irq' has been pulsed.
+-- The trigger index and the ram contents are valid if and only if 'record_ready_irq' has been pulsed.
 -- The ram contents can then be read out with the read interface.
 -- Changing the channel/trigger configuration requires 'rst' to be set to '1'.
+-- The generic params must be set to their defaults, as not everything 
+-- is working with them as intended for now.
 entity channel is
     generic(
         ADDR_WIDTH : integer := 13;
@@ -33,12 +35,12 @@ entity channel is
         -- single pulse to start aquisition
         start            : in std_ulogic;
         
-        -- ram read interface for the processor.
+        -- ram read interface for the processor. see ram.vhd for details.
         read_address     : in std_ulogic_vector(ADDR_WIDTH - 1 downto 0);
         read_data        : out std_ulogic_vector(DATA_WIDTH - 1 downto 0);
         read_en          : in  std_ulogic;
         
-        -- channel/trigger configuration.
+        -- channel/trigger configuration. See trigger.vhd for more details.
         mode              : in std_ulogic_vector(3 downto 0);
         edge_sel          : in std_ulogic_vector(3 downto 0);
         edge_thre         : in std_ulogic_vector(15 downto 0);

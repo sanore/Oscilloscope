@@ -17,19 +17,37 @@ use ieee.numeric_std.all;
 -- This entity represent the entire oscilloscope, which currently only consists of one channel.
 entity osci is
     port(
+        -- system clock
         clk          : in std_ulogic;
+        -- system reset
         rst          : in std_ulogic;
         
         -- channel 1 interface
+
+        -- channel 1 adc input
         ch1_adc       : in std_ulogic_vector(11 downto 0);
+
+        -- channel irq to notify of  completed aquisition
         ch1_irq       : out std_ulogic;
+        -- pulse starts an aquisition
         ch1_en        : in std_ulogic; 
-        ch1_rst       : in std_ulogic; 
+        -- channel reset. Active high.
+        ch1_rst       : in std_ulogic;
+
+        -- channel 1 trigger settings. 'ch1_rst' must be set to '1' to make changes.
+        -- trigger mode: edge(0000)
         ch1_mode      : in std_ulogic_vector(3 downto 0);
+        -- trigger edge: rising (0001), falling (0010), both/threshold (0011)
         ch1_edge_sel  : in std_ulogic_vector(3 downto 0);
+        -- trigger threshhold: adc value at which to trigger
         ch1_edge_thre : in std_ulogic_vector(15 downto 0);
+        
+        -- channel ram data at ram_adr
         ch1_ram_data  : out  std_ulogic_vector(15 downto 0);
+        -- channel ram address to read from.
         ch1_ram_adr   : in std_ulogic_vector(12 downto 0);
+
+        -- ram address on which was triggered
         trigger_index    : out std_ulogic_vector(12 downto 0)
     );
 end entity osci;
