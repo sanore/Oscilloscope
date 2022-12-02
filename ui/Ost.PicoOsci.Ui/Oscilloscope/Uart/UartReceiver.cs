@@ -48,7 +48,7 @@ namespace Ost.PicoOsci.Ui.Oscilloscope.Uart {
 
         private void Read() {
             while (!m_cancellationTokenSource.IsCancellationRequested) {
-                m_waiter.Wait(m_cancellationTokenSource.Token);
+                m_waiter.Wait();
                 if (!m_waiter.IsSet) {
                     m_cancellationTokenSource.Cancel();
                     continue;

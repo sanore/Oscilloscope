@@ -43,7 +43,7 @@ namespace Ost.PicoOsci.Ui.Oscilloscope.Uart {
         }
 
         public void SetTrigger(TriggerConfig trigger) {
-            var threshold = (short)trigger.Threshold.Value.Map(0, 0.5, 0, 4095);
+            var threshold = (short)trigger.Threshold.Value.Map(0, 1, 0, 4095);
             var data = new byte[4];
             data[0] = (byte)((threshold & 0x0FFF) >> 8);
             data[1] = (byte)(threshold & 0x00FF);
