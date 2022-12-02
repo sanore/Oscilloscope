@@ -15,7 +15,7 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 -- This entity represents a single oscilloscope channel.
--- It contains a trigger block, a control unit and the block ram.
+-- It contains a trigger block with filter, a control unit and the block ram.
 -- Pulsing 'start' will start an aquisition. 
 -- When the aquisition is complete, 'record_ready_irq' will provide a single pulse.
 -- The trigger index and the ram contents are valid if and only if 'record_ready_irq' has been pulsed.
