@@ -1,7 +1,26 @@
+-- # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+-- #                                                                     #
+-- # Oscilloscope                                                        #
+-- # Miniproject Digital Microelectronics (Fall Semester 2022)           #
+-- # OST Rapperswil-Jona                                                 #
+-- #                                                                     #
+-- # Group 7:   Pele Constam                                             #
+-- #            Sandro Pedrett                                           #
+-- #            Erik Loeffler                                            #
+-- #                                                                     #
+-- # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
+-- This entity represents a single oscilloscope channel.
+-- It contains a trigger block, a control unit and the block ram.
+-- Pulsing 'start' will start an aquisition. 
+-- When the aquisition is complete, 'record_ready_irq' will provide a single pulse.
+-- the trigger index and the ram contents are valid if and only if 'record_ready_irq' has been pulsed.
+-- The ram contents can then be read out with the read interface.
+-- Changing the channel/trigger configuration requires 'rst' to be set to '1'.
 entity channel is
     generic(
         ADDR_WIDTH : integer := 13;
@@ -10,20 +29,29 @@ entity channel is
     port(
         clk              : in  std_logic;
         rst              : in  std_logic;
+        
+        -- single pulse to start aquisition
         start            : in std_ulogic;
         
-        --read ram
+        -- ram read interface for the processor.
         read_address     : in std_ulogic_vector(ADDR_WIDTH - 1 downto 0);
         read_data        : out std_ulogic_vector(DATA_WIDTH - 1 downto 0);
         read_en          : in  std_ulogic;
         
-        -- channel state
+        -- channel/trigger configuration.
         mode              : in std_ulogic_vector(3 downto 0);
         edge_sel          : in std_ulogic_vector(3 downto 0);
         edge_thre         : in std_ulogic_vector(15 downto 0);
-        record_ready_irq  : out std_ulogic; 
+        
+        -- current adc value.
         adc_val           : in  std_ulogic_vector(11 downto 0);
-        trigger_index : out std_ulogic_vector(ADDR_WIDTH - 1 downto 0)
+        
+        -- ram index on which was triggered.
+        trigger_index : out std_ulogic_vector(ADDR_WIDTH - 1 downto 0);
+        
+        -- single pulse to notify aqusition stopped.
+        record_ready_irq  : out std_ulogic
+        
     );
 end entity channel;
 
@@ -81,6 +109,7 @@ architecture RTL of channel is
     signal write_data    : std_ulogic_vector(DATA_WIDTH - 1 downto 0);
     signal write_en      : std_ulogic;
     
+    -- trigger singals
     signal trigger_pulse : std_ulogic;
     signal trigger_enable: std_ulogic;
 begin

@@ -36,7 +36,9 @@ begin
         reset <= '0';
         wait for 10 ns;
         assert(dut_cnt = std_ulogic_vector(to_unsigned(0, dut_cnt'length))) report "unexpected counter value. Expected 0, got " & integer'image(to_integer(unsigned(dut_cnt))) severity error;
+        
         enable <= '1';
+        -- coutn once through whole range
         for i in 0 to 2**13 -1 loop
             wait for 5 ns;
             assert (dut_cnt = std_ulogic_vector(to_unsigned(i, dut_cnt'length))) report "unexpected counter value. Expected " & integer'image(i) & ", got " & integer'image(to_integer(unsigned(dut_cnt))) severity error;
@@ -44,13 +46,16 @@ begin
         end loop;
         
         wait for 5 ns;
+        -- must overflow correctly
         assert(dut_cnt = std_ulogic_vector(to_unsigned(0, dut_cnt'length))) report "unexpected counter value. Expected 0, got " & integer'image(to_integer(unsigned(dut_cnt))) severity error;
-        wait for 1 us;
+        
+        wait for 1 us; -- one count
+        -- then disable. counter is stopped -> should keep its old value
         enable <= '0';
-        -- counter is stopped
         wait for 50 ns;
         assert(dut_cnt = std_ulogic_vector(to_unsigned(1, dut_cnt'length))) report "unexpected counter value. Expected 1, got " & integer'image(to_integer(unsigned(dut_cnt))) severity error;
 
+        --hard reset again
         reset <= '1';
         wait for 15 ns;
         assert(dut_cnt = std_ulogic_vector(to_unsigned(0, dut_cnt'length))) report "unexpected counter value. Expected 0, got " & integer'image(to_integer(unsigned(dut_cnt))) severity error;

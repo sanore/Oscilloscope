@@ -1,14 +1,26 @@
+-- # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+-- #                                                                     #
+-- # Oscilloscope                                                        #
+-- # Miniproject Digital Microelectronics (Fall Semester 2022)           #
+-- # OST Rapperswil-Jona                                                 #
+-- #                                                                     #
+-- # Group 7:   Pele Constam                                             #
+-- #            Sandro Pedrett                                           #
+-- #            Erik Loeffler                                            #
+-- #                                                                     #
+-- # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-
+-- This entity represent the entire oscilloscope, which currently only consists of one channel.
 entity osci is
     port(
         clk          : in std_ulogic;
         rst          : in std_ulogic;
         
-        -- channel 1
+        -- channel 1 interface
         ch1_adc       : in std_ulogic_vector(11 downto 0);
         ch1_irq       : out std_ulogic;
         ch1_en        : in std_ulogic; 
@@ -38,19 +50,20 @@ architecture RTL of osci is
             mode             : in  std_ulogic_vector(3 downto 0);
             edge_sel         : in  std_ulogic_vector(3 downto 0);
             edge_thre        : in  std_ulogic_vector(15 downto 0);
-            record_ready_irq : out std_ulogic;
             adc_val          : in  std_ulogic_vector(11 downto 0);
-            trigger_index    : out std_ulogic_vector(ADDR_WIDTH - 1 downto 0)
+            trigger_index    : out std_ulogic_vector(ADDR_WIDTH - 1 downto 0);
+            record_ready_irq : out std_ulogic
         );
     end component channel;
     
-    signal ch1_reset : std_ulogic;
+    signal ch1_reset : std_ulogic; -- 'real' channel 1 reset signal
     signal last_read_address : std_ulogic_vector(12 downto 0);
     signal ch1_read_en : std_ulogic;
 begin
     
     ch1_reset <= rst or ch1_rst;
     
+    -- generates the read_en pulse for the ram whenever the read address changes.
     proc_ram : process (clk) is
     begin
         if (rising_edge(clk)) then
@@ -73,17 +86,15 @@ begin
             clk              => clk,
             rst              => ch1_reset,
             start            => ch1_en,
-            -- TODO use ch1_ram_data, ch1_ram_adr to generate following read access.
-            -- an each address change, we must generate a new read op.
             read_address     => last_read_address,
             read_data        => ch1_ram_data,
             read_en          => ch1_read_en,
             mode             => ch1_mode,
             edge_sel         => ch1_edge_sel,
             edge_thre        => ch1_edge_thre,
-            record_ready_irq => ch1_irq,
             adc_val          => ch1_adc,
-            trigger_index => trigger_index
+            trigger_index => trigger_index,
+            record_ready_irq => ch1_irq
         ) ;
     
 end architecture RTL;
