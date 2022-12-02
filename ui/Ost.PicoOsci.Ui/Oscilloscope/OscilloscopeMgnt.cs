@@ -91,9 +91,9 @@ namespace Ost.PicoOsci.Ui.Oscilloscope {
                 adcValues[countIdx++] = (rawBytes[i] << 8 | rawBytes[i + 1]) / 4095.0f; // convert to range 0..1V
             }
 
-            //var shiftFactor = (adcValues.Length / 2) - triggerIdx;
-            //var values = Extensions.Shift(adcValues, shiftFactor);
-            foreach (var listener in m_listeners) { listener.OnRecordReceived(new Record(triggerIdx, adcValues)); }
+            var shiftFactor = (adcValues.Length / 2) - triggerIdx;
+            var values = Extensions.Shift(adcValues, shiftFactor);
+            foreach (var listener in m_listeners) { listener.OnRecordReceived(new Record(adcValues.Length/2, values)); }
         }
 
         private readonly List<OscilloscopeListenerIfc> m_listeners;

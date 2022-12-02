@@ -180,6 +180,9 @@ begin
 
     -- start waiting for trigger
     tb_start <= '1';
+    
+    tb_adc_val <= "000010110110";
+    wait for 4500 us;
 
     -- feed in data
     while not endfile(waveform_data_file) loop        

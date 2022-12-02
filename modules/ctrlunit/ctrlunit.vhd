@@ -93,7 +93,7 @@ begin
             mode_next <= wait_for_full;
             sample_counter_en  <= '1';
             -- wait until sample counter is ram offset
-            if ((unsigned(sample_counter) - addr_offset) = (unsigned(trigger_counter_idx))) then
+            if (unsigned(sample_counter) = (unsigned(trigger_counter_idx) + addr_offset)) then
                 mode_next          <= idle;
                 sample_counter_rst <= '1';
                 record_ready_irq <= '1';
