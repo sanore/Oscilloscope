@@ -1,0 +1,136 @@
+/**
+ ******************************************************************************
+ * int.c
+ * Lukas Leuenberger
+ * V1.0.0
+ * 04-June-2018
+ * This file contains the interrupt functions
+ ******************************************************************************
+ **/
+
+/**
+ ******************************************************************************
+ * Include Files
+ ******************************************************************************
+ **/
+#include "xscugic.h"
+#include "int.h"
+
+/**
+ ******************************************************************************
+ * Global variables
+ ******************************************************************************
+ **/
+static XScuGic IntcInstance; /* Instance of the Interrupt Controller */
+
+/**
+ ******************************************************************************
+ * Initalizes the interrupt controller
+ ******************************************************************************
+ **/
+int INT_init() {
+  // Define some variables
+  XScuGic_Config *IntcConfig; /* Config for interrupt controller */
+  int Status;
+
+  // Initialize exceptions
+
+
+  /* Initialize the interrupt controller driver */
+  IntcConfig = XScuGic_LookupConfig(INT_DEVICE_ID);
+  if (NULL == IntcConfig)
+  {
+    return XST_FAILURE;
+  }
+
+  Status = XScuGic_CfgInitialize(&IntcInstance, IntcConfig, IntcConfig->CpuBaseAddress);
+  if (Status != XST_SUCCESS)
+  {
+    return XST_FAILURE;
+  }
+
+  // set the priority of IRQ_F2P[0:0] to 0xA0 (highest 0xF8, lowest 0x00) and a trigger for a rising edge 0x3.
+  XScuGic_SetPriorityTriggerType(&IntcInstance, INTC_INTERRUPT_ID_0, 0xA0, 0x3);
+
+  /*
+   * Connect the interrupt controller interrupt handler to the
+   * hardware interrupt handling logic in the processor.
+   */
+  Xil_ExceptionInit();
+  Xil_ExceptionRegisterHandler(XIL_EXCEPTION_ID_INT, (Xil_ExceptionHandler)XScuGic_InterruptHandler, &IntcInstance);
+
+  Xil_ExceptionEnable();
+
+  // Success
+  return XST_SUCCESS;
+}
+
+/**
+ ******************************************************************************
+ * Enables all interrupts
+ ******************************************************************************
+ **/
+void INT_enable()
+{
+  Xil_ExceptionEnable();
+}
+
+/**
+ ******************************************************************************
+ * Disables all interrupts
+ ******************************************************************************
+ **/
+void INT_disable()
+{
+  Xil_ExceptionDisable();
+}
+
+/**
+ ******************************************************************************
+ * Enables an interrupt
+ ******************************************************************************
+ **/
+void INT_enableInterrupt(u8 Id)
+{
+  XScuGic_Enable(&IntcInstance, Id);
+  XScuGic_InterruptMaptoCpu (&IntcInstance, XScuGic_GetCpuID(), Id);
+
+}
+
+/**
+ ******************************************************************************
+ * Disables an interrupt
+ ******************************************************************************
+ **/
+void INT_disableInterrupt(u8 Id)
+{
+  XScuGic_Disable(&IntcInstance, Id);
+}
+
+/**
+ ******************************************************************************
+ * Makes the connection between the Id of the interrupt source and the
+ * associated handler that is to run when the interrupt is recognized. The
+ * argument provided in this call as the Callbackref is used as the argument
+ * for the handler when it is called. In Cascade mode, connects handler to
+ * Slave controller handler table depending on the interrupt Id.
+ *
+ * WARNING: The handler provided as an argument will overwrite any handler
+ * that was previously connected.
+ ******************************************************************************
+ **/
+int INT_connect(u8 Id, Xil_InterruptHandler Handler, void *CallBackRef)
+{
+  return (XScuGic_Connect(&IntcInstance, Id, Handler, CallBackRef));
+}
+
+/**
+ ******************************************************************************
+ * Changes the priority
+ ******************************************************************************
+ **/
+void INT_setPriorityTriggerType (u32 Int_Id, u8 Priority, u8 Trigger)
+{
+  XScuGic_SetPriorityTriggerType (&IntcInstance, Int_Id, Priority, Trigger);
+}
+

@@ -1,0 +1,71 @@
+#include "osci.h"
+#include "int.h"
+#include "AXI_BIT.h"
+
+static int s_dataReady = 0;
+
+/**
+ ******************************************************************************
+ * This is the interrupt handler routine for the OSCI .
+ ******************************************************************************
+ **/
+void OSCI_Handler(void *CallbackRef) {
+	INT_disable();
+
+	s_dataReady += 1;
+
+	INT_enable();
+}
+
+void OSCI_ReadData(u16 buffer[], u32 offset, u8 length) {
+	for (int i = 0; i < length; i++) {
+		Xil_Out32(REG_CH1_Ram_Adr, offset + i);
+		u32 data = Xil_In32(REG_CH1_Ram_Data) & 0xFFFF;
+
+		buffer[i] = data;
+	}
+}
+
+void OSCI_StartAcquire() {
+	OSCI_Clear();
+
+	AXI_setBitPattern(ADD_CH1_RST, BIT_CH1_RST);
+	AXI_clearBitPattern(ADD_CH1_RST, BIT_CH1_RST);
+
+	AXI_setBitPattern(ADD_CH1_EN, BIT_CH1_EN);
+	AXI_clearBitPattern(ADD_CH1_EN, BIT_CH1_EN);
+}
+
+void OSCI_SetTriggerCfg(uint16_t threshold, uint8_t sel, uint8_t  mode) {
+	// reset osci
+	AXI_setBitPattern(ADD_CH1_RST, BIT_CH1_RST);
+
+	Xil_Out32(REG_CH1_Trigger, mode);
+
+	uint32_t reg1 = threshold << 16 | sel;
+	Xil_Out32(REG_CH1_Mode_Edge, reg1);
+
+	// clear reset
+	AXI_clearBitPattern(ADD_CH1_RST, BIT_CH1_RST);
+}
+
+int OSCI_Init() {
+	int status;
+
+	status = INT_connect(OSCI_INTERRUPT_ID, (XInterruptHandler) OSCI_Handler, 0);
+	if (status != XST_SUCCESS) {
+		return XST_FAILURE;
+	}
+
+	INT_enableInterrupt(OSCI_INTERRUPT_ID);
+
+	return XST_SUCCESS;
+}
+
+int OSCI_DataReady() {
+	return s_dataReady;
+}
+
+void OSCI_Clear() {
+	s_dataReady = 0;
+}

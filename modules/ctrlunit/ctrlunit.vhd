@@ -63,7 +63,7 @@ architecture RTL of ctrlunit is
         port(
             clk   : in  std_logic;
             rst   : in  std_logic;
-            en    : in  std_logic;
+            en    : in  std_ulogic;
             count : out std_ulogic_vector(ADDR_WIDTH - 1 downto 0)
         );
     end component counter;

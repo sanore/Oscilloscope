@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="ASCII"?>
 <systemproject:SystemProject xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sdsproject="http://www.xilinx.com/sdsproject" xmlns:systemproject="http://www.xilinx.com/systemproject" name="oscilloscope_app_system" platform="U:/DigMe/Oscilloscope/oscilloscope_platform/export/oscilloscope_platform/oscilloscope_platform.xpfm" platformUID="xilinx:zedboard::0.0(custom)" sysConfig="oscilloscope_platform" runtime="C/C++" rootFSLocation="" linuxImage="" sysroot="">
-  <configuration name="Debug" id="com.xilinx.sdx.system.managedbuilder.debugConfiguration.1008600476">
+  <configuration name="Debug" id="com.xilinx.sdx.system.managedbuilder.debugConfiguration.493839238">
     <configBuildOptions xsi:type="systemproject:SystemOptions">
       <applications name="oscilloscope_app" domainName="standalone_domain" domainPrettyName="standalone on ps7_cortexa9_0" appBuildConfig="Debug"/>
       <options xsi:type="sdsproject:Option" gensdcard="true" dmclkid="0"/>
     </configBuildOptions>
-    <lastBuildOptions xsi:type="systemproject:SystemOptions">
-      <applications name="oscilloscope_app" domainName="standalone_domain" domainPrettyName="standalone on ps7_cortexa9_0" appBuildConfig="Debug"/>
-      <options xsi:type="sdsproject:Option" gensdcard="true" dmclkid="0"/>
-    </lastBuildOptions>
   </configuration>
-  <configuration name="Release" id="com.xilinx.sdx.system.managedbuilder.releaseConfiguration.841718867">
+  <configuration name="Release" id="com.xilinx.sdx.system.managedbuilder.releaseConfiguration.400446335">
     <configBuildOptions xsi:type="systemproject:SystemOptions">
       <applications name="oscilloscope_app" domainName="standalone_domain" domainPrettyName="standalone on ps7_cortexa9_0" appBuildConfig="Release"/>
       <options xsi:type="sdsproject:Option" gensdcard="true" dmclkid="0"/>

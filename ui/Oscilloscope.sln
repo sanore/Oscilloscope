@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ost.PicoOsci.Ui", "Oscilloscope.App.Ui\Ost.PicoOsci.Ui.csproj", "{FB171EF7-6061-4A67-AFD4-6927F0913BF6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ost.PicoOsci.Ui", "Ost.PicoOsci.Ui\Ost.PicoOsci.Ui.csproj", "{FB171EF7-6061-4A67-AFD4-6927F0913BF6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ost.PicoOsci.Test", "Ost.PicoOsci.Test\Ost.PicoOsci.Test.csproj", "{30CB8BE3-9B25-4B0D-8216-369B11C2F2F4}"
 EndProject

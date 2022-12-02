@@ -1,0 +1,71 @@
+#include <stdio.h>
+#include "platform.h"
+#include "int.h"
+#include "osci.h"
+#include "uart.h"
+#include "xil_printf.h"
+
+
+#define RAM_SIZE 253
+
+
+void process(u8 header1, u8 header2);
+
+int main() {
+    init_platform();
+
+
+    // Initialize the interrupts
+    INT_init();
+    OSCI_Init();
+    UART_Init();
+
+    INT_enable();
+
+    OSCI_StartAcquire();
+
+    while (1) {
+    	// wait for header
+    	u8 header1 = UART_Read();
+    	u8 header2 = UART_Read();
+
+    	process(header1, header2);
+    }
+
+    cleanup_platform();
+    return 0;
+}
+
+void process(u8 header1, u8 header2) {
+	// For PC software
+	if ((header1 & 0x80) != 0) {
+		return;
+	}
+
+	u8 tag = header1 & 0x0F;
+
+	if (tag == 0b001) { // START
+		// start Osci
+		OSCI_StartAcquire();
+
+		// wait for data
+		while (OSCI_DataReady() == 0);
+
+		static u8 buffer[RAM_SIZE + 2];
+		OSCI_ReadData(&buffer[2], RAM_SIZE);
+
+		buffer[0] = 0b10000010;
+		buffer[1] = RAM_SIZE; // ToPC and Acquiere, length
+		UART_Write(buffer, sizeof(buffer)/sizeof(buffer[0]));
+	}
+	else if (tag == 0b1000) { // TriggerEdge
+    	u8 thr0 = UART_Read();
+    	u8 thr1 = UART_Read();
+    	u8 sel = UART_Read();
+    	u8 mode = UART_Read();
+
+    	int16_t threshold = thr0 << 8 | thr1;
+    	OSCI_SetTriggerCfg(threshold, sel, mode);
+		// TODO
+	}
+}

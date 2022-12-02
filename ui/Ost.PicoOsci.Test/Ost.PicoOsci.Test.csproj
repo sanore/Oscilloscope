@@ -67,7 +67,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Oscilloscope.App.Ui\Ost.PicoOsci.Ui.csproj">
+    <ProjectReference Include="..\Ost.PicoOsci.Ui\Ost.PicoOsci.Ui.csproj">
       <Project>{fb171ef7-6061-4a67-afd4-6927f0913bf6}</Project>
       <Name>Ost.PicoOsci.Ui</Name>
     </ProjectReference>
