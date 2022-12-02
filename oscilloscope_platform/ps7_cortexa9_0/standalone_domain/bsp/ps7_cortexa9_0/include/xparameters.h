@@ -42,6 +42,14 @@
 
 /******************************************************************/
 
+
+/* Definitions for peripheral PS7_DDR_0 */
+#define XPAR_PS7_DDR_0_S_AXI_BASEADDR 0x00100000
+#define XPAR_PS7_DDR_0_S_AXI_HIGHADDR 0x1FFFFFFF
+
+
+/******************************************************************/
+
 /* Definitions for driver DEVCFG */
 #define XPAR_XDCFG_NUM_INSTANCES 1U
 
@@ -174,6 +182,16 @@
 #define XPAR_PS7_SLCR_0_S_AXI_HIGHADDR 0xF8000FFF
 
 
+/* Peripheral Definitions for peripheral PS7_DDRC_0 */
+#define XPAR_PS7_DDRC_0_S_AXI_BASEADDR 0xF8006000
+#define XPAR_PS7_DDRC_0_S_AXI_HIGHADDR 0xF8006FFF
+
+
+/* Peripheral Definitions for peripheral PS7_QSPI_LINEAR_0 */
+#define XPAR_PS7_QSPI_LINEAR_0_S_AXI_BASEADDR 0xFC000000
+#define XPAR_PS7_QSPI_LINEAR_0_S_AXI_HIGHADDR 0xFCFFFFFF
+
+
 /******************************************************************/
 
 
@@ -207,12 +225,60 @@
 
 
 
+
+
+
+
+
+
+/******************************************************************/
+
+/* Definitions for driver GPIOPS */
+#define XPAR_XGPIOPS_NUM_INSTANCES 1
+
+/* Definitions for peripheral PS7_GPIO_0 */
+#define XPAR_PS7_GPIO_0_DEVICE_ID 0
+#define XPAR_PS7_GPIO_0_BASEADDR 0xE000A000
+#define XPAR_PS7_GPIO_0_HIGHADDR 0xE000AFFF
+
+
+/******************************************************************/
+
+/* Canonical definitions for peripheral PS7_GPIO_0 */
+#define XPAR_XGPIOPS_0_DEVICE_ID XPAR_PS7_GPIO_0_DEVICE_ID
+#define XPAR_XGPIOPS_0_BASEADDR 0xE000A000
+#define XPAR_XGPIOPS_0_HIGHADDR 0xE000AFFF
+
+
+/******************************************************************/
+
+/* Definitions for driver QSPIPS */
+#define XPAR_XQSPIPS_NUM_INSTANCES 1
+
+/* Definitions for peripheral PS7_QSPI_0 */
+#define XPAR_PS7_QSPI_0_DEVICE_ID 0
+#define XPAR_PS7_QSPI_0_BASEADDR 0xE000D000
+#define XPAR_PS7_QSPI_0_HIGHADDR 0xE000DFFF
+#define XPAR_PS7_QSPI_0_QSPI_CLK_FREQ_HZ 200000000
+#define XPAR_PS7_QSPI_0_QSPI_MODE 0
+#define XPAR_PS7_QSPI_0_QSPI_BUS_WIDTH 2
+
+
+/******************************************************************/
+
+/* Canonical definitions for peripheral PS7_QSPI_0 */
+#define XPAR_XQSPIPS_0_DEVICE_ID XPAR_PS7_QSPI_0_DEVICE_ID
+#define XPAR_XQSPIPS_0_BASEADDR 0xE000D000
+#define XPAR_XQSPIPS_0_HIGHADDR 0xE000DFFF
+#define XPAR_XQSPIPS_0_QSPI_CLK_FREQ_HZ 200000000
+#define XPAR_XQSPIPS_0_QSPI_MODE 0
+#define XPAR_XQSPIPS_0_QSPI_BUS_WIDTH 2
 
 
 /******************************************************************/
 
 /* Definitions for Fabric interrupts connected to ps7_scugic_0 */
-#define XPAR_FABRIC_OSCI_0_CH1_IRQ_INTR 31U
+#define XPAR_FABRIC_OSCI_0_CH1_IRQ_INTR 62U
 
 /******************************************************************/
 
@@ -279,6 +345,45 @@
 
 /******************************************************************/
 
+/* Definitions for driver TTCPS */
+#define XPAR_XTTCPS_NUM_INSTANCES 3U
+
+/* Definitions for peripheral PS7_TTC_0 */
+#define XPAR_PS7_TTC_0_DEVICE_ID 0U
+#define XPAR_PS7_TTC_0_BASEADDR 0XF8001000U
+#define XPAR_PS7_TTC_0_TTC_CLK_FREQ_HZ 111111115U
+#define XPAR_PS7_TTC_0_TTC_CLK_CLKSRC 0U
+#define XPAR_PS7_TTC_1_DEVICE_ID 1U
+#define XPAR_PS7_TTC_1_BASEADDR 0XF8001004U
+#define XPAR_PS7_TTC_1_TTC_CLK_FREQ_HZ 111111115U
+#define XPAR_PS7_TTC_1_TTC_CLK_CLKSRC 0U
+#define XPAR_PS7_TTC_2_DEVICE_ID 2U
+#define XPAR_PS7_TTC_2_BASEADDR 0XF8001008U
+#define XPAR_PS7_TTC_2_TTC_CLK_FREQ_HZ 111111115U
+#define XPAR_PS7_TTC_2_TTC_CLK_CLKSRC 0U
+
+
+/******************************************************************/
+
+/* Canonical definitions for peripheral PS7_TTC_0 */
+#define XPAR_XTTCPS_0_DEVICE_ID XPAR_PS7_TTC_0_DEVICE_ID
+#define XPAR_XTTCPS_0_BASEADDR 0xF8001000U
+#define XPAR_XTTCPS_0_TTC_CLK_FREQ_HZ 111111115U
+#define XPAR_XTTCPS_0_TTC_CLK_CLKSRC 0U
+
+#define XPAR_XTTCPS_1_DEVICE_ID XPAR_PS7_TTC_1_DEVICE_ID
+#define XPAR_XTTCPS_1_BASEADDR 0xF8001004U
+#define XPAR_XTTCPS_1_TTC_CLK_FREQ_HZ 111111115U
+#define XPAR_XTTCPS_1_TTC_CLK_CLKSRC 0U
+
+#define XPAR_XTTCPS_2_DEVICE_ID XPAR_PS7_TTC_2_DEVICE_ID
+#define XPAR_XTTCPS_2_BASEADDR 0xF8001008U
+#define XPAR_XTTCPS_2_TTC_CLK_FREQ_HZ 111111115U
+#define XPAR_XTTCPS_2_TTC_CLK_CLKSRC 0U
+
+
+/******************************************************************/
+
 /* Definitions for driver UARTPS */
 #define XPAR_XUARTPS_NUM_INSTANCES 1
 
@@ -286,7 +391,7 @@
 #define XPAR_PS7_UART_1_DEVICE_ID 0
 #define XPAR_PS7_UART_1_BASEADDR 0xE0001000
 #define XPAR_PS7_UART_1_HIGHADDR 0xE0001FFF
-#define XPAR_PS7_UART_1_UART_CLK_FREQ_HZ 100000000
+#define XPAR_PS7_UART_1_UART_CLK_FREQ_HZ 50000000
 #define XPAR_PS7_UART_1_HAS_MODEM 0
 
 
@@ -296,7 +401,7 @@
 #define XPAR_XUARTPS_0_DEVICE_ID XPAR_PS7_UART_1_DEVICE_ID
 #define XPAR_XUARTPS_0_BASEADDR 0xE0001000
 #define XPAR_XUARTPS_0_HIGHADDR 0xE0001FFF
-#define XPAR_XUARTPS_0_UART_CLK_FREQ_HZ 100000000
+#define XPAR_XUARTPS_0_UART_CLK_FREQ_HZ 50000000
 #define XPAR_XUARTPS_0_HAS_MODEM 0
 
 

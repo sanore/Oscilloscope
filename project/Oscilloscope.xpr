@@ -48,7 +48,7 @@
     <Option Name="SimulatorGccVersionRiviera" Val="6.2.0"/>
     <Option Name="SimulatorGccVersionActiveHdl" Val="6.2.0"/>
     <Option Name="TargetLanguage" Val="VHDL"/>
-    <Option Name="BoardPart" Val=""/>
+    <Option Name="BoardPart" Val="avnet.com:zedboard:part0:1.4"/>
     <Option Name="BoardPartRepoPaths" Val="C:/Users/sandro.pedrett/AppData/Roaming/Xilinx/Vivado/2021.1/xhub/board_store/xilinx_board_store"/>
     <Option Name="ActiveSimSet" Val="sim_1"/>
     <Option Name="DefaultLib" Val="xil_defaultlib"/>
@@ -64,20 +64,20 @@
     <Option Name="IPStaticSourceDir" Val="$PIPUSERFILESDIR/ipstatic"/>
     <Option Name="EnableBDX" Val="FALSE"/>
     <Option Name="DSABoardId" Val="zedboard"/>
-    <Option Name="WTXSimLaunchSim" Val="0"/>
+    <Option Name="WTXSimLaunchSim" Val="47"/>
     <Option Name="WTModelSimLaunchSim" Val="0"/>
     <Option Name="WTQuestaLaunchSim" Val="0"/>
     <Option Name="WTIesLaunchSim" Val="0"/>
     <Option Name="WTVcsLaunchSim" Val="0"/>
     <Option Name="WTRivieraLaunchSim" Val="0"/>
     <Option Name="WTActivehdlLaunchSim" Val="0"/>
-    <Option Name="WTXSimExportSim" Val="6"/>
-    <Option Name="WTModelSimExportSim" Val="6"/>
-    <Option Name="WTQuestaExportSim" Val="6"/>
-    <Option Name="WTIesExportSim" Val="6"/>
-    <Option Name="WTVcsExportSim" Val="6"/>
-    <Option Name="WTRivieraExportSim" Val="6"/>
-    <Option Name="WTActivehdlExportSim" Val="6"/>
+    <Option Name="WTXSimExportSim" Val="9"/>
+    <Option Name="WTModelSimExportSim" Val="9"/>
+    <Option Name="WTQuestaExportSim" Val="9"/>
+    <Option Name="WTIesExportSim" Val="9"/>
+    <Option Name="WTVcsExportSim" Val="9"/>
+    <Option Name="WTRivieraExportSim" Val="9"/>
+    <Option Name="WTActivehdlExportSim" Val="9"/>
     <Option Name="GenerateIPUpgradeLog" Val="TRUE"/>
     <Option Name="XSimRadix" Val="hex"/>
     <Option Name="XSimTimeUnit" Val="ns"/>
@@ -106,7 +106,19 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
+      <File Path="$PPRDIR/../modules/ctrlunit/counter.vhd">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
       <File Path="$PPRDIR/../modules/ctrlunit/ctrlunit.vhd">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../modules/channel/fir_deglitch.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -136,26 +148,26 @@
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
-        <CompFileExtendedInfo CompFileName="oscilloscope_bd.bd" FileRelPathName="ip/oscilloscope_bd_processing_system7_0_1/oscilloscope_bd_processing_system7_0_1.xci">
-          <Proxy FileSetName="oscilloscope_bd_processing_system7_0_1"/>
+        <CompFileExtendedInfo CompFileName="oscilloscope_bd.bd" FileRelPathName="ip/oscilloscope_bd_proc_sys_reset_0_0/oscilloscope_bd_proc_sys_reset_0_0.xci">
+          <Proxy FileSetName="oscilloscope_bd_proc_sys_reset_0_0"/>
         </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="oscilloscope_bd.bd" FileRelPathName="ip/oscilloscope_bd_clk_wiz_0_0/oscilloscope_bd_clk_wiz_0_0.xci">
           <Proxy FileSetName="oscilloscope_bd_clk_wiz_0_0"/>
         </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="oscilloscope_bd.bd" FileRelPathName="ip/oscilloscope_bd_xadc_wiz_0_0/oscilloscope_bd_xadc_wiz_0_0.xci">
-          <Proxy FileSetName="oscilloscope_bd_xadc_wiz_0_0"/>
+        <CompFileExtendedInfo CompFileName="oscilloscope_bd.bd" FileRelPathName="ip/oscilloscope_bd_OsciToCpu_0_3/oscilloscope_bd_OsciToCpu_0_3.xci">
+          <Proxy FileSetName="oscilloscope_bd_OsciToCpu_0_3"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="oscilloscope_bd.bd" FileRelPathName="ip/oscilloscope_bd_xadc_wiz_0_1/oscilloscope_bd_xadc_wiz_0_1.xci">
+          <Proxy FileSetName="oscilloscope_bd_xadc_wiz_0_1"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="oscilloscope_bd.bd" FileRelPathName="ip/oscilloscope_bd_ila_0_0/oscilloscope_bd_ila_0_0.xci">
+          <Proxy FileSetName="oscilloscope_bd_ila_0_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="oscilloscope_bd.bd" FileRelPathName="ip/oscilloscope_bd_adc_processing_0_1/oscilloscope_bd_adc_processing_0_1.xci">
+          <Proxy FileSetName="oscilloscope_bd_adc_processing_0_1"/>
         </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="oscilloscope_bd.bd" FileRelPathName="ip/oscilloscope_bd_osci_0_1/oscilloscope_bd_osci_0_1.xci">
           <Proxy FileSetName="oscilloscope_bd_osci_0_1"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="oscilloscope_bd.bd" FileRelPathName="ip/oscilloscope_bd_adc_processing_0_0/oscilloscope_bd_adc_processing_0_0.xci">
-          <Proxy FileSetName="oscilloscope_bd_adc_processing_0_0"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="oscilloscope_bd.bd" FileRelPathName="ip/oscilloscope_bd_proc_sys_reset_0_0/oscilloscope_bd_proc_sys_reset_0_0.xci">
-          <Proxy FileSetName="oscilloscope_bd_proc_sys_reset_0_0"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="oscilloscope_bd.bd" FileRelPathName="ip/oscilloscope_bd_OsciToCpu_0_3/oscilloscope_bd_OsciToCpu_0_3.xci">
-          <Proxy FileSetName="oscilloscope_bd_OsciToCpu_0_3"/>
         </CompFileExtendedInfo>
       </File>
       <File Path="$PGENDIR/sources_1/bd/oscilloscope_bd/hdl/oscilloscope_bd_wrapper.vhd">
@@ -184,13 +196,53 @@
     </FileSet>
     <FileSet Name="sim_1" Type="SimulationSrcs" RelSrcDir="$PSRCDIR/sim_1" RelGenDir="$PGENDIR/sim_1">
       <Filter Type="Srcs"/>
+      <File Path="$PPRDIR/../testbench/channel/channel_tb.vhd">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../testbench/ctrlunit/ctrlunit_tb.vhd">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../testbench/ctrlunit/counter_tb.vhd">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/ctrlunit_tb_behav.wcfg">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../testbench/channel/falling_edge_test.csv">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../testbench/channel/rising_edge_test.csv">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../testbench/channel/both_edges_test.csv">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
       <Config>
         <Option Name="DesignMode" Val="RTL"/>
-        <Option Name="TopModule" Val="osci"/>
+        <Option Name="TopModule" Val="chanel_tb"/>
         <Option Name="TopLib" Val="xil_defaultlib"/>
-        <Option Name="TopArchitecture" Val="RTL"/>
-        <Option Name="TopRTLFile" Val="$PPRDIR/../modules/osci/osci.vhd"/>
-        <Option Name="TopAutoSet" Val="TRUE"/>
         <Option Name="TransportPathDelay" Val="0"/>
         <Option Name="TransportIntDelay" Val="0"/>
         <Option Name="SelectedSimModel" Val="rtl"/>
@@ -199,6 +251,7 @@
         <Option Name="PamSignalDriverFile" Val="xil_bypass_driver"/>
         <Option Name="PamPseudoTop" Val="pseudo_tb"/>
         <Option Name="SrcSet" Val="sources_1"/>
+        <Option Name="XSimWcfgFile" Val="$PPRDIR/ctrlunit_tb_behav.wcfg"/>
       </Config>
     </FileSet>
     <FileSet Name="utils_1" Type="Utils" RelSrcDir="$PSRCDIR/utils_1" RelGenDir="$PGENDIR/utils_1">
@@ -217,7 +270,7 @@
       </File>
       <Config>
         <Option Name="DesignMode" Val="RTL"/>
-        <Option Name="TopModule" Val="channel_tb"/>
+        <Option Name="TopModule" Val="chanel_tb"/>
         <Option Name="TopLib" Val="xil_defaultlib"/>
         <Option Name="TransportPathDelay" Val="0"/>
         <Option Name="TransportIntDelay" Val="0"/>
@@ -227,12 +280,6 @@
         <Option Name="PamSignalDriverFile" Val="xil_bypass_driver"/>
         <Option Name="PamPseudoTop" Val="pseudo_tb"/>
         <Option Name="SrcSet" Val="sources_1"/>
-      </Config>
-    </FileSet>
-    <FileSet Name="oscilloscope_bd_xadc_wiz_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/oscilloscope_bd_xadc_wiz_0_0" RelGenDir="$PGENDIR/oscilloscope_bd_xadc_wiz_0_0">
-      <Config>
-        <Option Name="TopModule" Val="oscilloscope_bd_xadc_wiz_0_0"/>
-        <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
     <FileSet Name="oscilloscope_bd_clk_wiz_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/oscilloscope_bd_clk_wiz_0_0" RelGenDir="$PGENDIR/oscilloscope_bd_clk_wiz_0_0">
@@ -247,21 +294,27 @@
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
-    <FileSet Name="oscilloscope_bd_processing_system7_0_1" Type="BlockSrcs" RelSrcDir="$PSRCDIR/oscilloscope_bd_processing_system7_0_1" RelGenDir="$PGENDIR/oscilloscope_bd_processing_system7_0_1">
+    <FileSet Name="oscilloscope_bd_ila_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/oscilloscope_bd_ila_0_0" RelGenDir="$PGENDIR/oscilloscope_bd_ila_0_0">
       <Config>
-        <Option Name="TopModule" Val="oscilloscope_bd_processing_system7_0_1"/>
+        <Option Name="TopModule" Val="oscilloscope_bd_ila_0_0"/>
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
-    <FileSet Name="oscilloscope_bd_adc_processing_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/oscilloscope_bd_adc_processing_0_0" RelGenDir="$PGENDIR/oscilloscope_bd_adc_processing_0_0">
+    <FileSet Name="oscilloscope_bd_xadc_wiz_0_1" Type="BlockSrcs" RelSrcDir="$PSRCDIR/oscilloscope_bd_xadc_wiz_0_1" RelGenDir="$PGENDIR/oscilloscope_bd_xadc_wiz_0_1">
       <Config>
-        <Option Name="TopModule" Val="oscilloscope_bd_adc_processing_0_0"/>
+        <Option Name="TopModule" Val="oscilloscope_bd_xadc_wiz_0_1"/>
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
     <FileSet Name="oscilloscope_bd_OsciToCpu_0_3" Type="BlockSrcs" RelSrcDir="$PSRCDIR/oscilloscope_bd_OsciToCpu_0_3" RelGenDir="$PGENDIR/oscilloscope_bd_OsciToCpu_0_3">
       <Config>
         <Option Name="TopModule" Val="oscilloscope_bd_OsciToCpu_0_3"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="oscilloscope_bd_adc_processing_0_1" Type="BlockSrcs" RelSrcDir="$PSRCDIR/oscilloscope_bd_adc_processing_0_1" RelGenDir="$PGENDIR/oscilloscope_bd_adc_processing_0_1">
+      <Config>
+        <Option Name="TopModule" Val="oscilloscope_bd_adc_processing_0_1"/>
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
@@ -301,7 +354,41 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="oscilloscope_bd_xadc_wiz_0_0_synth_1" Type="Ft3:Synth" SrcSet="oscilloscope_bd_xadc_wiz_0_0" Part="xc7z020clg484-1" ConstrsSet="oscilloscope_bd_xadc_wiz_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/oscilloscope_bd_xadc_wiz_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="D:/Work/50_Dev/Oscilloscope/project/Oscilloscope.srcs/utils_1/imports/oscilloscope_bd_xadc_wiz_0_0_synth_1">
+    <Run Id="synth_1_copy_1" Type="Ft3:Synth" SrcSet="sources_1" Part="xc7z020clg484-1" ConstrsSet="constrs_1" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PPRDIR/../vivado/Oscilloscope.srcs/utils_1/imports/synth_1">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2021"/>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2021" CtrlBit="true">
+        <ReportConfig DisplayName="synthesis_report" Name="synth_1_copy_1_synth_synthesis_report_0" Spec="" RunStep="synth_design">
+          <ReportConfigOption Name="dummy_option" Type="string"/>
+        </ReportConfig>
+        <ReportConfig DisplayName="Utilization - Synth Design" Name="synth_1_copy_1_synth_report_utilization_0" Spec="report_utilization" RunStep="synth_design" Version="1" Minor="0">
+          <ReportConfigOption Name="dummy_option" Type="string"/>
+          <ReportConfigOutputOption Name="pb" Type="string" Value=""/>
+        </ReportConfig>
+      </ReportStrategy>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="synth_1_copy_2" Type="Ft3:Synth" SrcSet="sources_1" Part="xc7z020clg484-1" ConstrsSet="constrs_1" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PPRDIR/../vivado/Oscilloscope.srcs/utils_1/imports/synth_1">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2021"/>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2021" CtrlBit="true">
+        <ReportConfig DisplayName="synthesis_report" Name="synth_1_copy_2_synth_synthesis_report_0" Spec="" RunStep="synth_design">
+          <ReportConfigOption Name="dummy_option" Type="string"/>
+        </ReportConfig>
+        <ReportConfig DisplayName="Utilization - Synth Design" Name="synth_1_copy_2_synth_report_utilization_0" Spec="report_utilization" RunStep="synth_design" Version="1" Minor="0">
+          <ReportConfigOption Name="dummy_option" Type="string"/>
+          <ReportConfigOutputOption Name="pb" Type="string" Value=""/>
+        </ReportConfig>
+      </ReportStrategy>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="oscilloscope_bd_clk_wiz_0_0_synth_1" Type="Ft3:Synth" SrcSet="oscilloscope_bd_clk_wiz_0_0" Part="xc7z020clg484-1" ConstrsSet="oscilloscope_bd_clk_wiz_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/oscilloscope_bd_clk_wiz_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/oscilloscope_bd_clk_wiz_0_0_synth_1">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2021"/>
         <Step Id="synth_design"/>
@@ -311,7 +398,7 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="oscilloscope_bd_clk_wiz_0_0_synth_1" Type="Ft3:Synth" SrcSet="oscilloscope_bd_clk_wiz_0_0" Part="xc7z020clg484-1" ConstrsSet="oscilloscope_bd_clk_wiz_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/oscilloscope_bd_clk_wiz_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="D:/Work/50_Dev/Oscilloscope/project/Oscilloscope.srcs/utils_1/imports/oscilloscope_bd_clk_wiz_0_0_synth_1">
+    <Run Id="oscilloscope_bd_proc_sys_reset_0_0_synth_1" Type="Ft3:Synth" SrcSet="oscilloscope_bd_proc_sys_reset_0_0" Part="xc7z020clg484-1" ConstrsSet="oscilloscope_bd_proc_sys_reset_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/oscilloscope_bd_proc_sys_reset_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/oscilloscope_bd_proc_sys_reset_0_0_synth_1">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2021"/>
         <Step Id="synth_design"/>
@@ -321,7 +408,7 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="oscilloscope_bd_proc_sys_reset_0_0_synth_1" Type="Ft3:Synth" SrcSet="oscilloscope_bd_proc_sys_reset_0_0" Part="xc7z020clg484-1" ConstrsSet="oscilloscope_bd_proc_sys_reset_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/oscilloscope_bd_proc_sys_reset_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="D:/Work/50_Dev/Oscilloscope/project/Oscilloscope.srcs/utils_1/imports/oscilloscope_bd_proc_sys_reset_0_0_synth_1">
+    <Run Id="oscilloscope_bd_ila_0_0_synth_1" Type="Ft3:Synth" SrcSet="oscilloscope_bd_ila_0_0" Part="xc7z020clg484-1" ConstrsSet="oscilloscope_bd_ila_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/oscilloscope_bd_ila_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/oscilloscope_bd_ila_0_0_synth_1">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2021"/>
         <Step Id="synth_design"/>
@@ -331,21 +418,9 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="oscilloscope_bd_processing_system7_0_1_synth_1" Type="Ft3:Synth" SrcSet="oscilloscope_bd_processing_system7_0_1" Part="xc7z020clg484-1" ConstrsSet="oscilloscope_bd_processing_system7_0_1" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/oscilloscope_bd_processing_system7_0_1_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="D:/Work/50_Dev/Oscilloscope/project/Oscilloscope.srcs/utils_1/imports/oscilloscope_bd_processing_system7_0_1_synth_1">
+    <Run Id="oscilloscope_bd_xadc_wiz_0_1_synth_1" Type="Ft3:Synth" SrcSet="oscilloscope_bd_xadc_wiz_0_1" Part="xc7z020clg484-1" ConstrsSet="oscilloscope_bd_xadc_wiz_0_1" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/oscilloscope_bd_xadc_wiz_0_1_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/oscilloscope_bd_xadc_wiz_0_1_synth_1">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2021"/>
-        <Step Id="synth_design"/>
-      </Strategy>
-      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
-      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2021"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-      <RQSFiles/>
-    </Run>
-    <Run Id="oscilloscope_bd_adc_processing_0_0_synth_1" Type="Ft3:Synth" SrcSet="oscilloscope_bd_adc_processing_0_0" Part="xc7z020clg484-1" ConstrsSet="oscilloscope_bd_adc_processing_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/oscilloscope_bd_adc_processing_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/oscilloscope_bd_adc_processing_0_0_synth_1">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2021">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
@@ -355,9 +430,17 @@
     </Run>
     <Run Id="oscilloscope_bd_OsciToCpu_0_3_synth_1" Type="Ft3:Synth" SrcSet="oscilloscope_bd_OsciToCpu_0_3" Part="xc7z020clg484-1" ConstrsSet="oscilloscope_bd_OsciToCpu_0_3" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/oscilloscope_bd_OsciToCpu_0_3_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/oscilloscope_bd_OsciToCpu_0_3_synth_1">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2021">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2021"/>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2021"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="oscilloscope_bd_adc_processing_0_1_synth_1" Type="Ft3:Synth" SrcSet="oscilloscope_bd_adc_processing_0_1" Part="xc7z020clg484-1" ConstrsSet="oscilloscope_bd_adc_processing_0_1" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/oscilloscope_bd_adc_processing_0_1_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/oscilloscope_bd_adc_processing_0_1_synth_1">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2021"/>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
@@ -395,7 +478,7 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="oscilloscope_bd_xadc_wiz_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg484-1" ConstrsSet="oscilloscope_bd_xadc_wiz_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="oscilloscope_bd_xadc_wiz_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="D:/Work/50_Dev/Oscilloscope/project/Oscilloscope.srcs/utils_1/imports/oscilloscope_bd_xadc_wiz_0_0_impl_1">
+    <Run Id="oscilloscope_bd_clk_wiz_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg484-1" ConstrsSet="oscilloscope_bd_clk_wiz_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="oscilloscope_bd_clk_wiz_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/oscilloscope_bd_clk_wiz_0_0_impl_1">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2021"/>
         <Step Id="init_design"/>
@@ -412,7 +495,7 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="oscilloscope_bd_clk_wiz_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg484-1" ConstrsSet="oscilloscope_bd_clk_wiz_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="oscilloscope_bd_clk_wiz_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="D:/Work/50_Dev/Oscilloscope/project/Oscilloscope.srcs/utils_1/imports/oscilloscope_bd_clk_wiz_0_0_impl_1">
+    <Run Id="oscilloscope_bd_proc_sys_reset_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg484-1" ConstrsSet="oscilloscope_bd_proc_sys_reset_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="oscilloscope_bd_proc_sys_reset_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/oscilloscope_bd_proc_sys_reset_0_0_impl_1">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2021"/>
         <Step Id="init_design"/>
@@ -429,7 +512,7 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="oscilloscope_bd_proc_sys_reset_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg484-1" ConstrsSet="oscilloscope_bd_proc_sys_reset_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="oscilloscope_bd_proc_sys_reset_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="D:/Work/50_Dev/Oscilloscope/project/Oscilloscope.srcs/utils_1/imports/oscilloscope_bd_proc_sys_reset_0_0_impl_1">
+    <Run Id="oscilloscope_bd_ila_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg484-1" ConstrsSet="oscilloscope_bd_ila_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="oscilloscope_bd_ila_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/oscilloscope_bd_ila_0_0_impl_1">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2021"/>
         <Step Id="init_design"/>
@@ -446,28 +529,9 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="oscilloscope_bd_processing_system7_0_1_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg484-1" ConstrsSet="oscilloscope_bd_processing_system7_0_1" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="oscilloscope_bd_processing_system7_0_1_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="D:/Work/50_Dev/Oscilloscope/project/Oscilloscope.srcs/utils_1/imports/oscilloscope_bd_processing_system7_0_1_impl_1">
+    <Run Id="oscilloscope_bd_xadc_wiz_0_1_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg484-1" ConstrsSet="oscilloscope_bd_xadc_wiz_0_1" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="oscilloscope_bd_xadc_wiz_0_1_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/oscilloscope_bd_xadc_wiz_0_1_impl_1">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2021"/>
-        <Step Id="init_design"/>
-        <Step Id="opt_design"/>
-        <Step Id="power_opt_design"/>
-        <Step Id="place_design"/>
-        <Step Id="post_place_power_opt_design"/>
-        <Step Id="phys_opt_design"/>
-        <Step Id="route_design"/>
-        <Step Id="post_route_phys_opt_design"/>
-        <Step Id="write_bitstream"/>
-      </Strategy>
-      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2021"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-      <RQSFiles/>
-    </Run>
-    <Run Id="oscilloscope_bd_adc_processing_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg484-1" ConstrsSet="oscilloscope_bd_adc_processing_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="oscilloscope_bd_adc_processing_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/oscilloscope_bd_adc_processing_0_0_impl_1">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2021">
-          <Desc>Default settings for Implementation.</Desc>
-        </StratHandle>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>
@@ -484,9 +548,24 @@
     </Run>
     <Run Id="oscilloscope_bd_OsciToCpu_0_3_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg484-1" ConstrsSet="oscilloscope_bd_OsciToCpu_0_3" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="oscilloscope_bd_OsciToCpu_0_3_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/oscilloscope_bd_OsciToCpu_0_3_impl_1">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2021">
-          <Desc>Default settings for Implementation.</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2021"/>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2021"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="oscilloscope_bd_adc_processing_0_1_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg484-1" ConstrsSet="oscilloscope_bd_adc_processing_0_1" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="oscilloscope_bd_adc_processing_0_1_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/oscilloscope_bd_adc_processing_0_1_impl_1">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2021"/>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>
@@ -521,7 +600,9 @@
       <RQSFiles/>
     </Run>
   </Runs>
-  <Board/>
+  <Board>
+    <Jumpers/>
+  </Board>
   <DashboardSummary Version="1" Minor="0">
     <Dashboards>
       <Dashboard Name="default_dashboard">

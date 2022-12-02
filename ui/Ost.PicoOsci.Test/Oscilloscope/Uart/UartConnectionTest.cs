@@ -50,9 +50,11 @@ namespace Ost.PicoOsci.Test.Oscilloscope.Uart {
         public void SetTrigger() {
             TriggerConfig config = new TriggerConfig();
             config.Threshold.Value = 0.5;
+            config.EdgeMode.Value = EdgeMode.Both;
+            config.TriggerMode.Value = TriggerMode.Edge;
 
             m_testObject.SetTrigger(config);
-            var expectedSent = new byte[] { 0x8, 0x6, 0xbf, 0xff, 0x0, 0x0 };
+            var expectedSent = new byte[] { 0x8, 0x6, 0x07, 0xff, 0b0011, 0b0000 };
             AssertSent(expectedSent);
         }
 

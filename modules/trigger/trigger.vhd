@@ -4,12 +4,11 @@
 -- # Miniproject Digital Microelectronics (Fall Semester 2022)           #
 -- # OST Rapperswil-Jona                                                 #
 -- #                                                                     #
--- # Group 7:   Pelé Constam                                             #
+-- # Group 7:   Pele Constam                                             #
 -- #            Sandro Pedrett                                           #
--- #            Erik Löffler                                             #
+-- #            Erik Loeffler                                            #
 -- #                                                                     #
 -- # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
@@ -109,7 +108,7 @@ begin
     begin
         if falling_edge(clk) then
             if current_trigger_state = state_armed then
-                if unsigned(previous_sample) <= unsigned(trigger_internal_threshold) and
+                if unsigned(previous_sample) < unsigned(trigger_internal_threshold) and
                     unsigned(current_sample) >= unsigned(trigger_internal_threshold) then
                     trigger_rising_edge_event <= '1';
                 else
@@ -127,7 +126,7 @@ begin
         if falling_edge(clk) then
             if current_trigger_state = state_armed then
                 if unsigned(previous_sample) >= unsigned(trigger_internal_threshold) and
-                    unsigned(current_sample) <= unsigned(trigger_internal_threshold) then
+                    unsigned(current_sample) < unsigned(trigger_internal_threshold) then
                     trigger_falling_edge_event <= '1';
                 else
                     trigger_falling_edge_event <= '0';

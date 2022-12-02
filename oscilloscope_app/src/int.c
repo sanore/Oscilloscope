@@ -28,8 +28,7 @@ static XScuGic IntcInstance; /* Instance of the Interrupt Controller */
  * Initalizes the interrupt controller
  ******************************************************************************
  **/
-int INT_init()
-{
+int INT_init() {
   // Define some variables
   XScuGic_Config *IntcConfig; /* Config for interrupt controller */
   int Status;
@@ -39,21 +38,23 @@ int INT_init()
 
   /* Initialize the interrupt controller driver */
   IntcConfig = XScuGic_LookupConfig(INT_DEVICE_ID);
-  if (NULL == IntcConfig)
-  {
+  if (NULL == IntcConfig) {
     return XST_FAILURE;
   }
 
   Status = XScuGic_CfgInitialize(&IntcInstance, IntcConfig, IntcConfig->CpuBaseAddress);
-  if (Status != XST_SUCCESS)
-  {
+  if (Status != XST_SUCCESS) {
     return XST_FAILURE;
   }
+
+  // set the priority of IRQ_F2P[0:0] to 0xA0 (highest 0xF8, lowest 0x00) and a trigger for a rising edge 0x3.
+  XScuGic_SetPriorityTriggerType(&IntcInstance, INTC_INTERRUPT_ID_0, 0xA0, 0x3);
 
   /*
    * Connect the interrupt controller interrupt handler to the
    * hardware interrupt handling logic in the processor.
    */
+  Xil_ExceptionInit();
   Xil_ExceptionRegisterHandler(XIL_EXCEPTION_ID_INT, (Xil_ExceptionHandler)XScuGic_InterruptHandler, &IntcInstance);
 
   // Success
