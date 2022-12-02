@@ -33,7 +33,7 @@ begin
     sample_process: process(sample_clk)
     begin
         if rising_edge(sample_clk) then
-            int_val_4 <= 
+            int_val_4 <= int_val_3;
             int_val_3 <= int_val_2;
             int_val_2 <= int_val_1;
             int_val_1 <= ("00" & sample_val(11 downto 2));

@@ -12,6 +12,9 @@ entity channel is
         rst              : in  std_logic;
         start            : in std_ulogic;
         
+        adc_valid : in std_ulogic;
+        adc_val           : in  std_ulogic_vector(11 downto 0);
+
         --read ram
         read_address     : in std_ulogic_vector(ADDR_WIDTH - 1 downto 0);
         read_data        : out std_ulogic_vector(DATA_WIDTH - 1 downto 0);
@@ -22,7 +25,6 @@ entity channel is
         edge_sel          : in std_ulogic_vector(3 downto 0);
         edge_thre         : in std_ulogic_vector(15 downto 0);
         record_ready_irq  : out std_ulogic; 
-        adc_val           : in  std_ulogic_vector(11 downto 0);
         trigger_index : out std_ulogic_vector(ADDR_WIDTH - 1 downto 0)
     );
 end entity channel;
@@ -75,7 +77,16 @@ architecture RTL of channel is
             trig_pulse     : out std_ulogic
         );
     end component trigger;
-    
+
+    component fir_deglitch_filter is
+        port(
+          sample_clk  : in std_ulogic;
+          sample_val   : in std_ulogic_vector(11 downto 0);
+
+          filter_output : out std_ulogic_vector(11 downto 0)
+        );
+        end component fir_deglitch_filter;
+
     -- ram signals
     signal write_address : std_ulogic_vector(ADDR_WIDTH - 1 downto 0);
     signal write_data    : std_ulogic_vector(DATA_WIDTH - 1 downto 0);
@@ -83,6 +94,9 @@ architecture RTL of channel is
     
     signal trigger_pulse : std_ulogic;
     signal trigger_enable: std_ulogic;
+
+    signal filtered_samples: std_ulogic_vector(DATA_WIDTH - 1 downto 0);
+
 begin
     ctrl : ctrlunit
         generic map(
@@ -124,11 +138,17 @@ begin
         port map(
             clk            => clk,
             enable         => trigger_enable,
-            adc_val        => adc_val,
+            adc_val        => filtered_samples,
             trig_mode      => mode,                   -- mode posEdge
             trig_sel       => edge_sel,               -- rising     
             trig_threshold => edge_thre(11 downto 0), -- +500
             trig_pulse     => trigger_pulse
         );
-    
+    deglitch_filter:  fir_deglitch_filter 
+        port map(
+          sample_clk  => adc_valid,
+          sample_val => adc_val,
+
+          filter_output => filtered_samples
+        );
 end architecture RTL;
