@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="chanel_tb_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="chanel_tb" />
+            <top_module name="glbl" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0.000000000 ms"></ZoomStartTime>
+      <ZoomEndTime time="14.860000001 ms"></ZoomEndTime>
+      <Cursor1Time time="4.500500000 ms"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="201"></NameColumnWidth>
+      <ValueColumnWidth column_width="84"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="24" />
+   <wvobject fp_name="/chanel_tb/tb_clk" type="logic">
+      <obj_property name="ElementShortName">tb_clk</obj_property>
+      <obj_property name="ObjectShortName">tb_clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/chanel_tb/tb_sample_clk" type="logic">
+      <obj_property name="ElementShortName">tb_sample_clk</obj_property>
+      <obj_property name="ObjectShortName">tb_sample_clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/chanel_tb/tb_reset" type="logic">
+      <obj_property name="ElementShortName">tb_reset</obj_property>
+      <obj_property name="ObjectShortName">tb_reset</obj_property>
+   </wvobject>
+   <wvobject fp_name="/chanel_tb/tb_start" type="logic">
+      <obj_property name="ElementShortName">tb_start</obj_property>
+      <obj_property name="ObjectShortName">tb_start</obj_property>
+   </wvobject>
+   <wvobject fp_name="/chanel_tb/tb_adc_val" type="array">
+      <obj_property name="ElementShortName">tb_adc_val[11:0]</obj_property>
+      <obj_property name="ObjectShortName">tb_adc_val[11:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/chanel_tb/tb_trig_mode" type="array">
+      <obj_property name="ElementShortName">tb_trig_mode[3:0]</obj_property>
+      <obj_property name="ObjectShortName">tb_trig_mode[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/chanel_tb/tb_trig_sel" type="array">
+      <obj_property name="ElementShortName">tb_trig_sel[3:0]</obj_property>
+      <obj_property name="ObjectShortName">tb_trig_sel[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/chanel_tb/tb_trig_threshold" type="array">
+      <obj_property name="ElementShortName">tb_trig_threshold[11:0]</obj_property>
+      <obj_property name="ObjectShortName">tb_trig_threshold[11:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/chanel_tb/tb_read_data_addr" type="array">
+      <obj_property name="ElementShortName">tb_read_data_addr[12:0]</obj_property>
+      <obj_property name="ObjectShortName">tb_read_data_addr[12:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/chanel_tb/tb_read_data" type="array">
+      <obj_property name="ElementShortName">tb_read_data[15:0]</obj_property>
+      <obj_property name="ObjectShortName">tb_read_data[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/chanel_tb/tb_read_enable" type="logic">
+      <obj_property name="ElementShortName">tb_read_enable</obj_property>
+      <obj_property name="ObjectShortName">tb_read_enable</obj_property>
+   </wvobject>
+   <wvobject fp_name="/chanel_tb/tb_recording_ready_irq" type="logic">
+      <obj_property name="ElementShortName">tb_recording_ready_irq</obj_property>
+      <obj_property name="ObjectShortName">tb_recording_ready_irq</obj_property>
+   </wvobject>
+   <wvobject fp_name="/chanel_tb/tb_trigger_index" type="array">
+      <obj_property name="ElementShortName">tb_trigger_index[12:0]</obj_property>
+      <obj_property name="ObjectShortName">tb_trigger_index[12:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/chanel_tb/threshold_conversion" type="array">
+      <obj_property name="ElementShortName">threshold_conversion[15:0]</obj_property>
+      <obj_property name="ObjectShortName">threshold_conversion[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/chanel_tb/f_clk" type="other">
+      <obj_property name="ElementShortName">f_clk</obj_property>
+      <obj_property name="ObjectShortName">f_clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/chanel_tb/t_clk" type="other">
+      <obj_property name="ElementShortName">t_clk</obj_property>
+      <obj_property name="ObjectShortName">t_clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/chanel_tb/sample_clk" type="other">
+      <obj_property name="ElementShortName">sample_clk</obj_property>
+      <obj_property name="ObjectShortName">sample_clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/chanel_tb/t_sample" type="other">
+      <obj_property name="ElementShortName">t_sample</obj_property>
+      <obj_property name="ObjectShortName">t_sample</obj_property>
+   </wvobject>
+   <wvobject fp_name="/chanel_tb/DUT/ctrl/write_address" type="array">
+      <obj_property name="ElementShortName">write_address[12:0]</obj_property>
+      <obj_property name="ObjectShortName">write_address[12:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/chanel_tb/DUT/ctrl/write_en" type="logic">
+      <obj_property name="ElementShortName">write_en</obj_property>
+      <obj_property name="ObjectShortName">write_en</obj_property>
+   </wvobject>
+   <wvobject fp_name="/chanel_tb/DUT/ctrl/write_data" type="array">
+      <obj_property name="ElementShortName">write_data[15:0]</obj_property>
+      <obj_property name="ObjectShortName">write_data[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/chanel_tb/DUT/ctrl/mode" type="other">
+      <obj_property name="ElementShortName">mode</obj_property>
+      <obj_property name="ObjectShortName">mode</obj_property>
+   </wvobject>
+   <wvobject fp_name="/chanel_tb/DUT/storage/read_address" type="array">
+      <obj_property name="ElementShortName">read_address[12:0]</obj_property>
+      <obj_property name="ObjectShortName">read_address[12:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/chanel_tb/DUT/storage/read_data" type="array">
+      <obj_property name="ElementShortName">read_data[15:0]</obj_property>
+      <obj_property name="ObjectShortName">read_data[15:0]</obj_property>
+   </wvobject>
+</wave_config>

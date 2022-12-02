@@ -129,3 +129,14 @@ timestamp=[2022-12-02 14:21:39], mode=BUILD, duration=0:00:01.463, duration_ms=1
 timestamp=[2022-12-02 14:26:11], mode=BUILD, duration=0:00:00.264, duration_ms=264, data={name=oscilloscope_app, configuration=Debug, clean_build=true}
 timestamp=[2022-12-02 14:26:14], mode=BUILD, duration=0:00:02.059, duration_ms=2059, data={name=oscilloscope_app, configuration=Debug, clean_build=false}
 timestamp=[2022-12-02 14:34:32], mode=BUILD, duration=0:00:01.920, duration_ms=1920, data={name=oscilloscope_app, configuration=Debug, clean_build=false}
+timestamp=[2022-12-02 15:28:33], mode=BUILD, duration=0:00:01.939, duration_ms=1939, data={name=oscilloscope_app, configuration=Debug, clean_build=false}
+timestamp=[2022-12-02 15:47:47], mode=PLATFORM_GENERATION, duration=0:00:09.186, duration_ms=9186, data={name=oscilloscope_platform}
+timestamp=[2022-12-02 15:47:59], mode=BUILD, duration=0:00:00.760, duration_ms=760, data={name=oscilloscope_app, configuration=Debug, clean_build=false}
+timestamp=[2022-12-02 16:08:05], mode=PLATFORM_GENERATION, duration=0:00:06.093, duration_ms=6093, data={name=oscilloscope_platform}
+timestamp=[2022-12-02 16:31:07], mode=WORKBENCH_START, duration=0:00:08.343, duration_ms=8343, data={}
+timestamp=[2022-12-02 16:31:08], mode=WORKBENCH_UI_INIT, duration=0:00:00.844, duration_ms=844, data={editors_count=5, platform_editors_count=1, projects_count=4, platform_projects_count=1, active_platform_editor=false, projects=RemoteSystemsTempFiles,oscilloscope_app,oscilloscope_app_system,oscilloscope_platform}
+timestamp=[2022-12-02 16:31:08], mode=PLATFORM_REPOSITORY_INIT, duration=0:00:00.226, duration_ms=226, data={}
+timestamp=[2022-12-02 16:32:55], mode=PLATFORM_GENERATION, duration=0:00:29.568, duration_ms=29568, data={name=oscilloscope_platform}
+timestamp=[2022-12-02 16:32:58], mode=BUILD, duration=0:00:00.840, duration_ms=840, data={name=oscilloscope_app, configuration=Debug, clean_build=false}
+timestamp=[2022-12-02 16:33:10], mode=BUILD, duration=0:00:01.208, duration_ms=1208, data={name=oscilloscope_app, configuration=Debug, clean_build=false}
+timestamp=[2022-12-02 16:34:39], mode=BUILD, duration=0:00:01.258, duration_ms=1258, data={name=oscilloscope_app, configuration=Debug, clean_build=false}
