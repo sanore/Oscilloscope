@@ -24,10 +24,10 @@ use ieee.numeric_std.all;
 use std.textio.all;
 use ieee.std_logic_textio.all;
 
-entity chanel_tb is
-end entity chanel_tb;
+entity channel_tb is
+end entity channel_tb;
 
-architecture RTL of chanel_tb is
+architecture RTL of channel_tb is
     ----------------------------------------------------------------------------
     -- component
     ----------------------------------------------------------------------------
@@ -71,8 +71,8 @@ architecture RTL of chanel_tb is
     ----------------------------------------------------------------------------
     -- internal signals
     ----------------------------------------------------------------------------
-    signal tb_clk       : std_ulogic;
-    signal tb_sample_clk   : std_ulogic;
+    signal tb_clk       : std_ulogic:= '0';
+    signal tb_sample_clk   : std_ulogic:= '0';
     signal tb_reset    : std_logic := '1';
     signal tb_start    : std_logic;
     
@@ -121,27 +121,10 @@ begin
             adc_valid => tb_sample_clk
     );
 
-    tb_clock_generator: process
-    begin
-        tb_clk <= '0';
-        loop
-            wait for t_clk / 2.0;
-            tb_clk <= not tb_clk;
-        end loop;
-        wait;
-    end process tb_clock_generator;
+    tb_clk <= not tb_clk after t_clk / 2;
+    tb_sample_clk <= not tb_sample_clk after t_clk / 2;
 
-    sample_clock_generator: process
-    begin
-        tb_sample_clk <= '0';
-        loop
-            wait for t_sample / 2.0;
-            tb_sample_clk <= not tb_sample_clk;
-        end loop;
-        wait;
-    end process sample_clock_generator;
-
-    chanel_stimulus: process
+    channel_stimulus: process
         file waveform_data_file : text;
         variable line_buff      : line;
         variable delimiter_buff : character;
@@ -157,7 +140,7 @@ begin
     -- wait for next rising edge
     wait until rising_edge(tb_clk);
     
-    -- configure chanel
+    -- configure channel
     -- reset high -> channel can be configured
     tb_reset <= '1';
 
@@ -189,7 +172,7 @@ begin
     wait for 4500 us;
 
     -- feed in data
-    while not endfile(waveform_data_file) loop        
+    while (not endfile(waveform_data_file)) loop        
         readline(waveform_data_file, line_buff);
 
         -- wait until next sample
@@ -235,12 +218,12 @@ begin
     -- wait for a bit
     wait for 100 ns;
 
-    -- disable chanel
+    -- disable channel
     tb_reset <= '1';
     tb_read_enable <= '0';
 
     assert false report "Simulation completed." severity failure;
 
-    end process chanel_stimulus;
+    end process channel_stimulus;
 
 end architecture RTL;

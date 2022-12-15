@@ -1,0 +1,69 @@
+[project]
+name = "Oscilloscope"
+options = [
+  "--std=08",
+  "-fsynopsys",
+  "-frelaxed",
+  "-fexplicit",
+  "--ieee=standard",
+]
+source-prefix = "modules"
+sources = [
+  "channel/channel.vhd",
+  "channel/fir_deglitch.vhd",
+  "ctrlunit/ctrlunit.vhd",
+  "ctrlunit/counter.vhd",
+  "ram/ram.vhd",
+  "trigger/trigger.vhd",
+]
+
+[libraries]
+
+[testbenches]
+prefix = "testbench"
+output-formats = ["ghw"]
+libraries = []
+sim-options = []
+
+[testbenches.channel_tb]
+prefix = "channel"
+sources = ["channel_tb.vhd"]
+extra-files = [
+  "both_edges_test.csv",
+  "falling_edge_test.csv",
+  "rising_edge_test.csv",
+]
+sim-options = []
+output-formats = []
+
+[testbenches.ctrlunit_tb]
+prefix = "ctrlunit"
+sources = ["ctrlunit_tb.vhd"]
+extra-files = []
+sim-options = []
+output-formats = []
+
+[testbenches.counter_tb]
+prefix = "ctrlunit"
+sources = ["counter_tb.vhd"]
+extra-files = []
+sim-options = []
+output-formats = []
+
+[testbenches.ram_tb]
+prefix = "ram"
+sources = ["ram_tb.vhd"]
+extra-files = ["ram_data.csv"]
+sim-options = []
+output-formats = []
+
+[testbenches.trigger_tb]
+prefix = "trigger"
+sources = ["trigger_tb.vhd"]
+extra-files = [
+  "both_edges_test.csv",
+  "falling_edge_test.csv",
+  "rising_edge_test.csv",
+]
+sim-options = []
+output-formats = []

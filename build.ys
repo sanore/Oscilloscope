@@ -1,0 +1,1 @@
+read vhdl-2008 modules/channel/channel.vhd modules/hannel/fir_deglitch.vhd modules/trlunit/ctrlunit.vhd modules/trlunit/counter.vhd modules/am/ram.vhd modules/rigger/trigger.vhd

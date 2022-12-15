@@ -200,9 +200,9 @@ begin
 
         -- check data
         assert (tb_read_data = test_data_buff) report "Error: data at address "
-            & to_hstring(to_bitvector(test_addr_buff)) & " does not match. (Expected: "
-            & to_hstring(to_bitvector(test_data_buff)) & ", read: " 
-            & to_hstring(to_bitvector(tb_read_data)) & ")." severity error;
+            & to_hex_string(test_addr_buff) & " does not match. (Expected: "
+            & to_hex_string(test_data_buff) & ", read: " 
+            & to_hex_string(tb_read_data) & ")." severity error;
 
         -- disable read
         tb_read_en <= '0';
@@ -213,7 +213,7 @@ begin
     file_close(test_data_file);
     
     -- stop simulation
-    assert false report "Simulation completed.";
+    assert false report "Simulation completed." severity failure;
 
     wait;
 
